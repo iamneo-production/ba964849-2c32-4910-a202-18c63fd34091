@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/landingpage.jpg");
+  color: white;
+}
+
+.element {
+  z-index: 100;
+}
