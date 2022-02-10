@@ -27,7 +27,7 @@ export const Signup = () => {
     const handleOnSubmit = async (value)=>{
         const res = await axios({
             method:'POST',
-            url:'http://localhost:8000/signup',
+            url:'http://localhost:9090/signup',
             data: value
         });
         console.log(res);

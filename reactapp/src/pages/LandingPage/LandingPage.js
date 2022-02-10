@@ -4,7 +4,7 @@ import classes from './LandingPage.module.css';
 const LandingPage = () => {
   return (
       <div className={classes.container}>
-        <div classNmae={classes.element}>
+        <div className={classes.element}>
           <h1>Welcome to Vaccum Cleaner Service App</h1>
         </div>
         <div className={classes.element}>
