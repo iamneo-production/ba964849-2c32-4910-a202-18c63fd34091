@@ -14,7 +14,7 @@ export const Signup = () => {
     email: Yup.string()
               .email('Email is invalid')
               .required('Required'),
-    mobileNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
+    mobile: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
                     .required('Required'),
     password: Yup.string()
                  .min(6,'Password must be atleast 6 charachters')
@@ -43,7 +43,7 @@ export const Signup = () => {
                 confirmPassword: ''
             }}
             validationSchema={validate}
-            onSubmit = {values => {handleOnSubmit(values)}}
+            onSubmit = {values => handleOnSubmit(values)}
         >
            {formik => (
             <div>
