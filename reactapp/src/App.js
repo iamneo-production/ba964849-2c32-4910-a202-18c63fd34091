@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import User_home from './pages/Home/User_home';
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
+        {/* <ProtectedRoute path="/homepage" element={<User_home/>}></ProtectedRoute> */}
       </Routes>
     </BrowserRouter>
   );
