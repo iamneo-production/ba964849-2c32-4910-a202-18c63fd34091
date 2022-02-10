@@ -15,25 +15,30 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false,unique = true)
-    private  String email;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String mobileNumber;
 
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String confirmPassword;
 
-    public User(){}
+    public User() {
+    }
 
-    public User(long id,String usertype, String name, String email, String mobileNumber, String password) {
+    public User(long id, String usertype, String name, String email, String mobileNumber, String password,
+            String confirmPassword) {
         this.id = id;
         this.usertype = usertype;
         this.name = name;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
     public Long getId() {
