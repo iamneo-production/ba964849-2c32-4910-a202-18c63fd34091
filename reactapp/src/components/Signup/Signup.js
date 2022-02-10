@@ -8,13 +8,13 @@ export const Signup = () => {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
     const validate = Yup.object({
-    userType: Yup.string().oneOf(['admin','user'],'Should be admin/user').required('Required'),
-    username: Yup.string().max(25,'Must be 15 characters or less')
+    usertype: Yup.string().oneOf(['admin','user'],'Should be admin/user').required('Required'),
+    name: Yup.string().max(25,'Must be 15 characters or less')
     .required('Required'),
     email: Yup.string()
               .email('Email is invalid')
               .required('Required'),
-    mobile: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
+    mobileNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
                     .required('Required'),
     password: Yup.string()
                  .min(6,'Password must be atleast 6 charachters')
@@ -35,10 +35,10 @@ export const Signup = () => {
     return(
         <Formik
             initialValues={{
-                userType:'',
-                username:'',
+                usertype:'',
+                name:'',
                 email: '',
-                mobile: '',
+                mobileNumber: '',
                 password: '',
                 confirmPassword: ''
             }}
@@ -49,10 +49,10 @@ export const Signup = () => {
             <div>
                 <h1 className="my-4 font-weight-bold-display-4">Sign Up</h1>
                 <Form>
-                    <TextField id="admin/user" label="Are you a 'user' or 'admin' ?" name="userType" type="text" />
-                    <TextField id="username" label="Name" name="username" type="text" />
+                    <TextField id="admin/user" label="Are you a 'user' or 'admin' ?" name="usertype" type="text" />
+                    <TextField id="username" label="Name" name="name" type="text" />
                     <TextField id="email" label="Email" name="email" type="text" />
-                    <TextField id="mobile" label="Mobile Number" name="mobile" type="text"/>
+                    <TextField id="mobile" label="Mobile Number" name="mobileNumber" type="text"/>
                     <TextField id="password" label="Password" name="password" type="password" />
                     <TextField id="confirmPassword" label="Confirm Password" name="confirmPassword" type="password" />
                     <button className="btn btn-dark mt-3" type="submit">Register</button>
