@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { TextField } from './TextField';
 import {Link} from 'react-router-dom';
+import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import axios from 'axios';
  
@@ -21,7 +22,11 @@ export const Login = () => {
       url:'http://localhost:9090/login',
       data:val
     });
-    console.log(res);
+    if(res.data==false){
+      alert("Invalid credentials");}
+      else{
+        alert("Logged in Sucessfully!");
+      }
   }
 
   return (
@@ -33,6 +38,11 @@ export const Login = () => {
       validationSchema={validate}
       onSubmit={values => {
         handleOnSubmit(values);
+        // if(res.data==false){
+        // alert("Invalid credentials");}
+        // else{
+        //   alert("Logged in Sucessfully!");
+        // }
       }}
     >
       {formik => (

@@ -25,12 +25,17 @@ export const Signup = () => {
     });
 
     const handleOnSubmit = async (value)=>{
+        try{
         const res = await axios({
             method:'POST',
             url:'http://localhost:9090/signup',
             data: value
         });
         console.log(res);
+        alert("Signup successful !")
+    }catch(err){
+        alert("signup failed !!")
+    }
     }
     return(
         <Formik
