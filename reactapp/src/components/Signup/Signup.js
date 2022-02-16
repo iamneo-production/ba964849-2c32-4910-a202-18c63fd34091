@@ -5,16 +5,14 @@ import * as Yup from 'yup';
 import axios from "axios";
 import { Link } from "react-router-dom";
 export const Signup = () => {
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
+   
     const validate = Yup.object({
-    usertype: Yup.string().oneOf(['admin','user'],'Should be admin/user').required('Required'),
     name: Yup.string().max(25,'Must be 15 characters or less')
     .required('Required'),
     email: Yup.string()
               .email('Email is invalid')
               .required('Required'),
-    mobileNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
+    mobileNumber: Yup.string().matches("^[0-9]{10}$", 'Phone number is not valid')
                     .required('Required'),
     password: Yup.string()
                  .min(6,'Password must be atleast 6 charachters')
@@ -32,7 +30,7 @@ export const Signup = () => {
             data: value
         });
         console.log(res);
-        alert("Signup successful !")
+        alert(res.data);
     }catch(err){
         alert("signup failed !!")
     }
@@ -40,7 +38,6 @@ export const Signup = () => {
     return(
         <Formik
             initialValues={{
-                usertype:'',
                 name:'',
                 email: '',
                 mobileNumber: '',
@@ -54,7 +51,6 @@ export const Signup = () => {
             <div>
                 <h1 className="my-4 font-weight-bold-display-4">Sign Up</h1>
                 <Form>
-                    <TextField id="admin/user" label="Are you a 'user' or 'admin' ?" name="usertype" type="text" />
                     <TextField id="username" label="Name" name="name" type="text" />
                     <TextField id="email" label="Email" name="email" type="text" />
                     <TextField id="mobile" label="Mobile Number" name="mobileNumber" type="text"/>

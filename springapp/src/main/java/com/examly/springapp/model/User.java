@@ -10,9 +10,6 @@ public class User {
     private long id;
 
     @Column(nullable = false)
-    private String usertype;
-
-    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, unique = true)
@@ -30,10 +27,9 @@ public class User {
     public User() {
     }
 
-    public User(long id, String usertype, String name, String email, String mobileNumber, String password,
+    public User(long id, String name, String email, String mobileNumber, String password,
             String confirmPassword) {
         this.id = id;
-        this.usertype = usertype;
         this.name = name;
         this.email = email;
         this.mobileNumber = mobileNumber;
@@ -47,14 +43,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsertype() {
-        return usertype;
-    }
-
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
     }
 
     public String getName() {
