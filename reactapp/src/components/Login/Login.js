@@ -17,16 +17,22 @@ export const Login = () => {
   });
 
   async function handleOnSubmit(val){
-    const res = await axios({
-      method:'post',
-      url:'http://localhost:9090/login',
-      data:val
-    });
-    if(res.data==false){
-      alert("Invalid credentials");}
-      else{
-        alert("Logged in Sucessfully!");
-      }
+    try{
+      const res = await axios({
+        method:'post',
+        url:'http://localhost:9090/login',
+        data:val
+      });
+      if(res.data==false){
+        alert("Invalid credentials");}
+        else{
+          alert("Logged in Sucessfully!");
+        }
+    }catch(error){
+      console.log(error);
+      alert('Login Failed');
+    }
+    
   }
 
   return (
@@ -36,13 +42,9 @@ export const Login = () => {
         password: '',
       }}
       validationSchema={validate}
-      onSubmit={values => {
+      onSubmit={(values,{resetForm}) => {
         handleOnSubmit(values);
-        // if(res.data==false){
-        // alert("Invalid credentials");}
-        // else{
-        //   alert("Logged in Sucessfully!");
-        // }
+        resetForm({values:''});
       }}
     >
       {formik => (
