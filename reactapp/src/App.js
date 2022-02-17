@@ -3,7 +3,12 @@ import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import User_home from './pages/Home/User_home';
+import AdminCentreCard from './components/AdminCentreCard/AdminCentreCard';
+import AdminNavbar from './components/AdminNavbar/AdminNavbar';
+import AdminHomePage from './pages/AdminHomePage/AdminHomePage';
+import AdminAddCentreForm from './components/AdminAddCentreForm/AdminAddCentreForm';
+import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
+import AdminLayout from './pages/AdminLayout/AdminLayout';
 function App() {
   return (
     <BrowserRouter>
@@ -11,7 +16,14 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
-        {/* <ProtectedRoute path="/homepage" element={<User_home/>}></ProtectedRoute> */}
+        <Route path="/admin" element={<AdminLayout/>}>
+          <Route path="/admin/home" element={<AdminHomePage/>}></Route>
+          <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
+        </Route>
+        {/* <Route path="/admin/cards" element={<AdminCentreCard/>}></Route>
+        <Route path="/admin/navbar" element={<AdminNavbar/>}></Route>
+        <Route path="/admin/addcentre" element={<AdminAddCentreForm/>}></Route> */}
+        <Route path="*" element={"404: Page not found"}></Route>
       </Routes>
     </BrowserRouter>
   );

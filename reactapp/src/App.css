@@ -16,5 +16,5 @@ input.form-control:focus {
 .error {
   position: absolute;
   color: red;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }

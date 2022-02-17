@@ -45,7 +45,11 @@ export const Signup = () => {
                 confirmPassword: ''
             }}
             validationSchema={validate}
-            onSubmit = {values => handleOnSubmit(values)}
+            onSubmit = {
+                (values,{resetForm}) => {handleOnSubmit(values);
+                    resetForm({values:''});
+                }
+            }
         >
            {formik => (
             <div>

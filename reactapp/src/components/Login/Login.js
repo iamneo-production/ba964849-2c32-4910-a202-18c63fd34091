@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { TextField } from './TextField';
 import {Link} from 'react-router-dom';
-import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import axios from 'axios';
  
@@ -12,21 +11,27 @@ export const Login = () => {
       .email('Email is invalid')
       .required('Email is required'),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 charaters')
+      .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
   });
 
   async function handleOnSubmit(val){
-    const res = await axios({
-      method:'post',
-      url:'http://localhost:9090/login',
-      data:val
-    });
-    if(res.data==false){
-      alert("Invalid credentials");}
-      else{
-        alert("Logged in Sucessfully!");
-      }
+    try{
+      const res = await axios({
+        method:'post',
+        url:'http://localhost:9090/login',
+        data:val
+      });
+      if(res.data===false){
+        alert("Invalid credentials");}
+        else{
+          alert("Logged in Sucessfully!");
+        }
+    }catch(error){
+      console.log(error);
+      alert('Login Failed');
+    }
+    
   }
 
   return (
@@ -36,13 +41,9 @@ export const Login = () => {
         password: '',
       }}
       validationSchema={validate}
-      onSubmit={values => {
+      onSubmit={(values,{resetForm}) => {
         handleOnSubmit(values);
-        // if(res.data==false){
-        // alert("Invalid credentials");}
-        // else{
-        //   alert("Logged in Sucessfully!");
-        // }
+        resetForm({values:''});
       }}
     >
       {formik => (
