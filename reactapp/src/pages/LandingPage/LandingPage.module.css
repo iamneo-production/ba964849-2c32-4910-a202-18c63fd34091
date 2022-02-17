@@ -1,15 +1,22 @@
+.image
+{
+  background-image: url("../../assets/vaccum.png");
+  width: 200vh;
+  height: 100vh;
+  background-repeat: no-repeat;
+}
 .container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100vh;
-  background-image: url("../../assets/landingpage.jpg");
-  color: white;
+  flex-direction: row;
+  color: rgb(37, 33, 33);
+  background-color: rgb(243, 245, 247);
 }
-
 .element {
-  z-index: 100;
+text-align: center;
+ width:100%; 
+
 }
+
+
