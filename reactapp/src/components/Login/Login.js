@@ -12,7 +12,7 @@ export const Login = () => {
       .email('Email is invalid')
       .required('Email is required'),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 charaters')
+      .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
   });
 
