@@ -1,0 +1,15 @@
+.centreCardsContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 16px;
+}
+
+.searchBar {
+  margin: auto;
+  width: 80%;
+}
+
+.searchBar form input {
+  width: 80%;
+  margin-right: 16px;
+}
