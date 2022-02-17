@@ -8,25 +8,18 @@ const LandingPage = () => {
     <div className={classes.container}>
       <div className={classes.image}></div>
         <div className={classes.element} >
-          <h2>Welcome to Vaccum Cleaner Service App</h2>
-          <p>Now book your vaccum cleaner service at your finger tips.</p>
-          <p>Get Started !</p>
+          <h1>Welcome to Vaccum Cleaner Service App</h1>
+          <br></br>
+          <h4>Now book your vaccum cleaner service at your finger tips.</h4>
+          <br></br>
+          <h5>Get Started !</h5>
           <Link className="btn btn-primary" style={{marginRight:"16px"}}to="/signup">Signup</Link>
+          <br></br>
+          <br></br>
           <h3>Already have an account?</h3>
           <Link className="btn btn-success" to="/login">Login</Link>
           </div>
-        </div>
-       
-        
-  
-        
-       
-       
-  
-        
-       
-        
-      
+        </div>   
   );
 };
 
