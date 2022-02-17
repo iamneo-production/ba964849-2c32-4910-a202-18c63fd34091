@@ -4,8 +4,6 @@ import AdminCentreCard from "../../components/AdminCentreCard/AdminCentreCard";
 const AdminHomePage = () => {
   return (
     <div>
-        <h1>Welcome, Admin</h1>
-        <br></br>
         <div className={classes.searchBar}>
         <form action="" method="get">
             <label htmlFor="header-search"></label>

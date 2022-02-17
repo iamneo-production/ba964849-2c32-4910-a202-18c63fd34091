@@ -6,6 +6,8 @@ function AdminLayout() {
   return (
     <div>
         <AdminNavbar/>
+        <h1>Welcome, Admin</h1>
+        <br></br>
         <Outlet/>
     </div>
   )
