@@ -14,7 +14,7 @@ const AdminNavbar = () => {
                  <Link id='adminCentreProfile'style={{marginRight:"280px",color: "white",textDecoration:'none'}}to="/admin/home">Home</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='adminAddCentre'style={{marginRight:"250px",color: "white",textDecoration:'none'}}to="/admin/home">Add Centre</Link>
+                 <Link id='adminAddCentre'style={{marginRight:"250px",color: "white",textDecoration:'none'}}to="/admin/add-centre">Add Centre</Link>
                  </li>
                  <li class="nav-item">
                  <Link id='Logout' style={{color: "white",textDecoration:'none'}}to="/">Logout</Link>
