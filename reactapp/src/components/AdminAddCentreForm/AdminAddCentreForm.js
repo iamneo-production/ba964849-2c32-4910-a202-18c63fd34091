@@ -7,44 +7,45 @@ import styles from './AdminAddCentreForm.module.css';
 function AdminAddCentreForm() {
     const validate = Yup.object({
         name: Yup.string()
-          .max(15,'Should be less than 15 characters')
+          .max(25,'Should be less than 15 characters')
           .required('Name is required'),
-          phoneNumber: Yup.string().matches("^[0-9]{10}$", 'Phone number is not valid')
+          mobileNumber: Yup.string().matches("^[0-9]{10}$", 'Phone number is not valid')
           .required('Required'),
           address:Yup.string().max(50,'Should be less than 50 characters').required('Required'),
-          imageURL: Yup.string().url('Invalid URL'),
+          imgUrl: Yup.string().url('Invalid URL'),
           email:Yup.string().email('Invalid email').required('Required'),
           description:Yup.string().max(100,'Should not exceed 100 characters')
 
       });
     
       async function handleOnSubmit(val){
-        const res = await axios({
-          method:'post',
-          url:'http://localhost:9090/login',
-          data:val
-        });
-        if(res.data==false){
-          alert("Invalid credentials");}
-          else{
-            alert("Logged in Sucessfully!");
-          }
+        try{
+          const res = await axios({
+            method:'post',
+            url:'http://localhost:9090/addServiceCenter',
+            data:val
+          });
+          console.log(res.data);
+          alert("Centre Added Successfully");
+        }catch(error){
+          console.log(error);
+          alert('Add Centre Failed');
+        }
       }
     
       return (
         <Formik
           initialValues={{
             name: '',
-            phoneNumber: '',
+            mobileNumber: '',
             address:'',
-            imageURL:'',
+            imgUrl:'',
             email:'',
             description:''
           }}
           validationSchema={validate}
           onSubmit={(values,{resetForm}) => {
-            console.log(values);
-            // handleOnSubmit(values);
+            handleOnSubmit(values);
             resetForm({values:''});
           }}
         >
@@ -53,9 +54,9 @@ function AdminAddCentreForm() {
               <h1 >Add Centre</h1>
               <Form>
                 <TextField id="addName" label='Name' name="name" type="text" />
-                <TextField id="addNumber" label="Enter the phone number" name="phoneNumber" type="text" />
+                <TextField id="addNumber" label="Enter the phone number" name="mobileNumber" type="text" />
                 <TextField id="addAddress" label="Enter the address" name="address" type="text" />
-                <TextField id="addImageUrl" label="Enter the image url" name="imageURL" type="text" />
+                <TextField id="addImageUrl" label="Enter the image url" name="imgUrl" type="text" />
                 <TextField id="addEmail" label="Enter the email id" name="email" type="email" />
                 <TextField id="addCentreDescription" label="Give Description" name="description" type="textarea" />
                 <br></br>

@@ -1,16 +1,19 @@
-import React from 'react'
-import img from '../../assets/vacuumservice.jpg'
+import React from 'react';
+import styles from './AdminCentreCard.module.css';
 function AdminCentreCard(props) {
   return (
-    <div className="container" style={props.style}>
+    <div className={`container, ${styles.main}`} style={props.style}>
         <div className="row">
             <div className="col-sm">
                 <div class="card" >
-                    <img src={img} class="card-img-top" id="Grid1" alt="Vacuumservice"/>
+                    <img style={{width:'100%',height:'300px',objectFit:'fill'}}src={props.data.imgUrl} class="card-img-top" id="Grid1" alt="Vacuumservice"/>
                     <div class="card-body">
-                        <h5 class="card-title">VacuumService</h5>
-                        <p class="card-text">Place:xxx</p>
+                        <h5 class="card-title">{props.data.name}</h5>
+                        <p class="card-text">Place:{props.data.address}</p>
                         <p class="card-text">Timings:10:00AM to 05:00PM</p>
+                        <p class="card-text">Phone:{props.data.mobileNumber}</p>
+                        <p class="card-text">Email: {props.data.email}</p>
+                        <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
                     </div>
                 </div>
             </div>
