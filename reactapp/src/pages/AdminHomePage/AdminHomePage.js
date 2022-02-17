@@ -1,13 +1,9 @@
 import React from "react";
-import { BrowserRouter, Link } from "react-router-dom";
 import classes from './AdminHomePage.module.css';
-import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import AdminCentreCard from "../../components/AdminCentreCard/AdminCentreCard";
 const AdminHomePage = () => {
   return (
     <div>
-        <AdminNavbar/>
-        <br></br>
         <h1>Welcome, Admin</h1>
         <br></br>
         <div className={classes.searchBar}>

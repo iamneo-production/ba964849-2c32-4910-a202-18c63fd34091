@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { TextField } from './TextField';
 import {Link} from 'react-router-dom';
-import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import axios from 'axios';
  
@@ -23,7 +22,7 @@ export const Login = () => {
         url:'http://localhost:9090/login',
         data:val
       });
-      if(res.data==false){
+      if(res.data===false){
         alert("Invalid credentials");}
         else{
           alert("Logged in Sucessfully!");
