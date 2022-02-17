@@ -20,9 +20,9 @@ function App() {
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
         </Route>
-        <Route path="/admin/cards" element={<AdminCentreCard/>}></Route>
+        {/* <Route path="/admin/cards" element={<AdminCentreCard/>}></Route>
         <Route path="/admin/navbar" element={<AdminNavbar/>}></Route>
-        <Route path="/admin/addcentre" element={<AdminAddCentreForm/>}></Route>
+        <Route path="/admin/addcentre" element={<AdminAddCentreForm/>}></Route> */}
         <Route path="*" element={"404: Page not found"}></Route>
       </Routes>
     </BrowserRouter>
