@@ -8,7 +8,8 @@ const LandingPage = () => {
     <div className={classes.container}>
       <div className={classes.image}></div>
         <div className={classes.element} >
-          <h1>Welcome to Vaccum Cleaner Service App</h1>
+          <h1>Welcome to </h1>
+          <h1>Vaccum Cleaner Service App</h1>
           <br></br>
           <h4>Now book your vaccum cleaner service at your finger tips.</h4>
           <br></br>
