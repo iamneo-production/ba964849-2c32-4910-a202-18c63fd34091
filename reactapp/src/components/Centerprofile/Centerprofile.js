@@ -19,7 +19,7 @@ function Centerprofile() {
     const handleOnSubmit = async (value) => {
         try {
             const res = await axios({
-                method: 'POST',
+                method: 'PUT',
                 url: 'http://localhost:9090/signup',
                 data: value
             });
