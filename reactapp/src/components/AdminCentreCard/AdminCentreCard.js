@@ -6,7 +6,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function AdminCentreCard(props) {
+    console.log('admin card called:',props.data);
     const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
+
     const handleOnClickDelete = async()=>{
         try{
             if(window.confirm('Are you sure you want to delete?')){
@@ -19,7 +21,7 @@ function AdminCentreCard(props) {
                 props.onDelete();
             }
         }catch(error){
-            console.log(error);
+            console.log("delete error: ",error);
             alert("Could Not Delete Try Again");
         }
         
@@ -41,13 +43,21 @@ function AdminCentreCard(props) {
                         <p class="card-text">{`Phone: ${props.data.mobileNumber}`}</p>
                         <p class="card-text">{`Email: ${props.data.email}`}</p>
                         <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
-                        <Link to="/admin/edit-center" style={{marginRight:'8px'}}>
-                        <EditIcon onClick={()=>handleOnClickEdit()}/>
-                        </Link>
-                        <Link to="/admin/home" onClick={()=>handleOnClickDelete()}
-                        >
-                        <DeleteIcon/>
-                        </Link>
+                        <>
+                        {
+                            props.enableOptions ?  
+                            <>
+                                <Link to="/admin/edit-center" style={{marginRight:'8px'}}>
+                                <EditIcon onClick={()=>handleOnClickEdit()}/>
+                                </Link>
+                                <Link to="/admin/home" onClick={()=>handleOnClickDelete()}
+                                >
+                                <DeleteIcon/>
+                                </Link>
+                            </> 
+                            : ''
+                        }
+                        </>
                     </div>
                 </div>
             </div>

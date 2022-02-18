@@ -38,7 +38,7 @@ const AdminHomePage = (props) => {
         <div className={classes.centreCardsContainer}>
            {
              centreList.map((item,index)=>{
-               return <AdminCentreCard data={item} key={index} onDelete={fetchCentreList}/>;
+               return <AdminCentreCard data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
              })
            }
         </div>
