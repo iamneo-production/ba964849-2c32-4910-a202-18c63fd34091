@@ -9,6 +9,7 @@ import AdminHomePage from './pages/AdminHomePage/AdminHomePage';
 import AdminAddCentreForm from './components/AdminAddCentreForm/AdminAddCentreForm';
 import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
 import AdminLayout from './pages/AdminLayout/AdminLayout';
+import Centerprofilescreen from './pages/Centerprofilescreen/Centerprofilescreen';
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
         </Route>
+          <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
         {/* <Route path="/admin/cards" element={<AdminCentreCard/>}></Route>
         <Route path="/admin/navbar" element={<AdminNavbar/>}></Route>
         <Route path="/admin/addcentre" element={<AdminAddCentreForm/>}></Route> */}
@@ -28,5 +30,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
