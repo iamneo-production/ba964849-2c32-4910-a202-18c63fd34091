@@ -16,7 +16,7 @@ function AdminCentreCard(props) {
                 });
                 console.log(res);
                 alert('Deleted Sucessfully');
-               props.onDelete();
+                props.onDelete();
             }
         }catch(error){
             console.log(error);
