@@ -10,7 +10,9 @@ import AdminAddCentreForm from './components/AdminAddCentreForm/AdminAddCentreFo
 import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
 import AdminLayout from './pages/AdminLayout/AdminLayout';
 import Centerprofilescreen from './pages/Centerprofilescreen/Centerprofilescreen';
+import { useState } from 'react';
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -20,8 +22,8 @@ function App() {
         <Route path="/admin" element={<AdminLayout/>}>
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
-        </Route>
           <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
+        </Route>
         {/* <Route path="/admin/cards" element={<AdminCentreCard/>}></Route>
         <Route path="/admin/navbar" element={<AdminNavbar/>}></Route>
         <Route path="/admin/addcentre" element={<AdminAddCentreForm/>}></Route> */}

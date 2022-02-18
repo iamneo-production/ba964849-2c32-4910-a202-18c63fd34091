@@ -2,8 +2,33 @@ import React from 'react';
 import styles from './AdminCentreCard.module.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
+
 function AdminCentreCard(props) {
+    const navigate = useNavigate();
+    const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
+    const handleOnClickDelete = async()=>{
+        try{
+            if(window.confirm('Are you sure you want to delete?')){
+                const res = await axios({
+                    method:'delete',
+                    url:deleteURL
+                });
+                console.log(res);
+                alert('Deleted Sucessfully');
+               props.onDelete();
+            }
+        }catch(error){
+            console.log(error);
+            alert("Could Not Delete Try Again");
+        }
+        
+    }
+    const handleOnClickEdit = ()=>{
+        localStorage.setItem("data",JSON.stringify(props.data));
+    }
+
   return (
     <div className={`container, ${styles.main}`} style={props.style}>
         <div className="row">
@@ -17,10 +42,11 @@ function AdminCentreCard(props) {
                         <p class="card-text">{`Phone: ${props.data.mobileNumber}`}</p>
                         <p class="card-text">{`Email: ${props.data.email}`}</p>
                         <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
-                        <Link to="/admin/home" style={{marginRight:'8px'}}>
-                        <EditIcon/>
+                        <Link to="/admin/edit-center" style={{marginRight:'8px'}}>
+                        <EditIcon onClick={()=>handleOnClickEdit()}/>
                         </Link>
-                        <Link to='/admin/home'>
+                        <Link to="/admin/home" onClick={()=>handleOnClickDelete()}
+                        >
                         <DeleteIcon/>
                         </Link>
                     </div>

@@ -4,7 +4,11 @@ import { TextField } from './TextField';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './AdminAddCentreForm.module.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 function AdminAddCentreForm() {
+
+    const navigate = useNavigate();
+    
     const validate = Yup.object({
         name: Yup.string()
           .max(25,'Should be less than 15 characters')
@@ -27,6 +31,7 @@ function AdminAddCentreForm() {
           });
           console.log(res.data);
           alert("Centre Added Successfully");
+          navigate('/admin/home');
         }catch(error){
           console.log(error);
           alert('Add Centre Failed');
