@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './AdminCentreCard.module.css';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 function AdminCentreCard(props) {
   return (
     <div className={`container, ${styles.main}`} style={props.style}>
@@ -14,6 +16,12 @@ function AdminCentreCard(props) {
                         <p class="card-text">Phone:{props.data.mobileNumber}</p>
                         <p class="card-text">Email: {props.data.email}</p>
                         <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
+                        <button onClick={DeleteIcon} className="btn_black">
+                        <DeleteIcon/>
+                        </button>
+                        <button onClick={EditIcon} className="btn_black">
+                        <EditIcon/>
+                        </button>
                     </div>
                 </div>
             </div>
