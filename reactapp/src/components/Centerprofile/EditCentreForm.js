@@ -3,8 +3,8 @@ import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import axios from "axios";
-import styles from './Centerprofile.module.css';
-function Centerprofile() {
+import styles from './EditCentreForm.module.css';
+function EditCentreForm() {
     const validate = Yup.object({
         name: Yup.string().max(25, 'Must be 15 characters or less')
             .required('Required'),
@@ -66,4 +66,4 @@ function Centerprofile() {
         </Formik>
     )
 }
-export default Centerprofile
+export default EditCentreForm;

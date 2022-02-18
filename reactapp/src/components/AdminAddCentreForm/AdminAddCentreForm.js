@@ -4,7 +4,7 @@ import { TextField } from './TextField';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './AdminAddCentreForm.module.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function AdminAddCentreForm() {
 
     const navigate = useNavigate();

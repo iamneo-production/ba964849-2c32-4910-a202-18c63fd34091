@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminCentreCard from '../../components/AdminCentreCard/AdminCentreCard'
-import Centerprofile from '../../components/Centerprofile/Centerprofile'
+import EditCentreForm from '../../components/Centerprofile/EditCentreForm'
 function Centerprofilescreen(props) {
   console.log('centreprofilescreen:',props);
   return (
@@ -9,7 +9,7 @@ function Centerprofilescreen(props) {
         <AdminCentreCard data={JSON.parse(localStorage.getItem('data'))}/> 
       </div>
       <div style={{width:'40%'}}>
-        <Centerprofile />
+        <EditCentreForm />
       </div>
     </div>
   )

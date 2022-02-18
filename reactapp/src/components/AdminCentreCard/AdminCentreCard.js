@@ -2,11 +2,10 @@ import React from 'react';
 import styles from './AdminCentreCard.module.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function AdminCentreCard(props) {
-    const navigate = useNavigate();
     const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
     const handleOnClickDelete = async()=>{
         try{
