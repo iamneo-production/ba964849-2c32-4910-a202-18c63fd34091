@@ -1,9 +1,30 @@
 import React from 'react'
-import Centerprofile from '../../components/Centerprofile/Centerprofile'
-function Centerprofilescreen() {
+import { useEffect } from 'react';
+import { useState } from 'react'
+import AdminCentreCard from '../../components/AdminCentreCard/AdminCentreCard'
+import EditCentreForm from '../../components/EditCentreForm/EditCentreForm'
+function Centerprofilescreen(props) {
+
+  const [editCard,setEditCard] = useState({});
+  
+  const getCardtoEdit = ()=>{
+    const data=JSON.parse(localStorage.getItem('data'));
+    setEditCard(data);
+  }
+
+  useEffect(()=>{
+    getCardtoEdit();
+  },[]);
+
+
   return (
-    <div style={{ display: 'flex', flexDirection: "row-reverse", marginRight: '24px',marginTop:'24px'}}>
-      <Centerprofile />
+    <div style={{ display: 'flex', flexDirection: "row",justifyContent:'space-between'}}>
+      <div style={{width:'40%'}}>
+        <AdminCentreCard data={editCard} enableOptions={false}/> 
+      </div>
+      <div style={{width:'40%'}}>
+        <EditCentreForm  data={editCard} getCardtoEdit={getCardtoEdit} />
+      </div>
     </div>
   )
 }

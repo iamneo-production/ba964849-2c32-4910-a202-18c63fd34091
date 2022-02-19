@@ -3,10 +3,11 @@ import classes from './AdminHomePage.module.css';
 import AdminCentreCard from "../../components/AdminCentreCard/AdminCentreCard";
 import { useEffect,useState} from "react";
 import axios from "axios";
-const AdminHomePage = () => {
+
+const AdminHomePage = (props) => {
 
   const [centreList,setCentreList]= useState([]);
-
+  
   const fetchCentreList = async()=>{
     const res = await axios({
       method:'get',
@@ -38,7 +39,7 @@ const AdminHomePage = () => {
         <div className={classes.centreCardsContainer}>
            {
              centreList.map((item,index)=>{
-               return <AdminCentreCard data={item} key={index}/>;
+               return <AdminCentreCard data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
              })
            }
         </div>

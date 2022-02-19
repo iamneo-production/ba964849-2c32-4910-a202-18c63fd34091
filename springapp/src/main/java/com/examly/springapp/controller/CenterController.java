@@ -29,7 +29,7 @@ public class CenterController {
     }
 
     // updating Service Center
-    @PutMapping(value = "/editServiceCenter")
+    @PutMapping(value = "/editServiceCenter/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public Center editCenter(@RequestBody Center serviceCenter,
             @PathVariable("id") Long id) {
