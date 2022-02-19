@@ -29,7 +29,6 @@ function AdminAddCentreForm() {
             url:'http://localhost:9090/addServiceCenter',
             data:val
           });
-          console.log(res.data);
           alert("Centre Added Successfully");
           navigate('/admin/home');
         }catch(error){

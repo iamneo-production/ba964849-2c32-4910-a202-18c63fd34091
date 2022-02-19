@@ -6,8 +6,6 @@ import axios from "axios";
 import styles from './EditCentreForm.module.css';
 function EditCentreForm(props) {
 
-    console.log("Edit form called: ",props);
-
     const editURL = `http://localhost:9090/editServiceCenter/${props.data.id}`;
     
     const validate = Yup.object({
@@ -23,14 +21,12 @@ function EditCentreForm(props) {
     });
 
     const handleOnSubmit = async (value) => {
-        console.log("handleOnSubmitisCalled");
         try {
             const res = await axios({
                 method: 'PUT',
                 url: editURL,
                 data: value
             });
-            console.log('Edited Centre: ',res);
             localStorage.setItem('data',JSON.stringify(res.data));
             props.getCardtoEdit();
             alert('Updated Sucessfully');

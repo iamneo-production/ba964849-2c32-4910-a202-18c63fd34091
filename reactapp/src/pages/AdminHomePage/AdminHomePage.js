@@ -5,8 +5,9 @@ import { useEffect,useState} from "react";
 import axios from "axios";
 
 const AdminHomePage = (props) => {
-  console.log("Admin home page",localStorage.getItem('data'));
+
   const [centreList,setCentreList]= useState([]);
+  
   const fetchCentreList = async()=>{
     const res = await axios({
       method:'get',

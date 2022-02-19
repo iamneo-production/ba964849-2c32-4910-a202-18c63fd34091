@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function AdminCentreCard(props) {
-    console.log('admin card called:',props.data);
+
     const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
 
     const handleOnClickDelete = async()=>{
@@ -16,7 +16,6 @@ function AdminCentreCard(props) {
                     method:'delete',
                     url:deleteURL
                 });
-                console.log(res);
                 alert('Deleted Sucessfully');
                 props.onDelete();
             }

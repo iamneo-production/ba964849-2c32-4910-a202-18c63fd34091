@@ -4,11 +4,11 @@ import { useState } from 'react'
 import AdminCentreCard from '../../components/AdminCentreCard/AdminCentreCard'
 import EditCentreForm from '../../components/EditCentreForm/EditCentreForm'
 function Centerprofilescreen(props) {
+
   const [editCard,setEditCard] = useState({});
   
   const getCardtoEdit = ()=>{
     const data=JSON.parse(localStorage.getItem('data'));
-    console.log("Centerprofilescreen:",data);
     setEditCard(data);
   }
 
