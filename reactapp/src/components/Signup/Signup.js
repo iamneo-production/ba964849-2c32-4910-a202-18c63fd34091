@@ -29,8 +29,9 @@ export const Signup = () => {
             url:'http://localhost:9090/signup',
             data: value
         });
-        console.log(res);
-        alert(res.data);
+        //console.log(res);
+        //alert(res.data);
+        window.location.replace('/login');
     }catch(err){
         alert("signup failed !!")
     }

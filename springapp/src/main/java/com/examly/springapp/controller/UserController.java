@@ -25,19 +25,20 @@ public class UserController {
     @PostMapping("/signup")
     @CrossOrigin(origins = "http://localhost:3000")
     public String createUser(@RequestBody User user) {
+        user.setUserType("USER");
         return this.userService.createUser(user);
     }
 
     // login
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
-    public boolean userLogin(@RequestBody Login login) {
+    public String userLogin(@RequestBody Login login) {
         List<User> user = getUser();
         for (User u : user) {
             if (login.getEmail().equals(u.getEmail()) && login.getPassword().equals(u.getPassword())) {
-                return true;
+                return u.getUserType();
             }
         }
-        return false;
+        return "false";
     }
 }

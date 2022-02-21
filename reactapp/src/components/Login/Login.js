@@ -22,10 +22,15 @@ export const Login = () => {
         url:'http://localhost:9090/login',
         data:val
       });
-      if(res.data===false){
+      if(res.data==="false"){
         alert("Invalid credentials");}
         else{
-          alert("Logged in Sucessfully!");
+          if(res.data==="USER"){
+            window.location.replace('/user/home');
+          }
+          if(res.data==="ADMIN"){
+            window.location.replace('/admin/home');
+          }
         }
       
     }catch(error){

@@ -8,6 +8,7 @@ import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
 import AdminLayout from './pages/AdminLayout/AdminLayout';
 import Centerprofilescreen from './pages/Centerprofilescreen/Centerprofilescreen';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage';
+import { UserHomePage } from './pages/UserHomePage/UserHomePage';
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
           <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
         </Route>
+        <Route path='/user/home' element={<UserHomePage/>}></Route>
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
     </BrowserRouter>
