@@ -7,6 +7,7 @@ import AdminHomePage from './pages/AdminHomePage/AdminHomePage';
 import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
 import AdminLayout from './pages/AdminLayout/AdminLayout';
 import Centerprofilescreen from './pages/Centerprofilescreen/Centerprofilescreen';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage';
 function App() {
 
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
           <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
         </Route>
-        <Route path="*" element={"404: Page not found"}></Route>
+        <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
     </BrowserRouter>
   );
