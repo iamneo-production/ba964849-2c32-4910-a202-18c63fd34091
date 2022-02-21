@@ -4,6 +4,7 @@ import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 export const Signup = () => {
    
     const validate = Yup.object({
@@ -29,10 +30,14 @@ export const Signup = () => {
             url:'http://localhost:9090/signup',
             data: value
         });
-        console.log(res);
-        alert(res.data);
+        //console.log(res);
+        //alert(res.data);
+        toast.success('REGISTRATION SUCCESSFULL',{position: "top-center",autoClose: 2000});
+        setTimeout(() => { window.location.replace('/login'); }, 2000);
+        
     }catch(err){
-        alert("signup failed !!")
+        //alert("signup failed !!")
+        toast.error("SIGNUP FAILED !")
     }
     }
     return(
@@ -53,6 +58,7 @@ export const Signup = () => {
         >
            {formik => (
             <div>
+                <ToastContainer/>
                 <h1 className="my-4 font-weight-bold-display-4">Sign Up</h1>
                 <Form>
                     <TextField id="username" label="Name" name="name" type="text" />

@@ -9,8 +9,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String userType;
     @Column(nullable = false)
     private String name;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     @Column(nullable = false, unique = true)
     private String email;
