@@ -39,6 +39,6 @@ public class UserController {
                 return u.getUserType();
             }
         }
-        return "false";
+        return "FALSE";
     }
 }
