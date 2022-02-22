@@ -32,8 +32,14 @@ export const Signup = () => {
         });
         //console.log(res);
         //alert(res.data);
-        toast.success('REGISTRATION SUCCESSFULL',{position: "top-center",autoClose: 2000});
-        setTimeout(() => { window.location.replace('/login'); }, 2000);
+        if(res.data === 'Email id already exists'|| res.data==='Mobile number already exists'){
+            toast.error(res.data);
+        }else{
+            toast.success("SIGNUP SUCCESSFULL",{position: "top-center",autoClose: 2000});
+            setTimeout(() => { window.location.replace('/login'); }, 2000);
+        }
+
+        
         
     }catch(err){
         //alert("signup failed !!")
