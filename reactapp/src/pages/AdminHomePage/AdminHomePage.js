@@ -21,7 +21,7 @@ const AdminHomePage = (props) => {
   },[])
 
   return (
-    <div>
+    <div >
         <div className={classes.searchBar}>
         <form action="" method="get">
             <label htmlFor="header-search"></label>
@@ -43,7 +43,7 @@ const AdminHomePage = (props) => {
              })
            }
         </div>
-</div>
+  </div>
 
   );
 };
