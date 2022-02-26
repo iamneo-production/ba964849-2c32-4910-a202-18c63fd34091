@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import Navba from '../UserNavbar/UserNavbar';
 import styles from '../UserDashBoard/UserDashBoard.module.css';
+import img from "../../assets/vacuumservice.jpg";
 function Dashboard(props) {
     
     const validate = Yup.object({
@@ -37,6 +38,21 @@ function Dashboard(props) {
         <div>
 
         <Navba/>
+        <div className="card1">
+      <div className="upper-container">
+        <div className="image-container">
+        <img src={img} alt="" height="100px" width="100px" />
+      </div>
+    </div>
+    <div className="lower-container">
+      <h3><u>Vacuumservice</u></h3>
+      <h5>Address:xxx</h5>
+      <h5>Phone No:xxx</h5>
+      <h5>Email Id:xxx</h5>
+      <h5>Timing:10:00Am to 05:00Pm</h5>
+      
+    </div>
+</div>
         <Formik
         
             initialValues={{
@@ -58,7 +74,7 @@ function Dashboard(props) {
         >
             {formik => (
                 
-                <div className={styles.container}>
+                <div className={styles.container} >
                 
                     <h1 className="my-4 font-weight-bold-display-4">Enter the details</h1>
                     <Form>
