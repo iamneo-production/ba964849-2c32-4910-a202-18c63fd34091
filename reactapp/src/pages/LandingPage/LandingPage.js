@@ -14,11 +14,11 @@ const LandingPage = () => {
           <h4>Now book your vaccum cleaner service at your finger tips.</h4>
           <br></br>
           <h5>Get Started !</h5>
-          <Link className="btn btn-primary" style={{marginRight:"16px"}}to="/signup">Signup</Link>
+          <Link className="btn btn-primary btn-lg" style={{marginRight:"16px"}}to="/signup">Signup</Link>
           <br></br>
           <br></br>
           <h3>Already have an account?</h3>
-          <Link className="btn btn-success" to="/login">Login</Link>
+          <Link className="btn btn-success btn-lg" to="/login">Login</Link>
           </div>
         </div>   
   );
