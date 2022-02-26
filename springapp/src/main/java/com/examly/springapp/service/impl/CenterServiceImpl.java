@@ -59,7 +59,7 @@ public class CenterServiceImpl implements CenterService {
         List<Center> serviceCenters = viewCenter();
         Center serviceCenter = new Center();
         for (Center x : serviceCenters) {
-            if (x.getId() == id) {
+            if (x.getServiceCenterId() == id) {
                 serviceCenter = x;
                 serviceCenterRepository.delete(x);
             }
