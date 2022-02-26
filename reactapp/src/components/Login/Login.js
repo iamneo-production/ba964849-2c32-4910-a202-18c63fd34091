@@ -24,16 +24,17 @@ export const Login = () => {
         url: 'http://localhost:9090/login',
         data: val
       });
-      if (res.data === "FALSE") {
+      localStorage.setItem('user',JSON.stringify(res));
+      if (res.data === "") {
         //console.log(res.data);
         //alert("Invalid credentials");
         toast.error('INVALID CREDENTIAL');
       } else {
-        if (res.data === "USER") {
+        if (res.data.userType === "USER") {
           toast.success('WELCOME USER',{position: "top-center",autoClose: 2000});
           setTimeout(() => { window.location.replace('/user/home'); }, 2000);
         }
-        if (res.data === "ADMIN") {
+        if (res.data.userType === "ADMIN") {
           toast.success('WELCOME ADMIN',{position: "top-center",autoClose: 2000});
           setTimeout(() => { window.location.replace('/admin/home'); }, 2000);
           
