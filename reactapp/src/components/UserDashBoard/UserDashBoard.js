@@ -21,19 +21,7 @@ function Dashboard(props) {
         problem: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
         
     });
-    const handleOnSubmit = async (value) => {
-        try {
-            const res = await axios({
-                method: 'GET',
-                url: 'http://localhost:9090/addServiceCenter',
-                data: value
-            });
-            console.log(res);
-            alert(res.data);
-        } catch (err) {
-            alert("Error while updating")
-        }
-    }
+    
     return (
         <div>
 
@@ -64,12 +52,7 @@ function Dashboard(props) {
                 description:'',
             }}
             validationSchema={validate}
-            onSubmit={
-                (values, { resetForm }) => {
-                    handleOnSubmit(values);
-                    resetForm({ values: '' });
-                }
-            }
+            
             
         >
             {formik => (
