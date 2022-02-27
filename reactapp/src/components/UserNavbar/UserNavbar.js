@@ -10,7 +10,7 @@ const Navbar = () => {
                  <h4 style={{marginRight:"220px",color: "white" }} >Vacuum service</h4>
                  </li>
                  <li class="nav-item">  
-                 <Link id='HomeButton'style={{marginRight:"200px",color: "white"}}to="/">Home</Link>
+                 <Link id='HomeButton'style={{marginRight:"200px",color: "white"}}to="/user/home">Home</Link>
                  </li>
                  <li class="nav-item">
                  <Link id='DashBoardButton'style={{marginRight:"200px",color: "white"}}to="/dashboard">Dashboard</Link>
