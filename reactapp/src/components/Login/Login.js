@@ -26,8 +26,6 @@ export const Login = () => {
       });
       localStorage.setItem('user',JSON.stringify(res));
       if (res.data === "") {
-        //console.log(res.data);
-        //alert("Invalid credentials");
         toast.error('INVALID CREDENTIAL');
       } else {
         if (res.data.userType === "USER") {
@@ -42,34 +40,11 @@ export const Login = () => {
       }
 
     } catch (error) {
-      //console.log(error);
-      // alert('Login Failed');
       toast.error('LOGIN FAILED');
     }
 
   }
-  /*    this is alternative function for handleonsubmit  */
-  // const handleOnSubmit = (val)=>{
-  //   axios.post(`http://localhost:9090/login`,val).then(
-  //     (res)=>{
-
-  //       if(res.data==="USER"){
-  //         window.location.replace('/user/home');
-  //       }
-  //       if(res.data==="ADMIN"){
-  //         window.location.replace('/admin/home');
-  //       }
-  //       if(res.data==="INVALID"){
-  //         console.log(res.data);
-  //         alert("Invalid credentials");
-  //       }
-  //     },
-  //     (error)=>{
-  //       alert("SERVER ERROR");
-  //     }
-  //   )
-  // };
-
+  
   return (
     <Formik
       initialValues={{
