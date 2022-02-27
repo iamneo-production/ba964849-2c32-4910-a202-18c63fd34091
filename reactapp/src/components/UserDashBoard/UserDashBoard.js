@@ -2,25 +2,39 @@ import React from "react";
 import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from "axios";
 import Navba from '../UserNavbar/UserNavbar';
 import styles from '../UserDashBoard/UserDashBoard.module.css';
 import img from "../../assets/vacuumservice.jpg";
 function Dashboard(props) {
-    
+    const navigate=useNavigate();
     const validate = Yup.object({
         name: Yup.string().max(25, 'Must be 15 characters or less')
             .required('Required')
             .min(10,'Minimum 10 characters' ),
         model:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
-             .min(15,'Minimum 15 characters'),
+             .min(10,'Minimum 15 characters'),
         date:Yup.date().required('Required'),
         number: Yup.string().required('Required').matches("^[0-9]{10}$", 'Phone number is not valid'),
         problem: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
         
     });
+    async function handleOnSubmit(val){
+        try{
+          const res = await axios({
+            method:'post',
+            url:'http://localhost:9090/user/dashboard',
+            data:val
+          });
+          alert("Booked Successfully");
+          navigate('/Mybooking');
+        }catch(error){
+          console.log(error);
+          alert('Booking Failed');
+        }
+      }
     
     return (
         <div>
@@ -52,6 +66,10 @@ function Dashboard(props) {
                 description:'',
             }}
             validationSchema={validate}
+          onSubmit={(values,{resetForm}) => {
+            handleOnSubmit(values);
+            resetForm({values:''});
+          }}
             
             
         >
@@ -70,7 +88,7 @@ function Dashboard(props) {
                         <TextField  placeholder="Available Slot" name="description" type="textarea" />
                         <br></br>
                         
-                        <p className="btn btn-dark mt-3" id="bookButton"> <Link to="/myBooking">Book</Link></p>
+                        <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>
                     <br />
                 </div>
