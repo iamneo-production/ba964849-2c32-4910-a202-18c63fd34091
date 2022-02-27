@@ -38,8 +38,8 @@ const UserHomePage = (props) => {
         <br></br>
         <div className={classes.centreCardsContainer}>
            {
-             centreList.map((item,index)=>{
-               return <UserCentreCard data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
+             centreList.map((item)=>{
+               return <UserCentreCard data={item} key={item.serviceCenterId}/>; 
              })
            }
         </div>

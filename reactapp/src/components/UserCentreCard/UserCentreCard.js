@@ -1,14 +1,7 @@
 import React from 'react';
 import styles from './UserCentreCard.module.css';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
 
 function UserCentreCard(props) {
-
-    const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
-
   return (
     <div className={`container, ${styles.main}`} style={props.style}>
         <div className="row">

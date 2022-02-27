@@ -5,8 +5,10 @@ import * as Yup from 'yup';
 import axios from "axios";
 import styles from './EditCentreForm.module.css';
 function EditCentreForm(props) {
-
-    const editURL = `http://localhost:9090/editServiceCenter/${props.data.id}`;
+    const id = props.data.serviceCenterId;
+    console.log(props.data);
+    console.log("Edit center id: ",id);
+    const editURL = `http://localhost:9090/editServiceCenter/${id}`;
     
     const validate = Yup.object({
         name: Yup.string().max(25, 'Must be 15 characters or less')
@@ -30,6 +32,7 @@ function EditCentreForm(props) {
             localStorage.setItem('data',JSON.stringify(res.data));
             props.getCardtoEdit();
             alert('Updated Sucessfully');
+            window.location.replace("/admin/home");
         } catch (err) {
             console.log('error update: ',err);
             alert("Error while updating")
