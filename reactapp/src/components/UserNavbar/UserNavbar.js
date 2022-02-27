@@ -10,13 +10,13 @@ const Navbar = () => {
                  <h4 style={{marginRight:"280px",color: "white" }} >Vacuum service</h4>
                  </li>
                  <li class="nav-item">  
-                 <Link id='HomeButton'style={{marginRight:"280px",color: "white"}}to="/">Home</Link>
+                 <Link id='HomeButton'style={{marginRight:"220px",color: "white"}}to="/user/home">Home</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='DashBoardButton'style={{marginRight:"250px",color: "white"}}to="/dashboard">Dashboard</Link>
+                 <Link id='DashBoardButton'style={{marginRight:"200px",color: "white"}}to="/dashboard">Dashboard</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='myBookingButton'style={{marginRight:"250px",color: "white"}}to="/mybooking">Mybooking</Link>
+                 <Link id='myBookingButton'style={{marginRight:"200px",color: "white"}}to="/mybooking">Mybooking</Link>
                  </li>
                  <li class="nav-item">
                  <Link id='Logout' style={{color: "white"}}to="/">Logout</Link>
