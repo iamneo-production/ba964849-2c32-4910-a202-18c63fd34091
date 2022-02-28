@@ -26,11 +26,11 @@ function BookAppointmentForm(props) {
     async function handleOnSubmit(val){
         try{
           val["userId"]=userInfo.userId;
-          val["serviceCenterId"] = props.cardData.serviceCenterId;
+          val["serviceCenterId"] = props.center.serviceCenterId;
           console.log(val);
           const res = await axios({
             method:'post',
-            url:'http://localhost:9090/appointment',
+            url:'http://localhost:9090/bookappointment',
             data:val
           });
           alert("Booked Successfully");
@@ -65,7 +65,7 @@ function BookAppointmentForm(props) {
                 
                 <div className={styles.container} >
                 
-                    <h1 className="my-4 font-weight-bold-display-4">Enter the details</h1>
+                    <h3 className="my-3 font-weight-bold-display-3">Enter the details</h3>
                     <Form>
                     
                         <TextField id="enterProductName" placeholder='Enter the name of the product' name="productName" type="text" />

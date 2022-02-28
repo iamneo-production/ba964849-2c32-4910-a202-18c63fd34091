@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminAddCentreForm from '../../components/AdminAddCentreForm/AdminAddCentreForm'
+import AdminAddCentreForm from '../../../components/Admin/AdminAddCentreForm/AdminAddCentreForm'
 
 function AdminAddCentrePage() {
   return (

@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './UserCentreCard.module.css';
+import AddIcon from '@material-ui/icons/Add';
+import {Link} from 'react-router-dom';
 
-function UserCentreCard(props) {
+function UserCentreCard(props) {  
+    console.log(props.data);
+    const handleOnClickAdd=()=>{
+        localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
+    }
+
   return (
     <div className={`container, ${styles.main}`} style={props.style}>
         <div className="row">
@@ -15,7 +22,14 @@ function UserCentreCard(props) {
                         <p class="card-text">{`Phone: ${props.data.mobileNumber}`}</p>
                         <p class="card-text">{`Email: ${props.data.email}`}</p>
                         <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
-                        
+                        <>
+                        {
+                            <Link to="/user/dashboard" style={{marginRight:'8px'}} onClick={()=>handleOnClickAdd()}
+                            >
+                            <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>
+                            </Link>
+                        }
+                        </>
                     </div>
                 </div>
             </div>

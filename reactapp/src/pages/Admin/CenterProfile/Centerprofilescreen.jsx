@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import AdminCentreCard from '../../components/AdminCentreCard/AdminCentreCard'
-import EditCentreForm from '../../components/EditCentreForm/EditCentreForm'
+import AdminCentreCard from '../../../components/Admin/AdminCentreCard/AdminCentreCard'
+import EditCentreForm from '../../../components/Admin/EditCentreForm/EditCentreForm'
 function Centerprofilescreen(props) {
 
   const [editCard,setEditCard] = useState({});

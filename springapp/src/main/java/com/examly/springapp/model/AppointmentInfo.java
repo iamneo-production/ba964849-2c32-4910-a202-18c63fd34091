@@ -17,8 +17,7 @@ import javax.persistence.Id;
 public class AppointmentInfo {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int appointmentId;
-
+    private long appointmentId;
     private long userId;
     private long serviceCenterId;
     private String productName;
