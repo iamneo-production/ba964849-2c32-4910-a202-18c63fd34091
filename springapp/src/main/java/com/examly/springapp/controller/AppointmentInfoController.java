@@ -2,6 +2,8 @@ package com.examly.springapp.controller;
 
 
 import com.examly.springapp.model.AppointmentInfo;
+
+import com.examly.springapp.model.Center;
 import com.examly.springapp.service.AppointmentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +34,18 @@ public class AppointmentInfoController {
             }
         }
         return result;
+    }
+ // updating Service Center
+    @PutMapping(value = "/editAppointment/{id}")
+    public AppointmentInfo editAppointment(@RequestBody AppointmentInfo appointmentInfo,
+            @PathVariable("id") String id) {
+        return this.appointmentInfoService.editAppointment(appointmentInfo,id);
+    }
+
+    // delete Service Center
+    @DeleteMapping("/deleteAppointment/{id}")
+    public AppointmentInfo deleteAppointment(@PathVariable String id) {
+        AppointmentInfo temp = this.appointmentInfoService.deleteAppointment(id);
+        return temp;
     }
 }
