@@ -1,10 +1,10 @@
 import React from "react";
-import classes from './UserHomePage.module.css';
-import UserCentreCard from "../../components/UserCentreCard/UserCentreCard";
+import classes from './AdminHomePage.module.css';
+import AdminCentreCard from "../../../components/Admin/AdminCentreCard/AdminCentreCard";
 import { useEffect,useState} from "react";
 import axios from "axios";
 
-const UserHomePage = (props) => {
+const AdminHomePage = (props) => {
 
   const [centreList,setCentreList]= useState([]);
   
@@ -21,7 +21,7 @@ const UserHomePage = (props) => {
   },[])
 
   return (
-    <div>
+    <div >
         <div className={classes.searchBar}>
         <form action="" method="get">
             <label htmlFor="header-search"></label>
@@ -38,14 +38,14 @@ const UserHomePage = (props) => {
         <br></br>
         <div className={classes.centreCardsContainer}>
            {
-             centreList.map((item)=>{
-               return <UserCentreCard data={item} key={item.serviceCenterId}/>; 
+             centreList.map((item,index)=>{
+               return <AdminCentreCard data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
              })
            }
         </div>
-</div>
+  </div>
 
   );
 };
   
-export default UserHomePage;
+export default AdminHomePage;

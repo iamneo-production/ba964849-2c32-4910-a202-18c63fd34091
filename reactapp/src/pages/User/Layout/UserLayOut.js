@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import UserNavbar from '../../components/UserNavbar/UserNavbar'
+import UserNavbar from '../../../components/User/UserNavbar/UserNavbar'
 
 function UserLayOut() {
   return (

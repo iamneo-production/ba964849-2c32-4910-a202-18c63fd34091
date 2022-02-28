@@ -1,5 +1,5 @@
 import React from 'react'
-import UserBooking from '../../components/UserBooking/UserBooking'
+import UserBooking from '../../../components/User/UserBooking/UserBooking'
 
 function Userbooking() {
   return (

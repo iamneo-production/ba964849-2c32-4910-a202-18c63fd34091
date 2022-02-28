@@ -7,9 +7,10 @@
 }
 
 .card {
+  width: 40%;
 }
 
 .form {
+  width: 40%;
   margin-right: 32px;
-  margin-top: 32px;
 }

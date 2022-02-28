@@ -24,8 +24,9 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     public List<AppointmentInfo> allAppointments() {
         return this.appointmentInfoRepository.findAll();
     }
+
     @Override
-    public AppointmentInfo editAppointment(AppointmentInfo appointmentInfo,String id) {
+    public AppointmentInfo editAppointment(AppointmentInfo appointmentInfo, String id) {
         // List<Center> serviceCenters = viewCenter();
         // for (Center x : serviceCenters) {
         // if (x.getId() == id) {
@@ -59,7 +60,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         AppointmentInfo appointmentInfo = new AppointmentInfo();
         for (AppointmentInfo x : appointmentinfo) {
             if (x.getAppointmentId() == Long.parseLong(id)) {
-            	appointmentInfo = x;
+                appointmentInfo = x;
                 appointmentInfoRepository.delete(x);
             }
         }

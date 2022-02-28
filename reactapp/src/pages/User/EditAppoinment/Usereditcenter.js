@@ -1,5 +1,5 @@
 import React from 'react'
-import UserEditCenter from '../../components/UserEditCenter/UserEditCenter'
+import UserEditCenter from '../../../components/User/UserEditCenter/UserEditCenter'
 
 function Usereditcenter() {
   return (
