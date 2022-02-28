@@ -1,9 +1,27 @@
 import React from "react";
 import classes from './AdminHomePage.module.css';
 import AdminCentreCard from "../../components/AdminCentreCard/AdminCentreCard";
-const AdminHomePage = () => {
+import { useEffect,useState} from "react";
+import axios from "axios";
+
+const AdminHomePage = (props) => {
+
+  const [centreList,setCentreList]= useState([]);
+  
+  const fetchCentreList = async()=>{
+    const res = await axios({
+      method:'get',
+      url:'http://localhost:9090/getServiceCenter'
+    });
+    setCentreList(res.data);
+  }
+
+  useEffect(()=>{
+    fetchCentreList();
+  },[])
+
   return (
-    <div>
+    <div >
         <div className={classes.searchBar}>
         <form action="" method="get">
             <label htmlFor="header-search"></label>
@@ -19,14 +37,13 @@ const AdminHomePage = () => {
         </div>
         <br></br>
         <div className={classes.centreCardsContainer}>
-           <AdminCentreCard/>
-           <AdminCentreCard/>
-           <AdminCentreCard/>
-           <AdminCentreCard/>
-           <AdminCentreCard/>
-           <AdminCentreCard/>
+           {
+             centreList.map((item,index)=>{
+               return <AdminCentreCard data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
+             })
+           }
         </div>
-</div>
+  </div>
 
   );
 };

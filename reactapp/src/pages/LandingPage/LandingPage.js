@@ -1,22 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './LandingPage.module.css';
+
 const LandingPage = () => {
+
   return (
-      <div className={classes.container}>
-        <div className={classes.element}>
-          <h1>Welcome to Vaccum Cleaner Service App</h1>
-        </div>
-        <div className={classes.element}>
-          <p style={{textAlign:'center',fontSize:'20px'}}>Now book your vaccum cleaner service at your finger tips.</p>
-          <p style={{textAlign:'center',fontSize:'20px'}}>Get Started !</p>
-        </div>
-        <div className={classes.element}>
-          <Link className="btn btn-dark" style={{marginRight:"16px"}}to="/signup">Signup</Link>
-          <Link className="btn btn-light" to="/login">Login</Link>
-        </div>
-        
-      </div>
+    <div className={classes.container}>
+      <div className={classes.image}></div>
+        <div className={classes.element} >
+          <h1>Welcome to </h1>
+          <h1>Vaccum Cleaner Service App</h1>
+          <br></br>
+          <h4>Now book your vaccum cleaner service at your finger tips.</h4>
+          <br></br>
+          <h5>Get Started !</h5>
+          <Link className="btn btn-primary btn-lg" style={{marginRight:"16px"}}to="/signup">Signup</Link>
+          <br></br>
+          <br></br>
+          <h3>Already have an account?</h3>
+          <Link className="btn btn-success btn-lg" to="/login">Login</Link>
+          </div>
+        </div>   
   );
 };
 

@@ -2,6 +2,7 @@ package com.examly.springapp.controller;
 
 
 import com.examly.springapp.model.AppointmentInfo;
+
 import com.examly.springapp.model.Center;
 import com.examly.springapp.service.AppointmentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -65,6 +65,4 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         }
         return appointmentInfo;
     }
-
-	
 }

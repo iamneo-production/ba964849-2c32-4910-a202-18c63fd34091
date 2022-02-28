@@ -1,10 +1,12 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { TextField } from './TextField';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import axios from 'axios';
- 
+
 export const Login = () => {
   const validate = Yup.object({
     email: Yup.string()
@@ -15,25 +17,34 @@ export const Login = () => {
       .required('Password is required'),
   });
 
-  async function handleOnSubmit(val){
-    try{
+  async function handleOnSubmit(val) {
+    try {
       const res = await axios({
-        method:'post',
-        url:'http://localhost:9090/login',
-        data:val
+        method: 'post',
+        url: 'http://localhost:9090/login',
+        data: val
       });
-      if(res.data===false){
-        alert("Invalid credentials");}
-        else{
-          alert("Logged in Sucessfully!");
+      localStorage.setItem('user',JSON.stringify(res));
+      if (res.data === "") {
+        toast.error('INVALID CREDENTIAL');
+      } else {
+        if (res.data.userType === "USER") {
+          toast.success('WELCOME USER',{position: "top-center",autoClose: 2000});
+          setTimeout(() => { window.location.replace('/user/home'); }, 2000);
         }
-    }catch(error){
-      console.log(error);
-      alert('Login Failed');
-    }
-    
-  }
+        if (res.data.userType === "ADMIN") {
+          toast.success('WELCOME ADMIN',{position: "top-center",autoClose: 2000});
+          setTimeout(() => { window.location.replace('/admin/home'); }, 2000);
+          
+        }
+      }
 
+    } catch (error) {
+      toast.error('LOGIN FAILED');
+    }
+
+  }
+  
   return (
     <Formik
       initialValues={{
@@ -41,22 +52,23 @@ export const Login = () => {
         password: '',
       }}
       validationSchema={validate}
-      onSubmit={(values,{resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         handleOnSubmit(values);
-        resetForm({values:''});
+        resetForm({ values: '' });
       }}
     >
       {formik => (
         <div>
           <h1 >Login</h1>
           <Form>
-              <div>
-            <TextField id="email" label='Enter Email' name="email" type="email" />
-            <br></br>
+            <div>
+              <TextField id="email" label='Enter Email' name="email" type="email" />
+              <br></br>
             </div>
             <TextField id="password" label="Enter password" name="password" type="password" />
             <br></br>
             <button className="btn btn-dark mt-3" type="submit">Login</button>
+            <ToastContainer/>
           </Form>
           <br />
           <p>New User/Admin? <Link to="/signup">Signup</Link></p>
