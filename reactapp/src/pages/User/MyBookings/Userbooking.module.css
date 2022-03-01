@@ -1,23 +1,18 @@
 .centreCardsContainer {
   display: none;
-  display:contents;
+  display: contents;
   gap: 16px;
-  
 }
-.table {
+/* .table {
   border: 2px solid forestgreen;
   width: 600px;
-  height: 200px;
   background-color: aliceblue;
-    }
+}
 .th {
-      border-bottom: 1px solid black;
-      background-color:lightcyan;  
-    }
-      
-.td {
-      text-align:justify;
-      
-    }
-  
+  border-bottom: 1px solid black;
+  background-color: lightcyan;
+}
 
+.td {
+  text-align: justify;
+} */

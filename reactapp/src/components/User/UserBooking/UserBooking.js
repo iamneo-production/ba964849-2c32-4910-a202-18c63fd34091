@@ -10,12 +10,23 @@ const Mybooking = (props) => {
 }
     return (
       
-      <><tr><td>{props.data.productName}</td><td>{props.data.purchaseDate}</td><br></br><td>{props.data.bookingTime} <Link to="" onClick={DeleteIcon} className="btn_black">
-      <DeleteIcon/>
-      </Link>
-      <Link to="/user/EditCenter" onClick={()=>handleOnClickEdit()} className="btn_black">
-      <EditIcon/>
-      </Link></td></tr></>
+      <><tr>
+          <td>Serive center name</td>
+          <td>{props.data.productName}</td>
+          <td>{props.data.bookingDate}</td><br></br>
+          <td>{props.data.bookingTime}</td> 
+          <td>
+            <Link to="" onClick={DeleteIcon} className="btn_black">
+              <DeleteIcon/>
+            </Link>
+          </td>
+          <td>
+            <Link to="/user/EditCenter" onClick={()=>handleOnClickEdit()} className="btn_black">
+            <EditIcon/>
+            </Link>
+          </td>
+        </tr>
+      </>
                       
   );
 };

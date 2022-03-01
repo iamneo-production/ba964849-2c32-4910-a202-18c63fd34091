@@ -5,9 +5,9 @@ import { useEffect,useState} from "react";
 import axios from "axios";
 
 function Userbooking() {
-  const [centreList,setCentreList]= useState([]);
+  const [appointmentList,setAppointmentList]= useState([]);
   
-  const fetchCentreList = async()=>{
+  const fetchAppointments = async()=>{
     const res = await axios({
       method:'get',
       url:'http://localhost:9090/getAppointments',
@@ -15,27 +15,31 @@ function Userbooking() {
         'Access-Control-Allow-Origin': true,
       }
     });
-    setCentreList(res.data);
+    setAppointmentList(res.data);
   }
 
   useEffect(()=>{
-    fetchCentreList();
+    fetchAppointments();
   },[])
   return (
     
         <div className={classes.table}>
-          <table>
+          <h2>Your Bookings</h2>
+          <table className="table table-hover">
             <thead>
         <tr>
-          <th>Name</th>
+          <th>Center</th>
+          <th>Product</th>
           <th>Date</th><br></br>
           <th>Timing</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
         </thead>
-        <tbody class="app-table-all">
+        <tbody>
            {
-             centreList.map((item,index)=>{
-               return <UserBooking data={item} key={index} onDelete={fetchCentreList} enableOptions={true} />; 
+             appointmentList.map((item,index)=>{
+               return <UserBooking data={item} key={index} onDelete={fetchAppointments}/>; 
              })
            }
            </tbody>
