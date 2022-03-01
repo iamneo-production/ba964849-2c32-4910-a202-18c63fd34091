@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import {Link} from 'react-router-dom';
-import Navba from '../UserNavbar/UserNavbar';
 import styles from './UserEditCenter.module.css';
 
 function Dashboard(props) {
@@ -22,7 +21,7 @@ function Dashboard(props) {
     
     return (
         <div>
-            <Navba/>
+            
         <div className={styles.one}>
         <Formik
         

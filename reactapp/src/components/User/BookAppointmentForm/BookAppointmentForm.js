@@ -34,7 +34,7 @@ function BookAppointmentForm(props) {
             data:val
           });
           alert("Booked Successfully");
-          navigate('/Mybooking');
+          navigate('/user/Mybooking');
         }catch(error){
           console.log(error);
           alert('Booking Failed');

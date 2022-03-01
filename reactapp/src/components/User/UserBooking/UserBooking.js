@@ -3,7 +3,31 @@ import './UserBooking.module.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from "react-router-dom";
-const Mybooking = () => {
+import axios from "axios";
+  function UserBooking(props) {
+
+    const id = props.data.appointmentId;
+    const deleteURL = `http://localhost:9090/deleteAppointment/${id}`;
+
+    const handleOnClickDelete = async()=>{
+        try{
+            if(window.confirm('Are you sure you want to delete?')){
+                const res = await axios({
+                    method:'delete',
+                    url:deleteURL
+                });
+                alert('Deleted Sucessfully');
+                props.onDelete();
+            }
+        }catch(error){
+            console.log("delete error: ",error);
+            alert("Could Not Delete Try Again");
+        }
+        
+    }
+    const handleOnClickEdit = ()=>{
+      localStorage.setItem("data",JSON.stringify(props.data));
+  }
       
     return (
       <div>
@@ -16,39 +40,29 @@ const Mybooking = () => {
         <tr>
           <td>Vacuum Service</td>
           <td>DD/MM/YYYY</td>
-          <td>4pm to 5pm <Link to="" onClick={DeleteIcon} className="btn_black">
+          <td>4pm to 5pm 
+            <>
+            {
+            props.enableOptions ?  
+            <>
+                            <></><Link to="/user/home" onClick={()=>handleOnClickDelete()} className="btn_black">
                         <DeleteIcon/>
                         </Link>
-                        <Link to="/EditCenter"onClick={EditIcon} className="btn_black">
+                        <Link to="/user/EditCenter"onClick={()=>handleOnClickEdit()} className="btn_black">
                         <EditIcon/>
-                        </Link></td>
+                        </Link>
+                        </> 
+                            : ''
+                        }
+                        </></td>
                         
           
                         
         </tr>
-        <tr>
-          <td>VacUumService</td>
-          <td>DD/MM/YYYY</td>
-          <td>5pm to 6pm <Link to="" onClick={DeleteIcon} className="btn_black">
-                        <DeleteIcon/>
-                        </Link>
-                        <Link to="/EditCenter" onClick={EditIcon} className="btn_black">
-                        <EditIcon/>
-                        </Link></td>
-        </tr>
-        <tr>
-          <td>Forbes Service</td>
-          <td>DD/MM/YYYY</td>
-          <td>9am to 11am <Link to="" onClick={DeleteIcon} className="btn_black">
-                        <DeleteIcon/>
-                        </Link>
-                        <Link to="/EditCenter" onClick={EditIcon} className="btn_black">
-                        <EditIcon/>
-                        </Link></td>
-        </tr>
+       
       </table>   
     </div>
   );
 };
   
-export default Mybooking;
+export default UserBooking;
