@@ -17,7 +17,7 @@ function EditCenter(props) {
             .min(3,'Minimum 3 characters' ),
         productModelNo:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
-             .min(2,'Minimum 2 characters'),
+             .min(2,'Minimum 2  characters'),
         purchaseDate:Yup.date().required('Required'),
         problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
         bookingDate:Yup.string().required("Required"),
@@ -71,10 +71,10 @@ function EditCenter(props) {
                     
                         <TextField id="editProductName" placeholder='Enter the name of the product' name="productName" type="text" />
                         <TextField id="editModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" />
-                        <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="text" />
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" />
                         <TextField id="editProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" />
-                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="text" />
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="text" />
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="date" />
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" />
                         <br></br>
                         <button className="btn btn-dark mt-3" type="submit">update</button>
                         
