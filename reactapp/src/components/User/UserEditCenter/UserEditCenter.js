@@ -12,16 +12,16 @@ function EditCenter(props) {
     console.log("Edit Appointment id: ",id);
     const editURL = `http://localhost:9090/editAppointment/${id}`;
     const validate = Yup.object({
-        productName: Yup.string().max(25, 'Must be 15 characters or less')
+        productName: Yup.string().max(25, 'cannot exceed limit 25')
             .required('Required')
-            .min(10,'Minimum 10 characters' ),
+            .min(3,'Minimum 3 characters' ),
         productModelNo:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
-             .min(15,'Minimum 15 characters'),
+             .min(2,'Minimum 2 characters'),
         purchaseDate:Yup.date().required('Required'),
-        serviceCenterId: Yup.string().required('Required').matches("^[0-9]{10}$", 'Phone number is not valid'),
         problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
-        
+        bookingDate:Yup.string().required("Required"),
+        bookingTime:Yup.string().required("Required")
     });
     const handleOnSubmit = async (value) => {
         
@@ -50,8 +50,9 @@ function EditCenter(props) {
                 productName: props.data.productName,
                 productModelNo: props.data.productModelNo,
                 purchaseDate: props.data.purchaseDate,
-                serviceCenterId: props.data.serviceCenterId,
-                problemStatement: props.data.problemStatement
+                problemStatement: props.data.problemStatement,
+                bookingDate: props.data.bookingDate,
+                bookingTime: props.data.bookingTime
                 }}
             validationSchema={validate}
             onSubmit={
@@ -71,9 +72,9 @@ function EditCenter(props) {
                         <TextField id="editProductName" placeholder='Enter the name of the product' name="productName" type="text" />
                         <TextField id="editModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" />
                         <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="text" />
-                        <TextField id="editrContactNumber" placeholder="Enter the contact number" name="serviceCenterId" type="text" />
                         <TextField id="editProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" />
-                        <TextField  placeholder="Available Slot" name="bookingTime" type="textarea" />
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="text" />
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="text" />
                         <br></br>
                         <button className="btn btn-dark mt-3" type="submit">update</button>
                         

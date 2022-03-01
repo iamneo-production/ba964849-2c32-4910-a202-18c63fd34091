@@ -4,7 +4,6 @@ import { useState } from 'react'
 import UserEditCenter from '../../../components/User/UserEditCenter/UserEditCenter'
 
 function Usereditcenter(props) {
-  console.log("dinchk");
   const [editCard,setEditCard] = useState({});
   
   const getCardtoEdit = ()=>{

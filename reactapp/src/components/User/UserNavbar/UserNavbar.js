@@ -7,16 +7,13 @@ const Navbar = () => {
          <div class="container-fluid">
              <ul class="navbar-nav">
              <li>  
-                 <h4 style={{marginRight:"220px",color: "white" }} >Vacuum service</h4>
+                 <h4 style={{marginRight:"300px",color: "white" }} >Vacuum service</h4>
                  </li>
                  <li class="nav-item">  
-                 <Link id='HomeButton'style={{marginRight:"200px",color: "white"}}to="/user/home">Home</Link>
+                 <Link id='HomeButton'style={{marginRight:"260px",color: "white"}}to="/user/home">Home</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='DashBoardButton'style={{marginRight:"200px",color: "white"}}to="/user/dashboard">Dashboard</Link>
-                 </li>
-                 <li class="nav-item">
-                 <Link id='myBookingButton'style={{marginRight:"200px",color: "white"}}to="/user/mybooking">Mybooking</Link>
+                 <Link id='myBookingButton'style={{marginRight:"260px",color: "white"}}to="/user/mybooking">Mybooking</Link>
                  </li>
                  <li class="nav-item">
                  <Link id='Logout' style={{color: "white"}}to="/">Logout</Link>

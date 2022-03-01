@@ -9,12 +9,12 @@ function BookAppointmentForm(props) {
 
     const navigate=useNavigate();
     const validate = Yup.object({
-        productName: Yup.string().max(25, 'Must be 15 characters or less')
+        productName: Yup.string().max(25, 'cannot exceed limit 25')
             .required('Required')
-            .min(10,'Minimum 10 characters' ),
+            .min(3,'Minimum 3 characters' ),
         productModelNo:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
-             .min(10,'Minimum 15 characters'),
+             .min(2,'Minimum 2 characters'),
         purchaseDate:Yup.date().required('Required'),
         problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
         bookingDate:Yup.string().required("Required"),
@@ -34,7 +34,7 @@ function BookAppointmentForm(props) {
             data:val
           });
           alert("Booked Successfully");
-          navigate('/Mybooking');
+          navigate('/user/Mybooking');
         }catch(error){
           console.log(error);
           alert('Booking Failed');
