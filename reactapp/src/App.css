@@ -12,20 +12,24 @@ input.form-control,
 input.form-control:focus {
   background: #f0f0ff;
 }
-.card1{
+.card1 {
   width: 300px;
   height: 400px;
   background: white;
   border-radius: 10px;
   box-shadow: 0px 1px 10px 1px black;
   background-color: lightgray;
-  display:grid;
-  margin-top:300px;
+  display: grid;
+  margin-top: 300px;
   margin-left: 20px;
-}      
+}
 
 .error {
   position: absolute;
   color: red;
   font-size: 0.8rem;
+}
+
+a:hover {
+  cursor: pointer;
 }
