@@ -10,8 +10,7 @@ const Mybooking = (props) => {
 }
     return (
       
-      <>
-        <tr>
+      <><tr>
           <td>Serive center name</td>
           <td>{props.data.productName}</td>
           <td>{props.data.bookingDate}</td><br></br>

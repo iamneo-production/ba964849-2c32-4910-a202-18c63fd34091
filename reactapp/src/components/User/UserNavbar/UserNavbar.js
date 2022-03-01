@@ -1,15 +1,5 @@
-import {  Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {  Link } from "react-router-dom";
 const Navbar = () => {
-    const navigate = useNavigate();
-    const handleOnClickLogout = () =>{
-        localStorage.removeItem("user");
-        setTimeout(()=>{
-            toast.success("Logged out successfuly");
-        },1000);
-        navigate("/");
-    }
     return (
       <div>
         
@@ -29,10 +19,9 @@ const Navbar = () => {
                  <Link id='myBookingButton'style={{marginRight:"200px",color: "white"}}to="/user/mybooking">Mybooking</Link>
                  </li>
                  <li class="nav-item">
-                 <a style={{onHover:"pointer"}}id='Logout' style={{color: "white"}}  onClick={()=>handleOnClickLogout()}>Logout</a>
+                 <Link id='Logout' style={{color: "white"}}to="/">Logout</Link>
                  </li>
              </ul>
-             <ToastContainer/>
 </div>
 
 </nav>
