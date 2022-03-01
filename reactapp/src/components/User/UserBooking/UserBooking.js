@@ -17,13 +17,13 @@ const Mybooking = (props) => {
           <td>{props.data.bookingDate}</td><br></br>
           <td>{props.data.bookingTime}</td> 
           <td>
-            <Link to="" onClick={DeleteIcon} className="btn_black">
-              <DeleteIcon/>
+            <Link to="/user/EditCenter" onClick={()=>handleOnClickEdit()} className="btn_black">
+            <EditIcon/>
             </Link>
           </td>
           <td>
-            <Link to="/user/EditCenter" onClick={()=>handleOnClickEdit()} className="btn_black">
-            <EditIcon/>
+            <Link to="" onClick={DeleteIcon} className="btn_black">
+              <DeleteIcon/>
             </Link>
           </td>
         </tr>

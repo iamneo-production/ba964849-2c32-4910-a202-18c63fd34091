@@ -9,7 +9,6 @@ function UserLayOut() {
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log("userrrrrrrrrrr",user);
 
   useEffect(()=>{
     if(user==null || user.data.userType!=="USER"){
