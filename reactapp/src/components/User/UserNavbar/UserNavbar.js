@@ -6,7 +6,7 @@ const Navbar = () => {
     const handleOnClickLogout = () =>{
         localStorage.removeItem("user");
         setTimeout(()=>{
-            toast.success("Logged out successfuly");
+            toast.success("Logged out successfully");
         },1000);
         navigate("/");
     }

@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import {useNavigate} from 'react-router-dom';
 import axios from "axios";
 import styles from "./BookAppointmentForm.module.css";
+import { toast } from "react-toastify";
 function BookAppointmentForm(props) {
 
     const navigate=useNavigate();
@@ -33,7 +34,7 @@ function BookAppointmentForm(props) {
             url:'http://localhost:9090/bookappointment',
             data:val
           });
-          alert("Booked Successfully");
+          toast.success("Booked successfuly");
           navigate('/user/Mybooking');
         }catch(error){
           console.log(error);

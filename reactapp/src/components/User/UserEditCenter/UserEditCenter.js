@@ -4,6 +4,7 @@ import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import axios from "axios";
 import styles from './UserEditCenter.module.css';
+import ReactModal from "react-modal";
 
 function EditCenter(props) {
     const id = props.data.appointmentId;
@@ -31,10 +32,9 @@ function EditCenter(props) {
                 url: editURL,
                 data: value
             });
-            localStorage.setItem('data',JSON.stringify(res.data));
-            props.getCardtoEdit();
             alert('Updated Sucessfully');
-            window.location.replace("/user/mybooking");
+            props.onClose(false);
+            window.location.reload();
         } catch (err) {
             console.log('error update: ',err);
             alert("Error while updating")

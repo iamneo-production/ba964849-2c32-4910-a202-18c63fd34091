@@ -38,9 +38,11 @@ function Userbooking() {
         </thead>
         <tbody>
            {
+             appointmentList.length>0 ? 
              appointmentList.map((item,index)=>{
                return <UserBooking data={item} key={index} onDelete={fetchAppointments}/>; 
              })
+             : <div className={classes.noBooking}>No bookings</div>
            }
            </tbody>
            </table>

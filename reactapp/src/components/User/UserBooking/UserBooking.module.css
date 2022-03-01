@@ -7,3 +7,15 @@
   padding: 16px;
   box-sizing: border-box;
 }
+
+.modal {
+  margin-top: 5%;
+  margin-left: 5%;
+  border: none;
+}
+
+.closeButton {
+  position: fixed;
+  top: 0;
+  right: 0;
+}

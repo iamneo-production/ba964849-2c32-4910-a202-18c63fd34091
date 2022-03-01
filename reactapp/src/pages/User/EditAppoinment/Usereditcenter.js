@@ -16,12 +16,9 @@ function Usereditcenter(props) {
   },[]);
 
   return (
-    
-  <div style={{ display: 'flex', flexDirection: "row",justifyContent:'space-between'}}>
-      <div style={{width:'40%'}}>
-        <UserEditCenter data={editCard} getCardtoEdit={getCardtoEdit}/>
-      </div>
-    </div>
+  <>
+    <UserEditCenter data={editCard} getCardtoEdit={getCardtoEdit}/>
+  </>
   )
 }
 

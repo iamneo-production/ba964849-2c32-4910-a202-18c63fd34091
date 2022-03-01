@@ -3,16 +3,10 @@
   display: contents;
   gap: 16px;
 }
-/* .table {
-  border: 2px solid forestgreen;
-  width: 600px;
-  background-color: aliceblue;
+.noBooking {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 45%;
+  font-size: 24px;
 }
-.th {
-  border-bottom: 1px solid black;
-  background-color: lightcyan;
-}
-
-.td {
-  text-align: justify;
-} */
