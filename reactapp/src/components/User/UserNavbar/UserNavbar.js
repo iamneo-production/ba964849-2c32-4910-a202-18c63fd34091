@@ -13,10 +13,10 @@ const Navbar = () => {
                  <Link id='HomeButton'style={{marginRight:"200px",color: "white"}}to="/user/home">Home</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='DashBoardButton'style={{marginRight:"200px",color: "white"}}to="/dashboard">Dashboard</Link>
+                 <Link id='DashBoardButton'style={{marginRight:"200px",color: "white"}}to="/user/dashboard">Dashboard</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='myBookingButton'style={{marginRight:"200px",color: "white"}}to="/mybooking">Mybooking</Link>
+                 <Link id='myBookingButton'style={{marginRight:"200px",color: "white"}}to="/user/mybooking">Mybooking</Link>
                  </li>
                  <li class="nav-item">
                  <Link id='Logout' style={{color: "white"}}to="/">Logout</Link>
