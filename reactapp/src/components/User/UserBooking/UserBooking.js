@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import './UserBooking.module.css'
-import styles from './UserBooking.module.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import ReactModal from "react-modal";
-import UserEditCenter from "../UserEditCenter/UserEditCenter";
 const Mybooking = (props) => {
-
-  const [showModal,setShowModal] = useState(false);
-
+  console.log("in user booking component: ",props);
   const id = props.data.appointmentId;
   const deleteURL = `http://localhost:9090/deleteAppointment/${id}`;
 
@@ -32,13 +27,14 @@ const Mybooking = (props) => {
   }
   }
   const handleOnClickEdit = ()=>{
-    localStorage.setItem("data",JSON.stringify(props.data));
-    setShowModal(true);
+    props.setModalData(props.data);
+    props.showModal(true);
 }
     return (
       
       <>
         <tr>
+          <td>{props.data.appointmentId}</td>
           <td>Serive center name</td>
           <td>{props.data.productName}</td>
           <td>{props.data.bookingDate}</td><br></br>
@@ -54,11 +50,6 @@ const Mybooking = (props) => {
             </Link>
           </td>
         </tr>
-        <ToastContainer/>
-        <ReactModal isOpen={showModal} className={styles.modal}>
-          <UserEditCenter data={props.data} onClose={setShowModal}/>
-          <button className={`btn btn-danger ${styles.closeButton}`} onClick={()=>setShowModal(false)}>Close</button>
-        </ReactModal>
       </>
                       
   );

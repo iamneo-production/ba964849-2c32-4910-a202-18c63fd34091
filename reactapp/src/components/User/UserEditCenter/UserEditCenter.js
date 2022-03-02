@@ -5,13 +5,16 @@ import * as Yup from 'yup';
 import axios from "axios";
 import styles from './UserEditCenter.module.css';
 import ReactModal from "react-modal";
+import { useNavigate } from "react-router-dom";
 
 function EditCenter(props) {
+
     const id = props.data.appointmentId;
-    console.log(id);
-    console.log(props.data);
-    console.log("Edit Appointment id: ",id);
+
     const editURL = `http://localhost:9090/editAppointment/${id}`;
+
+    const navigate = useNavigate();
+
     const validate = Yup.object({
         productName: Yup.string().max(25, 'cannot exceed limit 25')
             .required('Required')
@@ -34,7 +37,8 @@ function EditCenter(props) {
             });
             alert('Updated Sucessfully');
             props.onClose(false);
-            window.location.reload();
+            props.onEdit();
+            navigate("/user/mybooking");
         } catch (err) {
             console.log('error update: ',err);
             alert("Error while updating")

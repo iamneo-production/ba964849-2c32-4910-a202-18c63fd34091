@@ -79,7 +79,6 @@ function BookAppointmentForm(props) {
                         
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>
-                    <br />
                 </div>
             )}
         </Formik>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminNavbar from '../../../components/Admin/AdminNavbar/AdminNavbar'
 
@@ -17,8 +17,8 @@ function AdminLayout() {
     <div>
         <AdminNavbar/>
         <h1>Welcome, Admin</h1>
-        <br></br>
         <ToastContainer/>
+        <br></br>
         <Outlet/>
     </div>
   )

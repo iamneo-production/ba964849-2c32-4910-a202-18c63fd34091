@@ -4,7 +4,7 @@ import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 export const Signup = () => {
 
     const validate = Yup.object({
@@ -65,7 +65,6 @@ export const Signup = () => {
         >
             {formik => (
                 <div>
-                    <ToastContainer />
                     <h1 className="my-4 font-weight-bold-display-4">Sign Up</h1>
                     <Form>
                         <TextField id="username" label="Name" name="name" type="text" />

@@ -1,5 +1,5 @@
 import {  Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Navbar = () => {
     const navigate = useNavigate();
@@ -29,7 +29,6 @@ const Navbar = () => {
                  <a style={{onHover:"pointer"}}id='Logout' style={{color: "white"}}  onClick={()=>handleOnClickLogout()}>Logout</a>
                  </li>
              </ul>
-             <ToastContainer/>
 </div>
 
 </nav>

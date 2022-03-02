@@ -5,6 +5,8 @@
 .main {
   padding: 16px;
   box-sizing: border-box;
+  margin: 0;
+  max-width: 100%;
 }
 
 .bookButton {

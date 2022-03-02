@@ -2,11 +2,17 @@ import React from 'react'
 import UserBooking from '../../../components/User/UserBooking/UserBooking'
 import classes from './Userbooking.module.css';
 import { useEffect,useState} from "react";
+import ReactModal from "react-modal";
+import UserEditCenter from "../../../components/User/UserEditCenter/UserEditCenter";
 import axios from "axios";
 
-function Userbooking() {
+function Userbooking(props) {
   const [appointmentList,setAppointmentList]= useState([]);
-  
+
+  const [showModal,setShowModal] = useState(false);
+
+  const [modalData,setModalData] = useState({});
+
   const fetchAppointments = async()=>{
     const res = await axios({
       method:'get',
@@ -22,12 +28,13 @@ function Userbooking() {
     fetchAppointments();
   },[])
   return (
-    
+    <>
         <div className={classes.table}>
           <h2>Your Bookings</h2>
           <table className="table table-hover">
             <thead>
         <tr>
+          <th>Booking id</th>
           <th>Center</th>
           <th>Product</th>
           <th>Date</th><br></br>
@@ -40,13 +47,18 @@ function Userbooking() {
            {
              appointmentList.length>0 ? 
              appointmentList.map((item,index)=>{
-               return <UserBooking data={item} key={index} onDelete={fetchAppointments}/>; 
+               return <UserBooking data={item} key={index} onDelete={fetchAppointments} showModal={setShowModal} setModalData={setModalData}/>; 
              })
              : <div className={classes.noBooking}>No bookings</div>
            }
            </tbody>
            </table>
         </div>
+        <ReactModal isOpen={showModal} className={classes.modal}>
+          <UserEditCenter  data={modalData} onClose={setShowModal} onEdit={fetchAppointments}/>
+          <button className={`btn btn-danger ${classes.closeButton}`} onClick={()=>setShowModal(false)}>Close</button>
+        </ReactModal>
+    </>
             
   )
 }
