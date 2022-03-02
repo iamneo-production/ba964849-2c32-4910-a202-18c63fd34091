@@ -7,7 +7,8 @@ import axios from 'axios';
 
 function AdminCentreCard(props) {
 
-    const deleteURL = `http://localhost:9090/deleteServiceCenter/${props.data.id}`;
+    const id = props.data.serviceCenterId;
+    const deleteURL = `http://localhost:9090/deleteServiceCenter/${id}`;
 
     const handleOnClickDelete = async()=>{
         try{

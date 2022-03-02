@@ -3,12 +3,17 @@ import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import AdminHomePage from './pages/AdminHomePage/AdminHomePage';
-import AdminAddCentrePage from './pages/AdminAddCentrePage/AdminAddCentrePage';
-import AdminLayout from './pages/AdminLayout/AdminLayout';
-import Centerprofilescreen from './pages/Centerprofilescreen/Centerprofilescreen';
+import AdminHomePage from './pages/Admin/Home/AdminHomePage';
+import AdminAddCentrePage from './pages/Admin/AddCenter/AdminAddCentrePage';
+import AdminLayout from './pages/Admin/Layout/AdminLayout';
+import UserLayOut from './pages/User/Layout/UserLayOut';
+import Centerprofilescreen from './pages/Admin/CenterProfile/Centerprofilescreen';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage';
-import { UserHomePage } from './pages/UserHomePage/UserHomePage';
+import  UserHomePage  from './pages/User/Home/UserHomePage';
+import UserDashboard from './pages/User/Dashboard/UserDashboard';
+import Userbooking from './pages/User/MyBookings/Userbooking';
+import Usereditcenter from './pages/User/EditAppoinment/Usereditcenter';
+
 function App() {
 
   return (
@@ -17,12 +22,20 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
+
         <Route path="/admin" element={<AdminLayout/>}>
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
           <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
         </Route>
-        <Route path='/user/home' element={<UserHomePage/>}></Route>
+
+        <Route path="/user" element={<UserLayOut/>}>
+          <Route path='/user/home' element={<UserHomePage/>}></Route>
+          <Route path='/user/dashboard' element={<UserDashboard/>}></Route>
+          <Route path='/user/Mybooking' element={<Userbooking/>}></Route>
+          <Route path='/user/EditCenter' element={<Usereditcenter/>}></Route>
+        </Route>
+
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
     </BrowserRouter>

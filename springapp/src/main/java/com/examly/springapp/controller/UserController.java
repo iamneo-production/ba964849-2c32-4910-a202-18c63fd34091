@@ -32,13 +32,13 @@ public class UserController {
     // login
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
-    public String userLogin(@RequestBody Login login) {
+    public User userLogin(@RequestBody Login login) {
         List<User> user = getUser();
         for (User u : user) {
             if (login.getEmail().equals(u.getEmail()) && login.getPassword().equals(u.getPassword())) {
-                return u.getUserType();
+                return u;
             }
         }
-        return "FALSE";
+        return null;
     }
 }
