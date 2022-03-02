@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import {useNavigate} from 'react-router-dom';
-import axios from "axios";
+import { bookAppointment } from "../../../api/myaxios";
 import styles from "./BookAppointmentForm.module.css";
 import { toast } from "react-toastify";
 function BookAppointmentForm(props) {
@@ -29,11 +29,7 @@ function BookAppointmentForm(props) {
           val["userId"]=userInfo.userId;
           val["serviceCenterId"] = props.center.serviceCenterId;
           console.log(val);
-          const res = await axios({
-            method:'post',
-            url:'http://localhost:9090/bookappointment',
-            data:val
-          });
+          const res = await bookAppointment(val);
           toast.success("Booked successfuly");
           navigate('/user/Mybooking');
         }catch(error){

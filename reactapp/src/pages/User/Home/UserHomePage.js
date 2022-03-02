@@ -2,17 +2,14 @@ import React from "react";
 import classes from './UserHomePage.module.css';
 import UserCentreCard from "../../../components/User/UserCentreCard/UserCentreCard";
 import { useEffect,useState} from "react";
-import axios from "axios";
+import { fetchAllCenter } from "../../../api/myaxios";
 
 const UserHomePage = (props) => {
 
   const [centreList,setCentreList]= useState([]);
   
   const fetchCentreList = async()=>{
-    const res = await axios({
-      method:'get',
-      url:'http://localhost:9090/getServiceCenter'
-    });
+    const res = await fetchAllCenter();
     setCentreList(res.data);
   }
 

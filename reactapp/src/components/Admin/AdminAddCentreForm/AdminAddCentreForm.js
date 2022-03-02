@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import styles from './AdminAddCentreForm.module.css';
 import { useNavigate } from 'react-router-dom';
+import * as myaxios from '../../../api/myaxios';
 function AdminAddCentreForm() {
 
     const navigate = useNavigate();
@@ -24,11 +25,7 @@ function AdminAddCentreForm() {
     
       async function handleOnSubmit(val){
         try{
-          const res = await axios({
-            method:'post',
-            url:'http://localhost:9090/addServiceCenter',
-            data:val
-          });
+          const res = await myaxios.addCenter(val);
           alert("Centre Added Successfully");
           navigate('/admin/home');
         }catch(error){

@@ -1,23 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import './UserBooking.module.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { deleteBooking } from "../../../api/myaxios";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Mybooking = (props) => {
   console.log("in user booking component: ",props);
   const id = props.data.appointmentId;
-  const deleteURL = `http://localhost:9090/deleteAppointment/${id}`;
+  const deleteURL = `deleteAppointment/${id}`;
 
   const handleOnClickDelete = async()=>{
     try{
       if(window.confirm('Are you sure you want to delete?')){
-          const res = await axios({
-              method:'delete',
-              url:deleteURL
-          });
+          const res = await deleteBooking(deleteURL);
           toast.success("Booking Deleted");
           props.onDelete();
       }

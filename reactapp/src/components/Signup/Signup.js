@@ -4,7 +4,8 @@ import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import * as myaxios from "../../api/myaxios";
 export const Signup = () => {
 
     const validate = Yup.object({
@@ -25,22 +26,13 @@ export const Signup = () => {
 
     const handleOnSubmit = async (value) => {
         try {
-            const res = await axios({
-                method: 'POST',
-                url: 'http://localhost:9090/signup',
-                data: value
-            });
-            //console.log(res);
-            //alert(res.data);
+            const res = await myaxios.signup(value);
             if (res.data === 'Email id already exists' || res.data === 'Mobile number already exists') {
                 toast.error(res.data);
             } else {
                 toast.success("SIGNUP SUCCESSFULL", { position: "top-center", autoClose: 2000 });
                 setTimeout(() => { window.location.replace('/login'); }, 2000);
             }
-
-
-
         } catch (err) {
             //alert("signup failed !!")
             toast.error("SIGNUP FAILED !")
@@ -76,6 +68,7 @@ export const Signup = () => {
                     </Form>
                     <br />
                     <p>Already have an account? <Link to="/login">Login</Link></p>
+                    <ToastContainer/>
                 </div>
             )}
         </Formik>

@@ -3,20 +3,16 @@ import styles from './AdminCentreCard.module.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
-
+import {deleteCenter} from "../../../api/myaxios";
 function AdminCentreCard(props) {
 
     const id = props.data.serviceCenterId;
-    const deleteURL = `http://localhost:9090/deleteServiceCenter/${id}`;
+    const deleteURL = `deleteServiceCenter/${id}`;
 
     const handleOnClickDelete = async()=>{
         try{
             if(window.confirm('Are you sure you want to delete?')){
-                const res = await axios({
-                    method:'delete',
-                    url:deleteURL
-                });
+                const res = await deleteCenter(deleteURL);
                 alert('Deleted Sucessfully');
                 props.onDelete();
             }
