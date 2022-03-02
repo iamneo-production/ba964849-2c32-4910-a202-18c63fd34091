@@ -88,10 +88,10 @@ export const updateBooking = async(val,editUrl)=>{
     return res;
 }
 
-export const fetchUserBookings = async()=>{
+export const fetchUserBookings = async(userId)=>{
     const res = await axios({
         method:'get',
-        url:`${baseUrl}/getAppointments`,
+        url:`${baseUrl}/getAppointments/${userId}`,
         headers: {
           'Access-Control-Allow-Origin': true,
         }

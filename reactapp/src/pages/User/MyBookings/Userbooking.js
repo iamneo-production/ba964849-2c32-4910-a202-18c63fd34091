@@ -13,8 +13,10 @@ function Userbooking(props) {
 
   const [modalData,setModalData] = useState({});
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const fetchAppointments = async()=>{
-    const res = await fetchUserBookings();
+    const res = await fetchUserBookings(user.userId);
     setAppointmentList(res.data);
   }
 
