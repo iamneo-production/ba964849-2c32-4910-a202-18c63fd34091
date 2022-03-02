@@ -57,7 +57,7 @@ const Mybooking = (props) => {
         <ToastContainer/>
         <ReactModal isOpen={showModal} className={styles.modal}>
           <UserEditCenter data={props.data} onClose={setShowModal}/>
-          <button className={styles.closeButton} onClick={()=>setShowModal(false)}>Close</button>
+          <button className={`btn btn-danger ${styles.closeButton}`} onClick={()=>setShowModal(false)}>Close</button>
         </ReactModal>
       </>
                       

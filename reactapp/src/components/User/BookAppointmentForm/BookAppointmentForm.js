@@ -69,12 +69,12 @@ function BookAppointmentForm(props) {
                     <h3 className="my-3 font-weight-bold-display-3">Enter the details</h3>
                     <Form>
                     
-                        <TextField id="enterProductName" placeholder='Enter the name of the product' name="productName" type="text" />
-                        <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" />
-                        <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" />
-                        <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" />
-                        <TextField  placeholder="Enter booking date" name="bookingDate" type="date" />
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" />
+                        <TextField id="enterProductName" placeholder='Enter the name of the product' name="productName" type="text" label="Product Name"/>
+                        <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Model No."/>
+                        <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
+                        <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="Problem"/>
+                        <TextField  placeholder="Enter booking date" name="bookingDate" type="date" label="Booking Date"/>
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="Booking Time"/>
                         <br></br>
                         
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>

@@ -19,7 +19,7 @@ function UserDashboard(props) {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <UserCentreCard data={cardData}/>
+        <UserCentreCard data={cardData} enableOptions={false}/>
       </div>
       <div className={styles.form}>
         <BookAppointmentForm center={cardData}/>

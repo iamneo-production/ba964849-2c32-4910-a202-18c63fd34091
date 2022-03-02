@@ -23,7 +23,7 @@ function UserCentreCard(props) {
                         <p class="card-text">{`Email: ${props.data.email}`}</p>
                         <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
                         <>
-                        {
+                        {   props.enableOptions &&
                             <Link to="/user/dashboard" style={{marginRight:'8px'}} onClick={()=>handleOnClickAdd()}
                             >
                             <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>
