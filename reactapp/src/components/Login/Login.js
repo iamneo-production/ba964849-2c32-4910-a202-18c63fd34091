@@ -6,6 +6,7 @@ import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import axios from 'axios';
+import * as myaxios from "../../api/myaxios";
 
 export const Login = () => {
   const validate = Yup.object({
@@ -19,11 +20,7 @@ export const Login = () => {
 
   async function handleOnSubmit(val) {
     try {
-      const res = await axios({
-        method: 'post',
-        url: 'http://localhost:9090/login',
-        data: val
-      });
+      const res = await myaxios.login(val);
       localStorage.setItem('user',JSON.stringify(res));
       if (res.data === "") {
         toast.error('INVALID CREDENTIAL');
@@ -40,6 +37,7 @@ export const Login = () => {
       }
 
     } catch (error) {
+      console.log(error);
       toast.error('LOGIN FAILED');
     }
 

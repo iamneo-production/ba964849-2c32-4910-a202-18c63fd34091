@@ -2,16 +2,15 @@ import React from "react";
 import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
-import axios from "axios";
+import { updateBooking } from "../../../api/myaxios";
 import styles from './UserEditCenter.module.css';
-import ReactModal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
 function EditCenter(props) {
 
     const id = props.data.appointmentId;
 
-    const editURL = `http://localhost:9090/editAppointment/${id}`;
+    const editURL = `editAppointment/${id}`;
 
     const navigate = useNavigate();
 
@@ -30,11 +29,7 @@ function EditCenter(props) {
     const handleOnSubmit = async (value) => {
         
         try {
-            const res = await axios({
-                method: 'PUT',
-                url: editURL,
-                data: value
-            });
+            const res = await updateBooking(value,editURL);
             alert('Updated Sucessfully');
             props.onClose(false);
             props.onEdit();
