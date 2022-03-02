@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import classes from './LandingPage.module.css';
 
 const LandingPage = () => {
@@ -20,6 +21,7 @@ const LandingPage = () => {
           <h3>Already have an account?</h3>
           <Link className="btn btn-success btn-lg" to="/login">Login</Link>
           </div>
+          <ToastContainer/>
         </div>   
   );
 };

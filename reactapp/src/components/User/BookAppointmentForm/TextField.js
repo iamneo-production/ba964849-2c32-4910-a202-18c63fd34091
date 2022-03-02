@@ -4,7 +4,7 @@ export const TextField = ({label, ...props}) => {
     const [field,meta] = useField(props);
     return(
         <div className="mb-1">
-            <label htmlFor={field.name}>{label}</label>
+            <label htmlFor={field.name} style={{fontSize:"18px",margin:"3px",color:"darkcyan"}}>{label}</label>
             <input className={`form-control shadow-none ${meta.touched && meta.error && 'is-invalid'}`} 
             {...field} {...props}
             autoComplete="off"/>

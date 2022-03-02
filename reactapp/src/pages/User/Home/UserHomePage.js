@@ -39,7 +39,7 @@ const UserHomePage = (props) => {
         <div className={classes.centreCardsContainer}>
            {
              centreList.map((item)=>{
-               return <UserCentreCard data={item} key={item.serviceCenterId}/>; 
+               return <div className={classes.card}><UserCentreCard data={item} key={item.serviceCenterId} enableOptions={true}/></div>;
              })
            }
         </div>

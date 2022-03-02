@@ -7,10 +7,11 @@
 }
 
 .card {
-  width: 40%;
+  width: 35%;
 }
 
 .form {
   width: 40%;
   margin-right: 32px;
+  height: 80%;
 }

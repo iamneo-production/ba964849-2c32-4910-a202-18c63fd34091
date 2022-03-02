@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from './UserCentreCard.module.css';
 import AddIcon from '@material-ui/icons/Add';
+import LocationOnSharpIcon from '@mui/icons-material/LocationOnSharp';
+import AccessTimeFilledSharpIcon from '@mui/icons-material/AccessTimeFilledSharp';
+import PhoneAndroidSharpIcon from '@mui/icons-material/PhoneAndroidSharp';
+import EmailSharpIcon from '@mui/icons-material/EmailSharp';
 import {Link} from 'react-router-dom';
 
 function UserCentreCard(props) {  
@@ -17,13 +21,13 @@ function UserCentreCard(props) {
                     <img style={{width:'100%',height:'250px',objectFit:'fill'}}src={props.data.imgUrl} class="card-img-top" id="Grid1" alt="Vacuumservice"/>
                     <div class="card-body">
                         <h5 class="card-title">{props.data.name}</h5>
-                        <p class="card-text">{`Place: ${props.data.address}`}</p>
-                        <p class="card-text">Timings: 10:00AM to 05:00PM</p>
-                        <p class="card-text">{`Phone: ${props.data.mobileNumber}`}</p>
-                        <p class="card-text">{`Email: ${props.data.email}`}</p>
-                        <p style={{fontSize:'18px',color:'green'}} class="card-text">{props.data.description}</p>
+                        <p class="card-text"><LocationOnSharpIcon style={{fontSize:"small",color:"black"}}/>{` ${props.data.address}`}</p>
+                        <p class="card-text"><AccessTimeFilledSharpIcon style={{fontSize:"small",color:"black"}}/> 10:00AM to 05:00PM</p>
+                        <p class="card-text"><PhoneAndroidSharpIcon style={{fontSize:"small",color:"black"}}/>{` ${props.data.mobileNumber}`}</p>
+                        <p class="card-text"><EmailSharpIcon style={{fontSize:"small",color:"black"}}/>{` ${props.data.email}`}</p>
+                        <p style={{fontSize:'18px',color:'darkgray'}} class="card-text">{props.data.description}</p>
                         <>
-                        {
+                        {   props.enableOptions &&
                             <Link to="/user/dashboard" style={{marginRight:'8px'}} onClick={()=>handleOnClickAdd()}
                             >
                             <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>

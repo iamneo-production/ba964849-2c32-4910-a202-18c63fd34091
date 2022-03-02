@@ -1,53 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import './UserBooking.module.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from "react-router-dom";
-const Mybooking = () => {
-      
+import axios from "axios";
+import { toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+const Mybooking = (props) => {
+  console.log("in user booking component: ",props);
+  const id = props.data.appointmentId;
+  const deleteURL = `http://localhost:9090/deleteAppointment/${id}`;
+
+  const handleOnClickDelete = async()=>{
+    try{
+      if(window.confirm('Are you sure you want to delete?')){
+          const res = await axios({
+              method:'delete',
+              url:deleteURL
+          });
+          toast.success("Booking Deleted");
+          props.onDelete();
+      }
+  }catch(error){
+      console.log("delete error: ",error);
+      alert("Could Not Delete Try Again");
+  }
+  }
+  const handleOnClickEdit = ()=>{
+    props.setModalData(props.data);
+    props.showModal(true);
+}
     return (
-      <div>
-      <table>
+      
+      <>
         <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Timing</th>
+          <td>{props.data.appointmentId}</td>
+          <td>Serive center name</td>
+          <td>{props.data.productName}</td>
+          <td>{props.data.bookingDate}</td><br></br>
+          <td>{props.data.bookingTime}</td> 
+          <td>
+            <span onClick={()=>handleOnClickEdit()}>
+            <EditIcon/>
+            </span>
+          </td>
+          <td>
+            <Link to="" onClick={()=>handleOnClickDelete()} className="btn_black">
+              <DeleteIcon/>
+            </Link>
+          </td>
         </tr>
-        <tr>
-          <td>Vacuum Service</td>
-          <td>DD/MM/YYYY</td>
-          <td>4pm to 5pm <Link to="" onClick={DeleteIcon} className="btn_black">
-                        <DeleteIcon/>
-                        </Link>
-                        <Link to="/EditCenter"onClick={EditIcon} className="btn_black">
-                        <EditIcon/>
-                        </Link></td>
-                        
-          
-                        
-        </tr>
-        <tr>
-          <td>VacUumService</td>
-          <td>DD/MM/YYYY</td>
-          <td>5pm to 6pm <Link to="" onClick={DeleteIcon} className="btn_black">
-                        <DeleteIcon/>
-                        </Link>
-                        <Link to="/EditCenter" onClick={EditIcon} className="btn_black">
-                        <EditIcon/>
-                        </Link></td>
-        </tr>
-        <tr>
-          <td>Forbes Service</td>
-          <td>DD/MM/YYYY</td>
-          <td>9am to 11am <Link to="" onClick={DeleteIcon} className="btn_black">
-                        <DeleteIcon/>
-                        </Link>
-                        <Link to="/EditCenter" onClick={EditIcon} className="btn_black">
-                        <EditIcon/>
-                        </Link></td>
-        </tr>
-      </table>   
-    </div>
+      </>
+                      
   );
 };
   

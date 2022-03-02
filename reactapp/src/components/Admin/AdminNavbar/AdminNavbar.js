@@ -1,5 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const AdminNavbar = () => {
+    const navigate = useNavigate();
+    const handleOnClickLogout = ()=>{
+        localStorage.removeItem("user");
+        setTimeout(()=>{
+            toast.success("Logged out successfully");
+        },1000);
+        navigate("/");
+    }
     return (
       <div>
             <nav class="navbar navbar-expand-lg bg-dark">
@@ -15,7 +25,7 @@ const AdminNavbar = () => {
                             <Link id='adminAddCentre'style={{marginRight:"250px",color: "white",textDecoration:'none'}}to="/admin/add-centre">Add Centre</Link>
                         </li>
                         <li class="nav-item">
-                            <Link id='Logout' style={{color: "white",textDecoration:'none'}}to="/">Logout</Link>
+                            <a id='Logout' style={{color: "white",textDecoration:'none'}} onClick={()=>handleOnClickLogout()}>Logout</a>
                         </li>
                     </ul>
                 </div>

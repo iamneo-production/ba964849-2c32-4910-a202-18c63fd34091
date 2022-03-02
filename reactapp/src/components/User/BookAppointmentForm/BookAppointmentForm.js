@@ -5,16 +5,17 @@ import * as Yup from 'yup';
 import {useNavigate} from 'react-router-dom';
 import axios from "axios";
 import styles from "./BookAppointmentForm.module.css";
+import { toast } from "react-toastify";
 function BookAppointmentForm(props) {
 
     const navigate=useNavigate();
     const validate = Yup.object({
-        productName: Yup.string().max(25, 'Must be 15 characters or less')
+        productName: Yup.string().max(25, 'cannot exceed limit 25')
             .required('Required')
-            .min(10,'Minimum 10 characters' ),
+            .min(3,'Minimum 3 characters' ),
         productModelNo:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
-             .min(10,'Minimum 15 characters'),
+             .min(2,'Minimum 2 characters'),
         purchaseDate:Yup.date().required('Required'),
         problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
         bookingDate:Yup.string().required("Required"),
@@ -33,8 +34,8 @@ function BookAppointmentForm(props) {
             url:'http://localhost:9090/bookappointment',
             data:val
           });
-          alert("Booked Successfully");
-          navigate('/Mybooking');
+          toast.success("Booked successfuly");
+          navigate('/user/Mybooking');
         }catch(error){
           console.log(error);
           alert('Booking Failed');
@@ -68,17 +69,16 @@ function BookAppointmentForm(props) {
                     <h3 className="my-3 font-weight-bold-display-3">Enter the details</h3>
                     <Form>
                     
-                        <TextField id="enterProductName" placeholder='Enter the name of the product' name="productName" type="text" />
-                        <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" />
-                        <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="text" />
-                        <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" />
-                        <TextField  placeholder="Enter booking date" name="bookingDate" type="text" />
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="text" />
+                        <TextField id="enterProductName" placeholder='Enter the name of the product' name="productName" type="text" label="Product Name"/>
+                        <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Model No."/>
+                        <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
+                        <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="Problem"/>
+                        <TextField  placeholder="Enter booking date" name="bookingDate" type="date" label="Booking Date"/>
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="Booking Time"/>
                         <br></br>
                         
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>
-                    <br />
                 </div>
             )}
         </Formik>
