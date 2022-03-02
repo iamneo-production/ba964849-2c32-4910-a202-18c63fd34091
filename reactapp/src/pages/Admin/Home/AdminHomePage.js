@@ -2,17 +2,14 @@ import React from "react";
 import classes from './AdminHomePage.module.css';
 import AdminCentreCard from "../../../components/Admin/AdminCentreCard/AdminCentreCard";
 import { useEffect,useState} from "react";
-import axios from "axios";
+import { fetchAllCenter } from "../../../api/myaxios";
 
 const AdminHomePage = (props) => {
 
   const [centreList,setCentreList]= useState([]);
   
   const fetchCentreList = async()=>{
-    const res = await axios({
-      method:'get',
-      url:'http://localhost:9090/getServiceCenter'
-    });
+    const res = await fetchAllCenter();
     setCentreList(res.data);
   }
 

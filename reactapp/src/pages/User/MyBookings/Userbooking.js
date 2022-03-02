@@ -4,7 +4,7 @@ import classes from './Userbooking.module.css';
 import { useEffect,useState} from "react";
 import ReactModal from "react-modal";
 import UserEditCenter from "../../../components/User/UserEditCenter/UserEditCenter";
-import axios from "axios";
+import {fetchUserBookings} from '../../../api/myaxios';
 
 function Userbooking(props) {
   const [appointmentList,setAppointmentList]= useState([]);
@@ -14,13 +14,7 @@ function Userbooking(props) {
   const [modalData,setModalData] = useState({});
 
   const fetchAppointments = async()=>{
-    const res = await axios({
-      method:'get',
-      url:'http://localhost:9090/getAppointments',
-      headers: {
-        'Access-Control-Allow-Origin': true,
-      }
-    });
+    const res = await fetchUserBookings();
     setAppointmentList(res.data);
   }
 

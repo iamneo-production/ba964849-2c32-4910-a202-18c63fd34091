@@ -2,13 +2,13 @@ import React from "react";
 import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
-import axios from "axios";
 import styles from './EditCentreForm.module.css';
+import {editCenter} from '../../../api/myaxios';
 function EditCentreForm(props) {
     const id = props.data.serviceCenterId;
     console.log(props.data);
     console.log("Edit center id: ",id);
-    const editURL = `http://localhost:9090/editServiceCenter/${id}`;
+    const editURL = `editServiceCenter/${id}`;
     
     const validate = Yup.object({
         name: Yup.string().max(25, 'Must be 15 characters or less')
@@ -24,11 +24,8 @@ function EditCentreForm(props) {
 
     const handleOnSubmit = async (value) => {
         try {
-            const res = await axios({
-                method: 'PUT',
-                url: editURL,
-                data: value
-            });
+            const res = await editCenter(value,editURL);
+
             localStorage.setItem('data',JSON.stringify(res.data));
             props.getCardtoEdit();
             alert('Updated Sucessfully');
