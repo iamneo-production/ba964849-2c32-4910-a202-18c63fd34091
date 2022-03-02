@@ -23,13 +23,14 @@ function BookAppointmentForm(props) {
         
     });
 
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userInfo = user.data;
     async function handleOnSubmit(val){
         try{
           val["userId"]=userInfo.userId;
           val["serviceCenterId"] = props.center.serviceCenterId;
-          console.log(val);
           const res = await bookAppointment(val);
+          console.log("user appointment:",res.data);
           toast.success("Booked successfuly");
           navigate('/user/Mybooking');
         }catch(error){
