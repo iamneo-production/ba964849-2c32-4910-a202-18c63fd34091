@@ -31,8 +31,9 @@ public class CenterController {
     // get service center by id
     @GetMapping("/getServiceCenter/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Center> viewServiceCenter(@PathVariable("id") String id) {
-        return this.serviceCenterService.getCenter();
+    public Center viewServiceCenter(@PathVariable("id") String id) {
+        long centerId = Long.parseLong(id);
+        return this.serviceCenterService.getCenter(centerId);
     }
 
     // updating Service Center
