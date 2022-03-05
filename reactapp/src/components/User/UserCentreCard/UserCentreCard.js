@@ -15,7 +15,9 @@ function UserCentreCard(props) {
 
   return (
     <div className={`card ${styles.card}`} >
-        <img style={{width:'100%',height:'250px',objectFit:'fill'}}src={props.data.imgUrl} class="card-img-top" id="Grid1" alt="Vacuumservice"/>
+        <div>
+            <img style={{width:'100%',height:'200px',objectFit:'fill'}}src={props.data.imgUrl} class="card-img-top" id="Grid1" alt="Vacuumservice"/>
+        </div>
         <div class="card-body">
             <h5 class="card-title">{props.data.name}</h5>
             <p class="card-text"><LocationOnSharpIcon style={{fontSize:"small",color:"black",marginRight:"4px"}}/>{` ${props.data.address}, ${props.data.city}-${props.data.pincode}`}</p>
