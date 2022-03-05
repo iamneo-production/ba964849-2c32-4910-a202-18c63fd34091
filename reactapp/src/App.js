@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import AdminHomePage from './pages/Admin/Home/AdminHomePage';
 import AdminAddCentrePage from './pages/Admin/AddCenter/AdminAddCentrePage';
 import AdminLayout from './pages/Admin/Layout/AdminLayout';
+import Adminbooking from './pages/Admin/BookingsPage/Adminbooking';
 import UserLayOut from './pages/User/Layout/UserLayOut';
 import Centerprofilescreen from './pages/Admin/CenterProfile/Centerprofilescreen';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
           <Route path="/admin/add-centre" element={<AdminAddCentrePage/>}></Route>
           <Route path="/admin/edit-center" element={<Centerprofilescreen/>}></Route>
+          <Route path="/admin/bookings" element={<Adminbooking/>}></Route>
         </Route>
 
         <Route path="/user" element={<UserLayOut/>}>
