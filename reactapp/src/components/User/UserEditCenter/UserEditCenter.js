@@ -7,9 +7,8 @@ import styles from './UserEditCenter.module.css';
 import { useNavigate } from "react-router-dom";
 
 function EditCenter(props) {
-
     const id = props.data.appointmentId;
-
+    
     const editURL = `editAppointment/${id}`;
 
     const navigate = useNavigate();
@@ -68,12 +67,12 @@ function EditCenter(props) {
                     <h1 className="my-4 font-weight-bold-display-4">Edit the details</h1>
                     <Form>
                     
-                        <TextField id="editProductName" placeholder='Enter the name of the product' name="productName" type="text" />
-                        <TextField id="editModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" />
-                        <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" />
-                        <TextField id="editProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" />
-                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="date" />
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" />
+                        <TextField id="editProductName" placeholder='Enter the name of the product' name="productName" type="text" label="Product Name"/>
+                        <TextField id="editModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Product Model No"/>
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
+                        <TextField id="editProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="problem Statement"/>
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="date" label="booking Date"/>
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="booking Time"/>
                         <br></br>
                         <button className="btn btn-secondary mt-3" type="submit">update</button>
                         
