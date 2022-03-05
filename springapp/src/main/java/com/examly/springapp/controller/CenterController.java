@@ -28,6 +28,13 @@ public class CenterController {
         return this.serviceCenterService.viewCenter();
     }
 
+    // get service center by id
+    @GetMapping("/getServiceCenter/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Center> viewServiceCenter(@PathVariable("id") String id) {
+        return this.serviceCenterService.getCenter();
+    }
+
     // updating Service Center
     @PutMapping(value = "/editServiceCenter/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
