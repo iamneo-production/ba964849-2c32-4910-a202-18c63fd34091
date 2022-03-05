@@ -1,6 +1,5 @@
 package com.examly.springapp.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 
 public class AppointmentInfo {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long appointmentId;
     private long userId;
     private long serviceCenterId;
@@ -26,4 +28,6 @@ public class AppointmentInfo {
     private String problemStatement;
     private String bookingDate;
     private String bookingTime;
+    private String userName;
+    private String centerName;
 }

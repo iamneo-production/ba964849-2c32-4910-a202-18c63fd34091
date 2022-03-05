@@ -40,6 +40,8 @@ function BookAppointmentForm(props) {
         try{
           val["userId"]=userInfo.userId;
           val["serviceCenterId"] = props.center.serviceCenterId;
+          val["userName"]=userInfo.name;
+          val["centerName"]=props.center.name;
           const res = await bookAppointment(val);
           console.log("user appointment:",res.data);
           toast.success("Booked successfuly");
