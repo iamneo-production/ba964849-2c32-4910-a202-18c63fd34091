@@ -17,6 +17,10 @@ function UserDashboard(props) {
   },[]);
 
   return (
+    <>
+    <h2 style={{textAlign:"center",marginBottom:"16px"}}>
+      Dashboard
+    </h2>
     <div className={styles.container}>
       <div className={styles.card}>
         <UserCentreCard data={cardData} enableOptions={false}/>
@@ -25,6 +29,7 @@ function UserDashboard(props) {
         <BookAppointmentForm center={cardData}/>
       </div>
     </div>
+    </>
   )
 }
 
