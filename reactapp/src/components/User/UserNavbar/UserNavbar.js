@@ -1,6 +1,7 @@
 import {  Link, useNavigate } from "react-router-dom";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import styles from './UserNavbar.module.css';
 const Navbar = () => {
     const navigate = useNavigate();
     const handleOnClickLogout = () =>{
@@ -13,20 +14,20 @@ const Navbar = () => {
     return (
       <div>
         
-<nav class="navbar navbar-expand-lg bg-dark">
-         <div class="container-fluid">
-             <ul class="navbar-nav">
+<nav className={`navbar navbar-expand-lg bg-dark ${styles.navbar}`}>
+         <div className="container-fluid">
+             <ul className="navbar-nav">
              <li>  
-                 <h4 style={{marginRight:"300px",color: "white" }} >Vacuum service</h4>
+                 <h4 style={{marginRight:"300px",color: "white",textDecoration:"none"}} >Vacuum service</h4>
                  </li>
                  <li class="nav-item">  
-                 <Link id='HomeButton'style={{marginRight:"260px",color: "white"}}to="/user/home">Home</Link>
+                 <Link id='HomeButton'style={{marginRight:"260px",color: "white",textDecoration:"none"}}to="/user/home">Home</Link>
                  </li>
                  <li class="nav-item">
-                 <Link id='myBookingButton'style={{marginRight:"260px",color: "white"}}to="/user/mybooking">Mybooking</Link>
+                 <Link id='myBookingButton'style={{marginRight:"260px",color: "white",textDecoration:"none"}}to="/user/mybooking">Mybooking</Link>
                  </li>
                  <li class="nav-item">
-                 <a style={{onHover:"pointer"}}id='Logout' style={{color: "white"}}  onClick={()=>handleOnClickLogout()}>Logout</a>
+                 <a id='Logout' style={{color: "white"}}  onClick={()=>handleOnClickLogout()}>Logout</a>
                  </li>
              </ul>
 </div>

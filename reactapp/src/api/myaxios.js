@@ -98,4 +98,14 @@ export const fetchUserBookings = async(userId)=>{
       });
     return res;
 }
+export const fetchAllBookings = async(userId)=>{
+    const res = await axios({
+        method:'get',
+        url:`${baseUrl}/getAppointments/`,
+        headers: {
+          'Access-Control-Allow-Origin': true,
+        }
+      });
+    return res;
+}
 

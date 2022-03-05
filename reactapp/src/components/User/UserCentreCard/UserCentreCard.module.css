@@ -1,17 +1,29 @@
-.main p {
-  margin: 0;
-  margin-bottom: 2px;
-}
-.main {
-  padding: 16px;
-  box-sizing: border-box;
-  margin: 0;
-  max-width: 100%;
-}
-
 .bookButton {
   padding: 8px;
   border-radius: 8px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.card p {
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.card {
+  width: 400px;
+  min-height: 500px;
+  max-height: 500px;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 4px 4px 8px gray;
+  margin: 16px;
+  overflow: hidden;
   position: relative;
-  float: right;
+}
+
+.card:hover {
+  box-shadow: 8px 16px 8px gray;
+  max-height: 100%;
 }

@@ -35,6 +35,8 @@ function AdminCentreCard(props) {
                     <div class="card-body">
                         <h5 class="card-title">{props.data.name}</h5>
                         <p class="card-text">{`Place: ${props.data.address}`}</p>
+                        <p class="card-text">{`City: ${props.data.city}`}</p>
+                        <p class="card-text">{`Pincode: ${props.data.pincode}`}</p>
                         <p class="card-text">Timings: 10:00AM to 05:00PM</p>
                         <p class="card-text">{`Phone: ${props.data.mobileNumber}`}</p>
                         <p class="card-text">{`Email: ${props.data.email}`}</p>
