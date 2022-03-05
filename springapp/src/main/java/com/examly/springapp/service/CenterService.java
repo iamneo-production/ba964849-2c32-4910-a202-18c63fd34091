@@ -9,8 +9,10 @@ public interface CenterService {
 
     public List<Center> viewCenter();
 
-    public Center editCenter(Center serviceCenter,Long id);
+    public Center editCenter(Center serviceCenter, Long id);
 
     public Center deleteCenter(long id);
- 
+
+    public Center getCenter(long id);
+
 }
