@@ -21,6 +21,16 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
+    public Center getCenter(long id) {
+
+        Optional<Center> center = serviceCenterRepository.findById(id);
+
+        Center myCenter = center.orElseThrow(() -> new RuntimeException("No such data found"));
+
+        return myCenter;
+    }
+
+    @Override
     public List<Center> viewCenter() {
         return this.serviceCenterRepository.findAll();
     }
