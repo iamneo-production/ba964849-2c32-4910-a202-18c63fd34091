@@ -17,6 +17,8 @@ function AdminAddCentreForm() {
           mobileNumber: Yup.string().matches("^[0-9]{10}$", 'Phone number is not valid')
           .required('Required'),
           address:Yup.string().max(50,'Should be less than 50 characters').required('Required'),
+          city:Yup.string().required("City is a required field").max(25,"Should be less than 25 charachters"),
+          pincode:Yup.string().max(6,"Invalid Pincode").min(6,"Ivalid Pincode").required("Pincode is a required field"),
           imgUrl: Yup.string().url('Invalid URL'),
           email:Yup.string().email('Invalid email').required('Required'),
           description:Yup.string().max(100,'Should not exceed 100 characters')
@@ -40,6 +42,8 @@ function AdminAddCentreForm() {
             name: '',
             mobileNumber: '',
             address:'',
+            city:'',
+            pincode:'',
             imgUrl:'',
             email:'',
             description:''
@@ -57,6 +61,8 @@ function AdminAddCentreForm() {
                 <TextField id="addName" label='Name' name="name" type="text" />
                 <TextField id="addNumber" label="Enter the phone number" name="mobileNumber" type="text" />
                 <TextField id="addAddress" label="Enter the address" name="address" type="text" />
+                <TextField id="addCity" label="City" name="city" type="text" />
+                <TextField id="addPincode" label="Pincode" name="pincode" type="text" />
                 <TextField id="addImageUrl" label="Enter the image url" name="imgUrl" type="text" />
                 <TextField id="addEmail" label="Enter the email id" name="email" type="email" />
                 <TextField id="addCentreDescription" label="Give Description" name="description" type="textarea" />
