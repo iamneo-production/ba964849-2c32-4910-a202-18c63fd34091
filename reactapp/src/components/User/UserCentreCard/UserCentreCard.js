@@ -27,7 +27,7 @@ function UserCentreCard(props) {
             <p style={{fontSize:'18px',color:'darkgray'}} class="card-text">{props.data.description}</p>
             <>
             {   props.enableOptions &&
-                <Link to="/user/dashboard" style={{marginRight:'8px'}} onClick={()=>handleOnClickAdd()}
+                <Link to="/user/dashboard" onClick={()=>handleOnClickAdd()}
                 >
                 <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>
                 </Link>
