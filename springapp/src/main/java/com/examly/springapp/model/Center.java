@@ -8,7 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "servicecenter")
 public class Center {
     @Id
@@ -18,6 +21,8 @@ public class Center {
     private String name;
     private String mobileNumber;
     private String address;
+    private String city;
+    private String pincode;
     private String imgUrl;
     private String email;
     private String description;

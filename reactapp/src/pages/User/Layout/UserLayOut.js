@@ -23,8 +23,7 @@ function UserLayOut() {
       user && 
       <div>
         <UserNavbar/>
-        <h1>Welcome, {user.data.name}</h1>
-        <br></br>
+        <h3>{`Hi, ${user.data.name}`}</h3>
         <ToastContainer/>
         <Outlet/>
       </div>
