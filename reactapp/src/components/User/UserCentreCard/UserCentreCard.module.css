@@ -17,8 +17,12 @@
   max-height: 520px;
   border-radius: 4px;
   outline: none;
-  box-shadow: 2px 2px 4px gray;
+  box-shadow: 4px 4px 8px gray;
   margin: 16px;
   overflow: hidden;
   position: relative;
+}
+
+.card:hover {
+  box-shadow: 8px 16px 8px gray;
 }
