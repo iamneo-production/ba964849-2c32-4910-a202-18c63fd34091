@@ -3,104 +3,104 @@ import { useState } from 'react';
 import Slots from './Slots';
 import styles from './AvailableSlots.module.css';
 function AvailableSlots(props){
-  const slots = [
-    {
-        "slotId": 184,
-        "date": "2022-03-07",
-        "ten": true,
-        "eleven": true,
-        "twelve": true,
-        "thirteen": true,
-        "fourteen": true,
-        "fifteen": true,
-        "sixteen": true,
-        "seventeen": true,
-        "eighteen": true
-    },
-    {
-        "slotId": 185,
-        "date": "2022-03-08",
-        "ten": true,
-        "eleven": true,
-        "twelve": true,
-        "thirteen": true,
-        "fourteen": false,
-        "fifteen": true,
-        "sixteen": true,
-        "seventeen": true,
-        "eighteen": false
-    },
-    {
-        "slotId": 186,
-        "date": "2022-03-09",
-        "ten": true,
-        "eleven": false,
-        "twelve": true,
-        "thirteen": false,
-        "fourteen": true,
-        "fifteen": true,
-        "sixteen": true,
-        "seventeen": false,
-        "eighteen": true
-    },
-    {
-        "slotId": 187,
-        "date": "2022-03-10",
-        "ten": true,
-        "eleven": true,
-        "twelve": false,
-        "thirteen": true,
-        "fourteen": true,
-        "fifteen": true,
-        "sixteen": false,
-        "seventeen": true,
-        "eighteen": true
-    },
-    {
-        "slotId": 188,
-        "date": "2022-03-11",
-        "ten": true,
-        "eleven": false,
-        "twelve": true,
-        "thirteen": true,
-        "fourteen": true,
-        "fifteen": false,
-        "sixteen": true,
-        "seventeen": true,
-        "eighteen": true
-    },
-    {
-        "slotId": 189,
-        "date": "2022-03-12",
-        "ten": true,
-        "eleven": true,
-        "twelve": true,
-        "thirteen": false,
-        "fourteen": true,
-        "fifteen": true,
-        "sixteen": true,
-        "seventeen": true,
-        "eighteen": true
-    },
-    {
-        "slotId": 190,
-        "date": "2022-03-13",
-        "ten": true,
-        "eleven": true,
-        "twelve": true,
-        "thirteen": true,
-        "fourteen": false,
-        "fifteen": true,
-        "sixteen": true,
-        "seventeen": true,
-        "eighteen": true
-    }];
+//   const slots = [
+//     {
+//         "slotId": 184,
+//         "date": "2022-03-07",
+//         "ten": true,
+//         "eleven": true,
+//         "twelve": true,
+//         "thirteen": true,
+//         "fourteen": true,
+//         "fifteen": true,
+//         "sixteen": true,
+//         "seventeen": true,
+//         "eighteen": true
+//     },
+//     {
+//         "slotId": 185,
+//         "date": "2022-03-08",
+//         "ten": true,
+//         "eleven": true,
+//         "twelve": true,
+//         "thirteen": true,
+//         "fourteen": false,
+//         "fifteen": true,
+//         "sixteen": true,
+//         "seventeen": true,
+//         "eighteen": false
+//     },
+//     {
+//         "slotId": 186,
+//         "date": "2022-03-09",
+//         "ten": true,
+//         "eleven": false,
+//         "twelve": true,
+//         "thirteen": false,
+//         "fourteen": true,
+//         "fifteen": true,
+//         "sixteen": true,
+//         "seventeen": false,
+//         "eighteen": true
+//     },
+//     {
+//         "slotId": 187,
+//         "date": "2022-03-10",
+//         "ten": true,
+//         "eleven": true,
+//         "twelve": false,
+//         "thirteen": true,
+//         "fourteen": true,
+//         "fifteen": true,
+//         "sixteen": false,
+//         "seventeen": true,
+//         "eighteen": true
+//     },
+//     {
+//         "slotId": 188,
+//         "date": "2022-03-11",
+//         "ten": true,
+//         "eleven": false,
+//         "twelve": true,
+//         "thirteen": true,
+//         "fourteen": true,
+//         "fifteen": false,
+//         "sixteen": true,
+//         "seventeen": true,
+//         "eighteen": true
+//     },
+//     {
+//         "slotId": 189,
+//         "date": "2022-03-12",
+//         "ten": true,
+//         "eleven": true,
+//         "twelve": true,
+//         "thirteen": false,
+//         "fourteen": true,
+//         "fifteen": true,
+//         "sixteen": true,
+//         "seventeen": true,
+//         "eighteen": true
+//     },
+//     {
+//         "slotId": 190,
+//         "date": "2022-03-13",
+//         "ten": true,
+//         "eleven": true,
+//         "twelve": true,
+//         "thirteen": true,
+//         "fourteen": false,
+//         "fifteen": true,
+//         "sixteen": true,
+//         "seventeen": true,
+//         "eighteen": true
+//     }];
+
+    const slots = props.slots;
 
     const [slotList,setSlotList] = useState([...slots.map(slot=>{
       return {...slot,selected:false}
     })]);
-
-    console.log("slot list: ", slotList);
 
     const [showSlots,setShowSlots] = useState(false);
     const [slotData,setSlotData] = useState({});
@@ -122,9 +122,10 @@ function AvailableSlots(props){
         return item.selected == true;
       });
 
-      console.log(selectedDate, selectedTime);
+      props.setDateTime(selectedDate[0].date,selectedTime.time);
 
-      alert("Selected Date: "+selectedDate[0].date+"\nSelected Time: "+selectedTime.time);
+      props.showModal(false);
+      // alert("Selected Date: "+selectedDate[0].date+"\nSelected Time: "+selectedTime.time);
     }
 
   return (

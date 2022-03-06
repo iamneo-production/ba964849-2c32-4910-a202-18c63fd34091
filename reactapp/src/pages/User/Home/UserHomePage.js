@@ -21,7 +21,6 @@ const UserHomePage = (props) => {
 
   const handleOnChange = event => {
     const text = event.target.value.toLowerCase();
-    console.log(text);
     if(text === ""){
       setDisplayList(centreList);
     }

@@ -3,23 +3,76 @@ import BookAppointmentForm from '../../../components/User/BookAppointmentForm/Bo
 import styles from './UserDashboard.module.css';
 import UserCentreCard from '../../../components/User/UserCentreCard/UserCentreCard';
 import AvailableSlots from '../../../components/User/AvailableSlots/AvailableSlots';
+import ReactModal from 'react-modal';
 function UserDashboard(props) {
 
   const [cardData,setCardData] = useState({});
-  
-  const getCardData = ()=>{
-    const card = JSON.parse(localStorage.getItem("bookCenterDetails"));
-    setCardData(card);
-    console.log("card data in user dashboard",cardData);
-  }
-  
+
+  const [showModal,setShowModal] = useState(false);
+
+  const [_time,setTime] = useState();
+
+  const [_date,setDate] = useState();
+
+  const card = JSON.parse(localStorage.getItem("bookCenterDetails"));
+
   useEffect(()=>{
-    getCardData();
-  },[]);
+    setCardData(card);
+  },[])
+  
+  //Date operations for getting slots**************************************************
+
+  const convertDateToString = (date) => {
+    let dd = date.getDate();
+    dd = dd >= 10 ? dd : '0' + dd;
+    let mm = date.getMonth()+1;
+    mm = mm >= 10 ? mm : '0' + mm;
+    let yyyy = date.getFullYear();
+    return yyyy+"-"+mm+"-"+dd;
+  }
+
+
+  const createFilteredSlotList = ()=>{
+
+      const slots = card.slots;
+      
+      const currentDate = new Date();
+
+      //creating a list of 5 dates that we need
+      const dateList = [];
+
+      for(let i=0;i<5;i++){
+      let newDate = currentDate;
+      newDate.setDate(newDate.getDate()+1);
+      dateList.push(convertDateToString(newDate));
+    }
+
+    //filtering slots base on dateList array
+    let filteredSlots = slots.filter(item => {
+      let flag = false;
+      for(let date of dateList){
+        if(date === item.date){
+          flag = true;
+        }
+      }
+      return flag;
+    });
+
+    return filteredSlots;
+  }
+
+  //End of slot operations **********************************************************************
+
+  const filteredSlots = createFilteredSlotList();
+
+  const setDateTime = (date,time) =>{
+    setDate(date);
+    setTime(time);
+  }
 
   return (
     <>
-    <h2 style={{textAlign:"center",marginBottom:"16px"}}>
+    <h2>
       Dashboard
     </h2>
     <div className={styles.container}>
@@ -27,9 +80,14 @@ function UserDashboard(props) {
         <UserCentreCard data={cardData} enableOptions={false}/>
       </div>
       <div className={styles.form}>
-        <BookAppointmentForm center={cardData}/>
+        <BookAppointmentForm center={cardData} date={_date} time={_time}/>
+        <button onClick={()=>setShowModal(true)} className={`btn btn-success ${styles.selectSlotButton}`}>Select Slot</button>
       </div>
     </div>
+    <ReactModal isOpen={showModal} className={styles.modal}>
+      <AvailableSlots slots={filteredSlots} showModal={setShowModal} setDateTime={setDateTime}/>
+      <button className={`btn btn-danger ${styles.closeButton}`} onClick={()=>setShowModal(false)}>Close</button>
+    </ReactModal>
     </>
   )
 }

@@ -8,7 +8,6 @@ import EmailSharpIcon from '@mui/icons-material/EmailSharp';
 import {Link} from 'react-router-dom';
 
 function UserCentreCard(props) {  
-    console.log(props.data);
     const handleOnClickAdd=()=>{
         localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
     }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styles from './Dates.module.css';
-import Slots from './Slots';
 const Dates= (props) => {
     const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
@@ -11,8 +10,7 @@ const Dates= (props) => {
     const date = fulldate.getDate();
     const year = fulldate.getFullYear();
     const month = months[fulldate.getMonth()];
-    console.log(day, date, month, year);
-
+    
     const availableSlots = ["ten","twelve","fifteen","seventeen"];
 
     const selectedstyle = {

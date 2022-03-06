@@ -10,29 +10,6 @@ function BookAppointmentForm(props) {
 
     const navigate=useNavigate();
 
-  //Managing Date for calendar #########################################################
-
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate()+1);
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate()+6);
-
-    const convertDateToString = (date) => {
-      let dd = date.getDate();
-      dd = dd >= 10 ? dd : '0' + dd;
-      let mm = date.getMonth()+1;
-      mm = mm >= 10 ? mm : '0' + mm;
-      let yyyy = date.getFullYear();
-      return yyyy+"-"+mm+"-"+dd;
-    }
-
-    const startDateString = convertDateToString(startDate);
-    const endDateString = convertDateToString(endDate);
-
-    console.log(startDateString,endDateString);
-
-  //###################################################################################
-
     const user = JSON.parse(localStorage.getItem("user"));
     const userInfo = user.data;
     
@@ -43,7 +20,6 @@ function BookAppointmentForm(props) {
           val["userName"]=userInfo.name;
           val["centerName"]=props.center.name;
           const res = await bookAppointment(val);
-          console.log("user appointment:",res.data);
           toast.success("Booked successfuly");
           navigate('/user/Mybooking');
         }catch(error){
@@ -62,8 +38,8 @@ function BookAppointmentForm(props) {
             .min(2,'Minimum 2 characters'),
       purchaseDate:Yup.date().required('Required'),
       problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
-      bookingDate:Yup.string().required("Required"),
-      bookingTime:Yup.string().required("Required") 
+      bookingDate:Yup.string(),
+      bookingTime:Yup.string()
     });
 
     return (
@@ -74,9 +50,8 @@ function BookAppointmentForm(props) {
                 productModelNo: '',
                 purchaseDate: '',
                 problemStatement: '',
-                bookingDate:'',
-                bookingTime:'',
-
+                bookingDate:props.date,
+                bookingTime:props.time,
             }}
             validationSchema={validate}
           onSubmit={(values,{resetForm}) => {
@@ -97,8 +72,9 @@ function BookAppointmentForm(props) {
                         <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Model No."/>
                         <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
                         <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="Problem"/>
-                        {/* <TextField  id="bookingDate" placeholder="Enter booking date" name="bookingDate" type="date" label="Booking Date" min={startDateString} max={endDateString}/>
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="Booking Time"/> */}
+                        <TextField placeholder="click on select slot to choose date" type="text" name="bookingDate" label="Booking Date" value={props.date} readonly="true"/>
+                        <TextField placeholder= "click on select slot to choose time" type="text"
+                        name="bookingTime" label="Booking Time" value={props.time} readonly="true"/>
                         <br></br>
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>

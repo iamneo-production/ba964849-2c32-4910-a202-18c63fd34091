@@ -12,7 +12,7 @@ const Slots = (props) => {
             {time:"15:00", words:"fifteen", selected:false},
             {time:"16:00", words:"sixteen", selected:false},
             {time:"17:00", words:"seventeen", selected:false},
-            {time:"18:00", words:"eightenn", selected:false}
+            {time:"18:00", words:"eighteen", selected:false}
         ]
     );
 

@@ -2,7 +2,6 @@ import React from "react";
 import './AdminBooking.module.css'
 import 'react-toastify/dist/ReactToastify.css';
 const booking = (props) => {
-  console.log("in user booking component: ",props);
     return (  
       <>
         <tr>

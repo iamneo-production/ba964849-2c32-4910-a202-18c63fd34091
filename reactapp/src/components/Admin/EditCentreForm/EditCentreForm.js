@@ -6,8 +6,6 @@ import styles from './EditCentreForm.module.css';
 import {editCenter} from '../../../api/myaxios';
 function EditCentreForm(props) {
     const id = props.data.serviceCenterId;
-    console.log(props.data);
-    console.log("Edit center id: ",id);
     const editURL = `editServiceCenter/${id}`;
     
     const validate = Yup.object({
