@@ -6,7 +6,9 @@ import com.examly.springapp.repo.CenterRepository;
 import com.examly.springapp.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.examly.springapp.model.Slot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public Center addCenter(Center serviceCenter) {
+        serviceCenter.initSlots();
         return this.serviceCenterRepository.save(serviceCenter);
     }
 
@@ -37,17 +40,6 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public Center editCenter(Center serviceCenter, Long id) {
-        // List<Center> serviceCenters = viewCenter();
-        // for (Center x : serviceCenters) {
-        // if (x.getId() == id) {
-        // x.setName(serviceCenter.getName());
-        // x.setMobileNumber(serviceCenter.getMobileNumber());
-        // x.setAddress(serviceCenter.getAddress());
-        // x.setImgUrl(serviceCenter.getImgUrl());
-        // x.setEmail(serviceCenter.getEmail());
-        // x.setDescription(x.getDescription());
-        // }
-        // }
         Optional<Center> center = serviceCenterRepository.findById(id);
 
         Center myCenter = center.orElseThrow(() -> new RuntimeException("No such data found"));

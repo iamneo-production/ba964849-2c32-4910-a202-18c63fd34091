@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {deleteCenter} from "../../../api/myaxios";
 function AdminCentreCard(props) {
 
+    console.log("center details:  ",props.data);
     const id = props.data.serviceCenterId;
     const deleteURL = `deleteServiceCenter/${id}`;
 

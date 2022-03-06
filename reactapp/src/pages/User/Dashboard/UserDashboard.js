@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import BookAppointmentForm from '../../../components/User/BookAppointmentForm/BookAppointmentForm'
 import styles from './UserDashboard.module.css';
 import UserCentreCard from '../../../components/User/UserCentreCard/UserCentreCard';
+import AvailableSlots from '../../../components/User/AvailableSlots/AvailableSlots';
 function UserDashboard(props) {
 
   const [cardData,setCardData] = useState({});
-
+  
   const getCardData = ()=>{
     const card = JSON.parse(localStorage.getItem("bookCenterDetails"));
     setCardData(card);
     console.log("card data in user dashboard",cardData);
   }
-
+  
   useEffect(()=>{
     getCardData();
   },[]);
