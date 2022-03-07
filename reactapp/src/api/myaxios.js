@@ -10,7 +10,6 @@ export const login = async (val)=>{
         url: `${baseUrl}/login`,
         data: val
       });
-    console.log("inside axios:",res);
     return res;
 }
 

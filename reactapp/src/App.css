@@ -28,6 +28,7 @@ input.form-control:focus {
   position: absolute;
   color: red;
   font-size: 0.8rem;
+  margin-bottom: 2px;
 }
 
 a:hover {

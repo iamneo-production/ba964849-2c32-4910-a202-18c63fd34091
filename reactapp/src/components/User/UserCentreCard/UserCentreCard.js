@@ -8,7 +8,6 @@ import EmailSharpIcon from '@mui/icons-material/EmailSharp';
 import {Link} from 'react-router-dom';
 
 function UserCentreCard(props) {  
-    console.log(props.data);
     const handleOnClickAdd=()=>{
         localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
     }
@@ -33,6 +32,10 @@ function UserCentreCard(props) {
                 </Link>
             }
             </>
+            {
+                props.enableSlotButton &&
+                <button onClick={()=>props.showModal(true)} className={`btn btn-success ${styles.bookButton}`}>Select Slot</button>
+            }
         </div>
     </div>
   )

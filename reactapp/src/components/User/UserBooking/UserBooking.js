@@ -7,7 +7,6 @@ import { deleteBooking } from "../../../api/myaxios";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Mybooking = (props) => {
-  console.log("in user booking component: ",props);
   const id = props.data.appointmentId;
   const deleteURL = `deleteAppointment/${id}`;
 
