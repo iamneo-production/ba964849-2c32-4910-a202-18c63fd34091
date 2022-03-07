@@ -33,8 +33,9 @@ public class Center {
     private String email;
     private String description;
 
-    @OneToMany(targetEntity = Slot.class, cascade = CascadeType.ALL)
-    private List slots;
+    @OneToMany(targetEntity = Slot.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "center_id")
+    private List<Slot> slots;
 
     public void initSlots() {
         LocalDate startDate = LocalDate.now();

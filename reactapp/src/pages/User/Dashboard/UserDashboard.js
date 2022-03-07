@@ -72,16 +72,28 @@ function UserDashboard(props) {
 
   return (
     <>
-    <h2>
-      Dashboard
-    </h2>
+    <div className={styles.sidePanel}>
+      <p>D</p>
+      <p>A</p>
+      <p>S</p>
+      <p>H</p>
+      <p>B</p>
+      <p>0</p>
+      <p>A</p>
+      <p>R</p>
+      <p>D</p>
+    </div>
     <div className={styles.container}>
       <div className={styles.card}>
-        <UserCentreCard data={cardData} enableOptions={false}/>
+        <UserCentreCard data={cardData} enableOptions={false} enableSlotButton={true} showModal={setShowModal}/>
       </div>
       <div className={styles.form}>
-        <BookAppointmentForm center={cardData} date={_date} time={_time}/>
-        <button onClick={()=>setShowModal(true)} className={`btn btn-success ${styles.selectSlotButton}`}>Select Slot</button>
+        {
+          _date && _time ?
+          <BookAppointmentForm center={cardData} date={_date} time={_time}/>
+          :
+          <h2>Select slot to continue</h2>
+        }
       </div>
     </div>
     <ReactModal isOpen={showModal} className={styles.modal}>

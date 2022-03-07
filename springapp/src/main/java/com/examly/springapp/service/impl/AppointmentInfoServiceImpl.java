@@ -5,6 +5,7 @@ import com.examly.springapp.model.Center;
 import com.examly.springapp.repo.AppointmentInfoRepository;
 import com.examly.springapp.service.AppointmentInfoService;
 import com.examly.springapp.service.CenterService;
+import com.examly.springapp.service.SlotService;
 import com.examly.springapp.model.Slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +20,8 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     @Autowired
     private CenterService centerService;
 
-    Map<String, String> timeMap;
-
-    AppointmentInfoServiceImpl() {
-        timeMap = new HashMap<>();
-        timeMap.put("10:00", "ten");
-        timeMap.put("11:00", "eleven");
-        timeMap.put("12:00", "twelve");
-        timeMap.put("13:00", "thirteen");
-        timeMap.put("14:00", "fourteen");
-        timeMap.put("15:00", "fifteen");
-        timeMap.put("16:00", "sixteen");
-        timeMap.put("17:00", "seventeen");
-        timeMap.put("18:00", "eighteen");
-    }
+    @Autowired
+    private SlotService slotService;
 
     @Override
     public AppointmentInfo addAppointment(AppointmentInfo appointmentInfo) {
@@ -41,39 +30,51 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         long centerId = appointmentInfo.getServiceCenterId();
 
-        Center center = centerService.getCenter(centerId);
+        String slotTime = appointmentInfo.getBookingTime();
 
-        String slotTime = timeMap.get(appointmentInfo.getBookingTime());
+        String bookingDate = appointmentInfo.getBookingDate();
 
-        List<Slot> slotList = center.getSlots();
+        Slot toUpdateSlot = findSlot(centerId, bookingDate);
 
-        for (Slot slot : slotList) {
-            if (slot.getDate() == appointmentInfo.getBookingDate()) {
-                if (slotTime == "ten") {
-                    slot.setTen(true);
-                } else if (slotTime == "eleven") {
-                    slot.setEleven(true);
-                } else if (slotTime == "twelve") {
-                    slot.setTwelve(true);
-                } else if (slotTime == "thirteen") {
-                    slot.setThirteen(true);
-                } else if (slotTime == "fourteen") {
-                    slot.setFourteen(true);
-                } else if (slotTime == "fifteen") {
-                    slot.setFifteen(true);
-                } else if (slotTime == "sixteen") {
-                    slot.setSixteen(true);
-                } else if (slotTime == "seventeen") {
-                    slot.setSeventeen(true);
-                } else if (slotTime == "eighteen") {
-                    slot.setEighteen(true);
-                }
+        if (toUpdateSlot != null) {
+
+            switch (slotTime) {
+
+                case "10:00":
+                    toUpdateSlot.setTen(false);
+                    break;
+                case "11:00":
+                    toUpdateSlot.setEleven(false);
+                    break;
+                case "12:00":
+                    toUpdateSlot.setTwelve(false);
+                    break;
+                case "13:00":
+                    toUpdateSlot.setThirteen(false);
+                    break;
+                case "14:00":
+                    toUpdateSlot.setFourteen(false);
+                    break;
+                case "15:00":
+                    toUpdateSlot.setFifteen(false);
+                    break;
+                case "16:00":
+                    toUpdateSlot.setSixteen(false);
+                    break;
+                case "17:00":
+                    toUpdateSlot.setSeventeen(false);
+                    break;
+                case "18:00":
+                    toUpdateSlot.setEighteen(false);
+                    break;
+                default:
+                    System.out.println("\n\n***********None of the cases matched********\n\n");
             }
+
+            System.out.println("Slot after change: " + toUpdateSlot);
+
+            slotService.editSlot(toUpdateSlot);
         }
-
-        center.setName("Eureka-New-2");
-
-        centerService.editCenter(center, centerId);
 
         System.out.println("Function execution done------------------------------------------");
 
@@ -106,7 +107,9 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
     @Override
     public AppointmentInfo deleteAppointment(String id) {
+
         List<AppointmentInfo> appointmentinfo = allAppointments();
+
         AppointmentInfo appointmentInfo = new AppointmentInfo();
         for (AppointmentInfo x : appointmentinfo) {
             if (x.getAppointmentId() == Long.parseLong(id)) {
@@ -114,6 +117,68 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
                 appointmentInfoRepository.delete(x);
             }
         }
+
+        Long centerId = appointmentInfo.getServiceCenterId();
+        String bookingDate = appointmentInfo.getBookingDate();
+        String bookingTime = appointmentInfo.getBookingTime();
+
+        Slot toDeleteSlot = findSlot(centerId, bookingDate);
+
+        if (toDeleteSlot != null) {
+
+            switch (bookingTime) {
+
+                case "10:00":
+                    toDeleteSlot.setTen(true);
+                    break;
+                case "11:00":
+                    toDeleteSlot.setEleven(true);
+                    break;
+                case "12:00":
+                    toDeleteSlot.setTwelve(true);
+                    break;
+                case "13:00":
+                    toDeleteSlot.setThirteen(true);
+                    break;
+                case "14:00":
+                    toDeleteSlot.setFourteen(true);
+                    break;
+                case "15:00":
+                    toDeleteSlot.setFifteen(true);
+                    break;
+                case "16:00":
+                    toDeleteSlot.setSixteen(true);
+                    break;
+                case "17:00":
+                    toDeleteSlot.setSeventeen(true);
+                    break;
+                case "18:00":
+                    toDeleteSlot.setEighteen(true);
+                    break;
+                default:
+                    System.out.println("\n\n***********None of the cases matched********\n\n");
+            }
+
+            slotService.editSlot(toDeleteSlot);
+        }
+
         return appointmentInfo;
+    }
+
+    public Slot findSlot(long centerId, String bookingDate) {
+
+        Center center = centerService.getCenter(centerId);
+
+        List<Slot> slotList = center.getSlots();
+
+        Slot requiredSlot = null;
+
+        for (Slot slot : slotList) {
+            if (slot.getDate().equals(bookingDate)) {
+                requiredSlot = slot;
+            }
+        }
+
+        return requiredSlot;
     }
 }

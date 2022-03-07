@@ -21,6 +21,7 @@ function BookAppointmentForm(props) {
           val["centerName"]=props.center.name;
           const res = await bookAppointment(val);
           toast.success("Booked successfuly");
+          localStorage.removeItem("bookCenterDetails");
           navigate('/user/Mybooking');
         }catch(error){
           console.log(error);
@@ -72,9 +73,9 @@ function BookAppointmentForm(props) {
                         <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Model No."/>
                         <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
                         <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="Problem"/>
-                        <TextField placeholder="click on select slot to choose date" type="text" name="bookingDate" label="Booking Date"/>
+                        <TextField placeholder="click on select slot to choose date" type="text" name="bookingDate" label="Booking Date" readonly="true"/>
                         <TextField placeholder= "click on select slot to choose time" type="text"
-                        name="bookingTime" label="Booking Time"/>
+                        name="bookingTime" label="Booking Time" readonly="true"/>
                         <br></br>
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>

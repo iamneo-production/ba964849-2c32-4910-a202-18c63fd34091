@@ -35,4 +35,12 @@ public class Slot {
     private boolean seventeen;
 
     private boolean eighteen;
+
+    @Override
+    public String toString() {
+        return slotId + " " + date + " " + "Ten: " + ten + " Eleven: " + eleven + " Twelve: " + twelve + " Thirteen: " +
+                thirteen + " Fourteen: " + fourteen + " Fifteen: " + fifteen + " Sixteen: " + sixteen + " Seventeen: " +
+                seventeen + " Eighteen: " + eighteen;
+    }
+
 }

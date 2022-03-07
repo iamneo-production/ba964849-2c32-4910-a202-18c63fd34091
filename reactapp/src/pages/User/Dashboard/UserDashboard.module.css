@@ -4,6 +4,22 @@
   align-items: flex-start;
   width: 100%;
   position: relative;
+  justify-content: space-around;
+}
+
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: green;
+  color: white;
+  position: absolute;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px gray;
+  top: 200px;
+  left: 0;
 }
 
 .card {
@@ -26,12 +42,4 @@
   position: fixed;
   top: 0;
   right: 0;
-}
-
-.selectSlotButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  font-size: 1.5rem !important;
 }

@@ -32,6 +32,10 @@ function UserCentreCard(props) {
                 </Link>
             }
             </>
+            {
+                props.enableSlotButton &&
+                <button onClick={()=>props.showModal(true)} className={`btn btn-success ${styles.bookButton}`}>Select Slot</button>
+            }
         </div>
     </div>
   )
