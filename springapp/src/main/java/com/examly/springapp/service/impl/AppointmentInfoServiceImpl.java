@@ -37,6 +37,8 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     @Override
     public AppointmentInfo addAppointment(AppointmentInfo appointmentInfo) {
 
+        System.out.println("Function execution started----------------------------");
+
         long centerId = appointmentInfo.getServiceCenterId();
 
         Center center = centerService.getCenter(centerId);
@@ -69,7 +71,11 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
             }
         }
 
+        center.setName("Eureka-New-2");
+
         centerService.editCenter(center, centerId);
+
+        System.out.println("Function execution done------------------------------------------");
 
         return this.appointmentInfoRepository.save(appointmentInfo);
     }

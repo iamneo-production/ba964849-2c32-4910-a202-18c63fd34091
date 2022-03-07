@@ -44,7 +44,7 @@ function BookAppointmentForm(props) {
 
     return (
         <Formik
-        
+            enableReinitialize
             initialValues={{
                 productName: '',
                 productModelNo: '',
@@ -72,9 +72,9 @@ function BookAppointmentForm(props) {
                         <TextField id="enterModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Model No."/>
                         <TextField id="enterDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
                         <TextField id="enterProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="Problem"/>
-                        <TextField placeholder="click on select slot to choose date" type="text" name="bookingDate" label="Booking Date" value={props.date} readonly="true"/>
+                        <TextField placeholder="click on select slot to choose date" type="text" name="bookingDate" label="Booking Date"/>
                         <TextField placeholder= "click on select slot to choose time" type="text"
-                        name="bookingTime" label="Booking Time" value={props.time} readonly="true"/>
+                        name="bookingTime" label="Booking Time"/>
                         <br></br>
                         <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
                     </Form>

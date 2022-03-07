@@ -40,6 +40,9 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public Center editCenter(Center serviceCenter, Long id) {
+
+        System.out.println("Edit center started------------------------------");
+
         Optional<Center> center = serviceCenterRepository.findById(id);
 
         Center myCenter = center.orElseThrow(() -> new RuntimeException("No such data found"));
@@ -50,8 +53,11 @@ public class CenterServiceImpl implements CenterService {
         myCenter.setEmail(serviceCenter.getEmail());
         myCenter.setImgUrl(serviceCenter.getImgUrl());
         myCenter.setDescription(serviceCenter.getDescription());
+        myCenter.setSlots(serviceCenter.getSlots());
 
         serviceCenterRepository.save(myCenter);
+
+        System.out.println("Edit center done---------------------------------------------------");
 
         return myCenter;
     }
