@@ -26,6 +26,7 @@ function Adminbooking(props) {
         <tr>
           <th>Booking id</th>
           <th>Center</th>
+          <th>UserName</th>
           <th>Product</th>
           <th>Date</th><br></br>
           <th>Timing</th>
