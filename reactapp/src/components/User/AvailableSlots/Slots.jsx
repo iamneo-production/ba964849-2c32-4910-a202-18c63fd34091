@@ -55,35 +55,6 @@ const Slots = (props) => {
                 </p>
             })
         }
-
-
-        {/* <p  style={props.slotData.ten?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>10:00</p>
-        <p  style={props.slotData.eleven?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>11:00</p>
-        <p  style={props.slotData.twelve?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>12:00</p>
-        <p  style={props.slotData.thirteen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>13:00</p>
-        <p  style={props.slotData.fourteen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>14:00</p>
-        <p  style={props.slotData.fifteen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>15:00</p>
-        <p  style={props.slotData.sixteen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>16:00</p>
-        <p  style={props.slotData.seventeen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>17:00</p>
-        <p  style={props.slotData.eighteen?availableSlotsStyle:notAvailabeSlotStyle} onClick={()=>{
-            props.handleOnClickTime();
-        }}>18:00</p> */}
     </div>
     </>
   )
