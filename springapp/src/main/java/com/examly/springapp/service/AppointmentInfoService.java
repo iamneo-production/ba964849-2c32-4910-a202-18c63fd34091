@@ -9,7 +9,7 @@ public interface AppointmentInfoService {
 
     List<AppointmentInfo> allAppointments();
 
-    public AppointmentInfo editAppointment(AppointmentInfo appointmentInfo,String id);
+    public AppointmentInfo editAppointment(AppointmentInfo appointmentInfo, String id);
 
-    public AppointmentInfo deleteAppointment(String id);
+    public AppointmentInfo deleteAppointment(long id);
 }

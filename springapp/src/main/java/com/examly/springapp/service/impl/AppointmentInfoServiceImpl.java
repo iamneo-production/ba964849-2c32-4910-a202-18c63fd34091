@@ -106,13 +106,13 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     }
 
     @Override
-    public AppointmentInfo deleteAppointment(String id) {
+    public AppointmentInfo deleteAppointment(long id) {
 
         List<AppointmentInfo> appointmentinfo = allAppointments();
 
         AppointmentInfo appointmentInfo = new AppointmentInfo();
         for (AppointmentInfo x : appointmentinfo) {
-            if (x.getAppointmentId() == Long.parseLong(id)) {
+            if (x.getAppointmentId() == id) {
                 appointmentInfo = x;
                 appointmentInfoRepository.delete(x);
             }

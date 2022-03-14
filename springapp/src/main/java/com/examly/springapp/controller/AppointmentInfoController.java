@@ -53,7 +53,7 @@ public class AppointmentInfoController {
     @DeleteMapping("/deleteAppointment/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public AppointmentInfo deleteAppointment(@PathVariable String id) {
-        AppointmentInfo temp = this.appointmentInfoService.deleteAppointment(id);
+        AppointmentInfo temp = this.appointmentInfoService.deleteAppointment(Long.parseLong(id));
         return temp;
     }
 }

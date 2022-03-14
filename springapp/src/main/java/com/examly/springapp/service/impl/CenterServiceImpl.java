@@ -7,6 +7,8 @@ import com.examly.springapp.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.examly.springapp.model.Slot;
+import com.examly.springapp.model.AppointmentInfo;
+import com.examly.springapp.service.AppointmentInfoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,9 @@ public class CenterServiceImpl implements CenterService {
     // properties
     @Autowired
     private CenterRepository serviceCenterRepository;
+
+    // @Autowired
+    // private AppointmentInfoService appointmentInfoService;
 
     @Override
     public Center addCenter(Center serviceCenter) {
@@ -72,6 +77,14 @@ public class CenterServiceImpl implements CenterService {
                 serviceCenterRepository.delete(x);
             }
         }
+
+        // List<AppointmentInfo> appointments =
+        // appointmentInfoService.allAppointments();
+        // for (AppointmentInfo appointment : appointments) {
+        // if (appointment.getServiceCenterId() == serviceCenter.getServiceCenterId()) {
+        // appointmentInfoService.deleteAppointment(appointment.getAppointmentId());
+        // }
+        // }
         return serviceCenter;
     }
 }
