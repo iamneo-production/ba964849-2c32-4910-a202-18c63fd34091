@@ -11,8 +11,6 @@ const Dates= (props) => {
     const year = fulldate.getFullYear();
     const month = months[fulldate.getMonth()];
     
-    const availableSlots = ["ten","twelve","fifteen","seventeen"];
-
     const selectedstyle = {
         borderTop:"4px solid green",
         boxShadow:"16px 16px 8px gray"
