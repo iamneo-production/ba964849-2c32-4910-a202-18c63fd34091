@@ -37,7 +37,7 @@ function BookAppointmentForm(props) {
       productModelNo:Yup.string().max(15,'Maximum 15 character')
             .required('Required')
             .min(2,'Minimum 2 characters'),
-      purchaseDate:Yup.date().required('Required'),
+      purchaseDate:Yup.date().max(new Date(),"select correct date").required('Required'),
       problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
       bookingDate:Yup.string(),
       bookingTime:Yup.string()

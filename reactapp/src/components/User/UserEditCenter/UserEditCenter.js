@@ -20,10 +20,10 @@ function EditCenter(props) {
         productModelNo:Yup.string().max(15,'Maximum 15 character')
              .required('Required')
              .min(2,'Minimum 2  characters'),
-        purchaseDate:Yup.date().required('Required'),
+        purchaseDate:Yup.date().max(new Date(),"select correct date").required('Required'),
         problemStatement: Yup.string().max(100, 'Must be 100 characters or less').required('Required'),
-        // bookingDate:Yup.string().required("Required"),
-        // bookingTime:Yup.string().required("Required")
+        bookingDate:Yup.string().required("Required"),
+        bookingTime:Yup.string().required("Required")
     });
     const handleOnSubmit = async (value) => {
         
@@ -49,8 +49,8 @@ function EditCenter(props) {
                 productModelNo: props.data.productModelNo,
                 purchaseDate: props.data.purchaseDate,
                 problemStatement: props.data.problemStatement,
-                // bookingDate: props.data.bookingDate,
-                // bookingTime: props.data.bookingTime
+                bookingDate: props.data.bookingDate,
+                bookingTime: props.data.bookingTime
                 }}
             validationSchema={validate}
             onSubmit={
@@ -71,8 +71,8 @@ function EditCenter(props) {
                         <TextField id="editModelNo" placeholder="Enter the model no of the product" name="productModelNo" type="text" label="Product Model No"/>
                         <TextField id="editDateOfPurchase" placeholder="Enter the date of purchase" name="purchaseDate" type="date" label="Purchase Date"/>
                         <TextField id="editProblem" placeholder="Enter the problem of the product" name="problemStatement" type="textarea" label="problem Statement"/>
-                        {/* <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="date" label="booking Date"/>
-                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="booking Time"/> */}
+                        <TextField id="editDateOfPurchase" placeholder="Enter the date of booking" name="bookingDate" type="date" label="booking Date" readonly="true"/>
+                        <TextField  placeholder="Enter booking time" name="bookingTime" type="time" label="booking Time" readonly="true"/>
                         <br></br>
                         <button className="btn btn-secondary mt-3" type="submit">update</button>
                         

@@ -37,6 +37,10 @@ public class Center {
     @JoinColumn(name = "center_id")
     private List<Slot> slots;
 
+    // @OneToMany(targetEntity = AppointmentInfo.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @JoinColumn(name = "center_id_join")
+    // private List<AppoinmentInfo> appointments;
+
     public void initSlots() {
         LocalDate startDate = LocalDate.now();
         slots = new ArrayList<>();

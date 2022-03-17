@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import styles from './Slots.module.css';
 const Slots = (props) => {
 
+
+    console.log(props);
+
     const [timeSlots,setTimeSlots] = useState(
         [
             {time:"10:00", words:"ten", selected:false},
