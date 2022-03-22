@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CenterController {
     // properties
     @Autowired
@@ -16,21 +17,18 @@ public class CenterController {
 
     // adding Service Center
     @PostMapping("/addServiceCenter")
-    @CrossOrigin(origins = "http://localhost:3000")
     public Center addServiceCenter(@RequestBody Center serviceCenter) {
         return this.serviceCenterService.addCenter(serviceCenter);
     }
 
     // view all Service Center
     @GetMapping("/getServiceCenter")
-    @CrossOrigin(origins = "http://localhost:3000")
     public List<Center> viewServiceCenter() {
         return this.serviceCenterService.viewCenter();
     }
 
     // get service center by id
     @GetMapping("/getServiceCenter/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
     public Center viewServiceCenter(@PathVariable("id") String id) {
         long centerId = Long.parseLong(id);
         return this.serviceCenterService.getCenter(centerId);
@@ -38,7 +36,6 @@ public class CenterController {
 
     // updating Service Center
     @PutMapping(value = "/editServiceCenter/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
     public Center editCenter(@RequestBody Center serviceCenter,
             @PathVariable("id") Long id) {
         return this.serviceCenterService.editCenter(serviceCenter, id);
@@ -46,9 +43,7 @@ public class CenterController {
 
     // delete Service Center
     @DeleteMapping("/deleteServiceCenter/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
     public Center deleteServiceCenter(@PathVariable long id) {
-        Center temp = this.serviceCenterService.deleteCenter(id);
-        return temp;
+        return this.serviceCenterService.deleteCenter(id);
     }
 }
