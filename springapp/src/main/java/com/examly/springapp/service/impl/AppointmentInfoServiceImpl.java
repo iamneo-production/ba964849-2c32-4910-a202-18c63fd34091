@@ -39,7 +39,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     @Override
     public AppointmentInfo addAppointment(AppointmentInfo appointmentInfo) {
 
-        //adding Slot into appointmentInfo table
+        // adding Slot into appointmentInfo table
         System.out.println("Function execution started----------------------------");
 
         long centerId = appointmentInfo.getServiceCenterId();
@@ -94,18 +94,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         this.appointmentInfoRepository.save(appointmentInfo);
 
-        //adding appointment into service center
+        // adding appointment into service center
         List<Center> centerList = centerController.viewServiceCenter();
-        for(Center X: centerList){
-            if(Objects.equals(X.getServiceCenterId(),appointmentInfo.getServiceCenterId())){
+        for (Center X : centerList) {
+            if (Objects.equals(X.getServiceCenterId(), appointmentInfo.getServiceCenterId())) {
                 X.getAppointmentInfo().add(appointmentInfo);
                 this.centerRepository.save(X);
             }
         }
-        //adding appointment into user
+        // adding appointment into user
         List<User> userList = userController.getUser();
-        for(User X: userList){
-            if(Objects.equals(X.getUserId(),appointmentInfo.getUserId())){
+        for (User X : userList) {
+            if (Objects.equals(X.getUserId(), appointmentInfo.getUserId())) {
                 X.getAppointmentInfo().add(appointmentInfo);
                 this.userRepository.save(X);
             }
@@ -125,6 +125,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         AppointmentInfo myAppointment = appointmentinfo.orElseThrow(() -> new RuntimeException("No such data found"));
 
+        // setting previous slot to false again
+        long centerId = myAppointment.getServiceCenterId();
+        String bookingDate = myAppointment.getBookingDate();
+        String bookingTime = myAppointment.getBookingTime();
+
+        Slot slot = findSlot(centerId, bookingDate);
+
+        Slot editedSlot = toEditSlot(slot, bookingTime, false);
+
+        slotService.editSlot(editedSlot);
+
+        // editing appointment information
         myAppointment.setProductName(appointmentInfo.getProductName());
         myAppointment.setPurchaseDate(appointmentInfo.getPurchaseDate());
         myAppointment.setProductModelNo(appointmentInfo.getProductModelNo());
@@ -132,6 +144,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         myAppointment.setBookingDate(appointmentInfo.getBookingDate());
         myAppointment.setBookingTime(appointmentInfo.getBookingTime());
 
+        // setting new slot to true
+        centerId = myAppointment.getServiceCenterId();
+        bookingDate = myAppointment.getBookingDate();
+        bookingTime = myAppointment.getBookingTime();
+
+        slot = findSlot(centerId, bookingDate);
+
+        editedSlot = toEditSlot(slot, bookingTime, true);
+
+        slotService.editSlot(editedSlot);
+
+        // saving new appointment information
         appointmentInfoRepository.save(myAppointment);
 
         return myAppointment;
@@ -201,8 +225,8 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     public List<AppointmentInfo> getAppointmentByUserId(long id) {
         List<User> userList = userController.getUser();
         List<AppointmentInfo> appointmentInfoList = null;
-        for(User x: userList){
-            if(Objects.equals(id,x.getUserId())){
+        for (User x : userList) {
+            if (Objects.equals(id, x.getUserId())) {
                 appointmentInfoList = x.getAppointmentInfo();
             }
         }
@@ -224,5 +248,44 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         }
 
         return requiredSlot;
+    }
+
+    public Slot toEditSlot(Slot slot, String bookingTime, boolean value) {
+        if (slot != null) {
+
+            switch (bookingTime) {
+
+                case "10:00":
+                    slot.setTen(true);
+                    break;
+                case "11:00":
+                    slot.setEleven(true);
+                    break;
+                case "12:00":
+                    slot.setTwelve(true);
+                    break;
+                case "13:00":
+                    slot.setThirteen(true);
+                    break;
+                case "14:00":
+                    slot.setFourteen(true);
+                    break;
+                case "15:00":
+                    slot.setFifteen(true);
+                    break;
+                case "16:00":
+                    slot.setSixteen(true);
+                    break;
+                case "17:00":
+                    slot.setSeventeen(true);
+                    break;
+                case "18:00":
+                    slot.setEighteen(true);
+                    break;
+                default:
+                    System.out.println("\n\n***********None of the cases matched********\n\n");
+            }
+        }
+        return slot;
     }
 }
