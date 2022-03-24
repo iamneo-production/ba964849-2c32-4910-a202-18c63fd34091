@@ -125,14 +125,14 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         AppointmentInfo myAppointment = appointmentinfo.orElseThrow(() -> new RuntimeException("No such data found"));
 
-        // setting previous slot to false again
+        // setting previous slot to true again
         long centerId = myAppointment.getServiceCenterId();
         String bookingDate = myAppointment.getBookingDate();
         String bookingTime = myAppointment.getBookingTime();
 
         Slot slot = findSlot(centerId, bookingDate);
 
-        Slot editedSlot = toEditSlot(slot, bookingTime, false);
+        Slot editedSlot = toEditSlot(slot, bookingTime, true);
 
         slotService.editSlot(editedSlot);
 
@@ -144,14 +144,14 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         myAppointment.setBookingDate(appointmentInfo.getBookingDate());
         myAppointment.setBookingTime(appointmentInfo.getBookingTime());
 
-        // setting new slot to true
+        // setting new slot to false
         centerId = myAppointment.getServiceCenterId();
         bookingDate = myAppointment.getBookingDate();
         bookingTime = myAppointment.getBookingTime();
 
         slot = findSlot(centerId, bookingDate);
 
-        editedSlot = toEditSlot(slot, bookingTime, true);
+        editedSlot = toEditSlot(slot, bookingTime, false);
 
         slotService.editSlot(editedSlot);
 
@@ -256,31 +256,31 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
             switch (bookingTime) {
 
                 case "10:00":
-                    slot.setTen(true);
+                    slot.setTen(value);
                     break;
                 case "11:00":
-                    slot.setEleven(true);
+                    slot.setEleven(value);
                     break;
                 case "12:00":
-                    slot.setTwelve(true);
+                    slot.setTwelve(value);
                     break;
                 case "13:00":
-                    slot.setThirteen(true);
+                    slot.setThirteen(value);
                     break;
                 case "14:00":
-                    slot.setFourteen(true);
+                    slot.setFourteen(value);
                     break;
                 case "15:00":
-                    slot.setFifteen(true);
+                    slot.setFifteen(value);
                     break;
                 case "16:00":
-                    slot.setSixteen(true);
+                    slot.setSixteen(value);
                     break;
                 case "17:00":
-                    slot.setSeventeen(true);
+                    slot.setSeventeen(value);
                     break;
                 case "18:00":
-                    slot.setEighteen(true);
+                    slot.setEighteen(value);
                     break;
                 default:
                     System.out.println("\n\n***********None of the cases matched********\n\n");

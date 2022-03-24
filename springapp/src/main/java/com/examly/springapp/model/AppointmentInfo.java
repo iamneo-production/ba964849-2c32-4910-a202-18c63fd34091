@@ -14,9 +14,7 @@ public class AppointmentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long appointmentId;
-    @Transient
     private long userId;
-    @Transient
     private long serviceCenterId;
     private String productName;
     private String purchaseDate;

@@ -37,16 +37,17 @@ public class Center {
     @JoinColumn(name = "center_id")
     private List<Slot> slots;
 
-    // @OneToMany(targetEntity = AppointmentInfo.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @OneToMany(targetEntity = AppointmentInfo.class, cascade = CascadeType.ALL,
+    // fetch = FetchType.LAZY)
     // @JoinColumn(name = "center_id_join")
     // private List<AppoinmentInfo> appointments;
 
-    //Mapping with AppointmentInfo Table
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "service_center_id", referencedColumnName = "serviceCenterId")
+    // Mapping with AppointmentInfo Table
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "service_center_ids", referencedColumnName = "serviceCenterId")
     List<AppointmentInfo> appointmentInfo = new ArrayList<>();
 
-    //slots initialization for every center
+    // slots initialization for every center
     public void initSlots() {
         LocalDate startDate = LocalDate.now();
         slots = new ArrayList<>();
