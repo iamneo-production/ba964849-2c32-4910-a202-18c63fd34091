@@ -23,8 +23,11 @@ const Mybooking = (props) => {
   }
   }
   const handleOnClickEdit = ()=>{
-    props.setModalData(props.data);
-    props.showModal(true);
+    localStorage.getItem("bookCenterDetails",JSON.stringify(props.data)); 
+    localStorage.setItem("AppointmentDetails",JSON.stringify(props.data));
+    localStorage.setItem("isNewAppointment","false");
+    //props.setModalData(props.data);
+    //props.showModal(true);
 }
     return (
       
@@ -36,9 +39,9 @@ const Mybooking = (props) => {
           <td>{props.data.bookingDate}</td><br></br>
           <td>{props.data.bookingTime}</td> 
           <td>
-            <span onClick={()=>handleOnClickEdit()}>
+          <Link to="/user/dashboard" onClick={()=>handleOnClickEdit()}>
             <EditIcon/>
-            </span>
+          </Link>
           </td>
           <td>
             <Link to="" onClick={()=>handleOnClickDelete()} className="btn_black">

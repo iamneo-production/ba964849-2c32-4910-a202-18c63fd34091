@@ -12,8 +12,11 @@ function BookAppointmentForm(props) {
 
     const user = JSON.parse(localStorage.getItem("user"));
     const userInfo = user.data;
-    
+    const appointmentDetails = JSON.parse(localStorage.getItem("AppointmentDetails"));
+    const isNewAppointment=JSON.parse(localStorage.getItem("isNewAppointment"));
     async function handleOnSubmit(val){
+      if(isNewAppointment === "true"){
+         
         try{
           val["userId"]=userInfo.userId;
           val["serviceCenterId"] = props.center.serviceCenterId;
@@ -27,6 +30,10 @@ function BookAppointmentForm(props) {
           console.log(error);
           alert('Booking Failed');
         }
+      }
+      else{
+
+      }
       }
 
     // Yup validate object for form validation
@@ -45,12 +52,11 @@ function BookAppointmentForm(props) {
 
     return (
         <Formik
-            enableReinitialize
             initialValues={{
-                productName: '',
-                productModelNo: '',
-                purchaseDate: '',
-                problemStatement: '',
+                productName: appointmentDetails.productName,
+                productModelNo: appointmentDetails.productModelNo,
+                purchaseDate: appointmentDetails.purchaseDate,
+                problemStatement: appointmentDetails.problemStatement,
                 bookingDate:props.date,
                 bookingTime:props.time,
             }}
