@@ -50,10 +50,6 @@ function Userbooking(props) {
            </tbody>
            </table>
         </div>
-        <ReactModal isOpen={showModal} className={classes.modal}>
-          <UserEditCenter  data={modalData} onClose={setShowModal} onEdit={fetchAppointments}/>
-          <button className={`btn btn-danger ${classes.closeButton}`} onClick={()=>setShowModal(false)}>Close</button>
-        </ReactModal>
     </>
             
   )
