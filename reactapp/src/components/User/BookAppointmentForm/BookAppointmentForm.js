@@ -3,25 +3,29 @@ import { Formik, Form } from 'formik';
 import { TextField } from "./TextField";
 import * as Yup from 'yup';
 import {useNavigate} from 'react-router-dom';
-import { bookAppointment } from "../../../api/myaxios";
+import { bookAppointment,updateBooking } from "../../../api/myaxios";
 import styles from "./BookAppointmentForm.module.css";
 import { toast } from "react-toastify";
 function BookAppointmentForm(props) {
+
+  console.log("props inside booking form",props);
 
     const navigate=useNavigate();
 
     const user = JSON.parse(localStorage.getItem("user"));
     const userInfo = user.data;
+
     const appointmentDetails = JSON.parse(localStorage.getItem("AppointmentDetails"));
     const isNewAppointment=JSON.parse(localStorage.getItem("isNewAppointment"));
+
+    console.log("isnewappnt:",isNewAppointment);
     async function handleOnSubmit(val){
-      if(isNewAppointment === "true"){
-         
+      val["userId"]=userInfo.userId;
+      val["serviceCenterId"] = props.center.serviceCenterId;
+      val["userName"]=userInfo.name;
+      val["centerName"]=props.center.name;
+      if(isNewAppointment == true){
         try{
-          val["userId"]=userInfo.userId;
-          val["serviceCenterId"] = props.center.serviceCenterId;
-          val["userName"]=userInfo.name;
-          val["centerName"]=props.center.name;
           const res = await bookAppointment(val);
           toast.success("Booked successfuly");
           localStorage.removeItem("bookCenterDetails");
@@ -32,7 +36,18 @@ function BookAppointmentForm(props) {
         }
       }
       else{
-
+        const editUrl = `editAppointment/${appointmentDetails.appointmentId}`
+        try{
+          updateBooking(val,editUrl);
+          localStorage.removeItem("AppointmentDetails");
+          localStorage.setItem("isNewAppointment",true);
+          localStorage.removeItem("bookCenterDetails");
+          toast.success("Appoinment Edited Successfuly");
+          navigate('/user/Mybooking');
+        }
+        catch(error){
+          console.log(error);
+        }
       }
       }
 
@@ -52,13 +67,14 @@ function BookAppointmentForm(props) {
 
     return (
         <Formik
+            enableReinitialize
             initialValues={{
-                productName: appointmentDetails.productName,
-                productModelNo: appointmentDetails.productModelNo,
-                purchaseDate: appointmentDetails.purchaseDate,
-                problemStatement: appointmentDetails.problemStatement,
+                productName: appointmentDetails?appointmentDetails.productName:"",
+                productModelNo: appointmentDetails?appointmentDetails.productModelNo:"",
+                purchaseDate: appointmentDetails?appointmentDetails.purchaseDate:"",
+                problemStatement: appointmentDetails?appointmentDetails.problemStatement:"",
                 bookingDate:props.date,
-                bookingTime:props.time,
+                bookingTime:props.time
             }}
             validationSchema={validate}
           onSubmit={(values,{resetForm}) => {

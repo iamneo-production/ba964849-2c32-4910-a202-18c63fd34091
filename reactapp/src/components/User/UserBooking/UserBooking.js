@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import './UserBooking.module.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { Link } from "react-router-dom";
-import { deleteBooking } from "../../../api/myaxios";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteBooking,fetchCenterById } from "../../../api/myaxios";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Mybooking = (props) => {
+
+  const navigate = useNavigate();
+  const [centerData, setCenterData] = useState({});
+
+  console.log("center data",centerData);
+
+  console.log("mybookings props",props);
+
   const id = props.data.appointmentId;
   const deleteURL = `deleteAppointment/${id}`;
+
+  function getcenterData(){
+    fetchCenterById(`getServiceCenter/${props.data.serviceCenterId}`)
+    .then(res=>res.data)
+    .then(data=>setCenterData(data));
+  }
+
+  useEffect(()=>{
+    getcenterData();
+  },[])
 
   const handleOnClickDelete = async()=>{
     try{
@@ -23,11 +41,10 @@ const Mybooking = (props) => {
   }
   }
   const handleOnClickEdit = ()=>{
-    localStorage.getItem("bookCenterDetails",JSON.stringify(props.data)); 
+    localStorage.setItem("bookCenterDetails",JSON.stringify(centerData)); 
     localStorage.setItem("AppointmentDetails",JSON.stringify(props.data));
-    localStorage.setItem("isNewAppointment","false");
-    //props.setModalData(props.data);
-    //props.showModal(true);
+    localStorage.setItem("isNewAppointment",false);
+    navigate("/user/dashboard");
 }
     return (
       
@@ -39,9 +56,9 @@ const Mybooking = (props) => {
           <td>{props.data.bookingDate}</td><br></br>
           <td>{props.data.bookingTime}</td> 
           <td>
-          <Link to="/user/dashboard" onClick={()=>handleOnClickEdit()}>
+          <a  onClick={()=>handleOnClickEdit()}>
             <EditIcon/>
-          </Link>
+          </a>
           </td>
           <td>
             <Link to="" onClick={()=>handleOnClickDelete()} className="btn_black">
