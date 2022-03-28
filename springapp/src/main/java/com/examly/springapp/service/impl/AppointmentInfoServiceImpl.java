@@ -1,8 +1,13 @@
 package com.examly.springapp.service.impl;
 
+import com.examly.springapp.controller.CenterController;
+import com.examly.springapp.controller.UserController;
 import com.examly.springapp.model.AppointmentInfo;
 import com.examly.springapp.model.Center;
+import com.examly.springapp.model.User;
 import com.examly.springapp.repo.AppointmentInfoRepository;
+import com.examly.springapp.repo.CenterRepository;
+import com.examly.springapp.repo.UserRepository;
 import com.examly.springapp.service.AppointmentInfoService;
 import com.examly.springapp.service.CenterService;
 import com.examly.springapp.service.SlotService;
@@ -16,16 +21,25 @@ import java.util.*;
 public class AppointmentInfoServiceImpl implements AppointmentInfoService {
     @Autowired
     private AppointmentInfoRepository appointmentInfoRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CenterService centerService;
 
     @Autowired
     private SlotService slotService;
+    @Autowired
+    private CenterRepository centerRepository;
+    @Autowired
+    private CenterController centerController;
+    @Autowired
+    private UserController userController;
 
     @Override
     public AppointmentInfo addAppointment(AppointmentInfo appointmentInfo) {
 
+        // adding Slot into appointmentInfo table
         System.out.println("Function execution started----------------------------");
 
         long centerId = appointmentInfo.getServiceCenterId();
@@ -78,7 +92,25 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         System.out.println("Function execution done------------------------------------------");
 
-        return this.appointmentInfoRepository.save(appointmentInfo);
+        this.appointmentInfoRepository.save(appointmentInfo);
+
+        // adding appointment into service center
+        List<Center> centerList = centerController.viewServiceCenter();
+        for (Center X : centerList) {
+            if (Objects.equals(X.getServiceCenterId(), appointmentInfo.getServiceCenterId())) {
+                X.getAppointmentInfo().add(appointmentInfo);
+                this.centerRepository.save(X);
+            }
+        }
+        // adding appointment into user
+        List<User> userList = userController.getUser();
+        for (User X : userList) {
+            if (Objects.equals(X.getUserId(), appointmentInfo.getUserId())) {
+                X.getAppointmentInfo().add(appointmentInfo);
+                this.userRepository.save(X);
+            }
+        }
+        return appointmentInfo;
     }
 
     @Override
@@ -93,6 +125,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
         AppointmentInfo myAppointment = appointmentinfo.orElseThrow(() -> new RuntimeException("No such data found"));
 
+        // setting previous slot to true again
+        long centerId = myAppointment.getServiceCenterId();
+        String bookingDate = myAppointment.getBookingDate();
+        String bookingTime = myAppointment.getBookingTime();
+
+        Slot slot = findSlot(centerId, bookingDate);
+
+        Slot editedSlot = toEditSlot(slot, bookingTime, true);
+
+        slotService.editSlot(editedSlot);
+
+        // editing appointment information
         myAppointment.setProductName(appointmentInfo.getProductName());
         myAppointment.setPurchaseDate(appointmentInfo.getPurchaseDate());
         myAppointment.setProductModelNo(appointmentInfo.getProductModelNo());
@@ -100,6 +144,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         myAppointment.setBookingDate(appointmentInfo.getBookingDate());
         myAppointment.setBookingTime(appointmentInfo.getBookingTime());
 
+        // setting new slot to false
+        centerId = myAppointment.getServiceCenterId();
+        bookingDate = myAppointment.getBookingDate();
+        bookingTime = myAppointment.getBookingTime();
+
+        slot = findSlot(centerId, bookingDate);
+
+        editedSlot = toEditSlot(slot, bookingTime, false);
+
+        slotService.editSlot(editedSlot);
+
+        // saving new appointment information
         appointmentInfoRepository.save(myAppointment);
 
         return myAppointment;
@@ -165,6 +221,18 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         return appointmentInfo;
     }
 
+    @Override
+    public List<AppointmentInfo> getAppointmentByUserId(long id) {
+        List<User> userList = userController.getUser();
+        List<AppointmentInfo> appointmentInfoList = null;
+        for (User x : userList) {
+            if (Objects.equals(id, x.getUserId())) {
+                appointmentInfoList = x.getAppointmentInfo();
+            }
+        }
+        return appointmentInfoList;
+    }
+
     public Slot findSlot(long centerId, String bookingDate) {
 
         Center center = centerService.getCenter(centerId);
@@ -180,5 +248,44 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         }
 
         return requiredSlot;
+    }
+
+    public Slot toEditSlot(Slot slot, String bookingTime, boolean value) {
+        if (slot != null) {
+
+            switch (bookingTime) {
+
+                case "10:00":
+                    slot.setTen(value);
+                    break;
+                case "11:00":
+                    slot.setEleven(value);
+                    break;
+                case "12:00":
+                    slot.setTwelve(value);
+                    break;
+                case "13:00":
+                    slot.setThirteen(value);
+                    break;
+                case "14:00":
+                    slot.setFourteen(value);
+                    break;
+                case "15:00":
+                    slot.setFifteen(value);
+                    break;
+                case "16:00":
+                    slot.setSixteen(value);
+                    break;
+                case "17:00":
+                    slot.setSeventeen(value);
+                    break;
+                case "18:00":
+                    slot.setEighteen(value);
+                    break;
+                default:
+                    System.out.println("\n\n***********None of the cases matched********\n\n");
+            }
+        }
+        return slot;
     }
 }

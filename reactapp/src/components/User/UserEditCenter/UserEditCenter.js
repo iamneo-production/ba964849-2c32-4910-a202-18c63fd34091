@@ -34,7 +34,6 @@ function EditCenter(props) {
             props.onEdit();
             navigate("/user/mybooking");
         } catch (err) {
-            console.log('error update: ',err);
             alert("Error while updating")
         }
     }

@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom';
 function UserCentreCard(props) {  
     const handleOnClickAdd=()=>{
         localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
+        localStorage.setItem("isNewAppointment","true");
+        
     }
 
   return (

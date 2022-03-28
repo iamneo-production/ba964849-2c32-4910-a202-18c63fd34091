@@ -12,4 +12,6 @@ public interface AppointmentInfoService {
     public AppointmentInfo editAppointment(AppointmentInfo appointmentInfo, String id);
 
     public AppointmentInfo deleteAppointment(long id);
+
+    public List<AppointmentInfo> getAppointmentByUserId(long id);
 }
