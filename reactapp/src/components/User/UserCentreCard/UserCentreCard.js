@@ -30,7 +30,7 @@ function UserCentreCard(props) {
             {   props.enableOptions &&
                 <Link to="/user/dashboard" onClick={()=>handleOnClickAdd()}
                 >
-                <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>
+                <span className={`btn-success ${styles.bookButton}`}>Book</span>
                 </Link>
             }
             </>
