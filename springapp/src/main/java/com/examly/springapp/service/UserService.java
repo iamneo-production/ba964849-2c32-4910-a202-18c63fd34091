@@ -1,12 +1,15 @@
 package com.examly.springapp.service;
 
-import com.examly.springapp.model.User;
+import com.examly.springapp.model.Users;
 
 import java.util.List;
 
 public interface UserService {
-    // create user
-    public String createUser(User user);
+    public String createUser(Users users);
 
-    public List<User> getUser();
+    public List<Users> getUser();
+
+    public String deleteUser(long id);
+
+    public Users updateUser(Users users);
 }
