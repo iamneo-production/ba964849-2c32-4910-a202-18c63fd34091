@@ -8,7 +8,6 @@ import styles from "./BookAppointmentForm.module.css";
 import { toast } from "react-toastify";
 function BookAppointmentForm(props) {
 
-  console.log("props inside booking form",props);
 
     const navigate=useNavigate();
 
@@ -18,7 +17,6 @@ function BookAppointmentForm(props) {
     const appointmentDetails = JSON.parse(localStorage.getItem("AppointmentDetails"));
     const isNewAppointment=JSON.parse(localStorage.getItem("isNewAppointment"));
 
-    console.log("isnewappnt:",isNewAppointment);
     async function handleOnSubmit(val){
       val["userId"]=userInfo.userId;
       val["serviceCenterId"] = props.center.serviceCenterId;
@@ -31,7 +29,6 @@ function BookAppointmentForm(props) {
           localStorage.removeItem("bookCenterDetails");
           navigate('/user/Mybooking');
         }catch(error){
-          console.log(error);
           alert('Booking Failed');
         }
       }
@@ -46,7 +43,6 @@ function BookAppointmentForm(props) {
           navigate('/user/Mybooking');
         }
         catch(error){
-          console.log(error);
         }
       }
       }
@@ -99,9 +95,12 @@ function BookAppointmentForm(props) {
                         <TextField placeholder= "click on select slot to choose time" type="text"
                         name="bookingTime" label="Booking Time" readonly="true"/>
                         <br></br>
-                        <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button>
-                    </Form>
-                </div>
+                        {isNewAppointment ?
+                        <button className="btn btn-dark mt-3" id="bookButton" type="submit">Book </button> :
+                        <button className="btn btn-dark mt-3" id="bookButton" type="submit">Update </button>
+                           } 
+                                </Form>
+                             </div>
             )}
         </Formik>
     )

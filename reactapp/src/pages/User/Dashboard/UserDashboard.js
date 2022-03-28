@@ -76,7 +76,6 @@ function UserDashboard(props) {
   const setDateTime = (date,time) =>{
     setDate(date);
     setTime(time);
-    console.log(date,time);
   }
 
   return (
