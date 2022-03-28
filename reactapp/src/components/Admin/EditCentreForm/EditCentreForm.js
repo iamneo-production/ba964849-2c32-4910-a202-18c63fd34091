@@ -29,7 +29,6 @@ function EditCentreForm(props) {
             alert('Updated Sucessfully');
             window.location.replace("/admin/home");
         } catch (err) {
-            console.log('error update: ',err);
             alert("Error while updating")
         }
     }

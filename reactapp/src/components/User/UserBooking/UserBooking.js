@@ -11,10 +11,6 @@ const Mybooking = (props) => {
   const navigate = useNavigate();
   const [centerData, setCenterData] = useState({});
 
-  console.log("center data",centerData);
-
-  console.log("mybookings props",props);
-
   const id = props.data.appointmentId;
   const deleteURL = `deleteAppointment/${id}`;
 
@@ -36,7 +32,6 @@ const Mybooking = (props) => {
           props.onDelete();
       }
   }catch(error){
-      console.log("delete error: ",error);
       alert("Could Not Delete Try Again");
   }
   }
