@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom';
 function UserCentreCard(props) {  
     const handleOnClickAdd=()=>{
         localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
+        localStorage.setItem("isNewAppointment","true");
+        
     }
 
   return (
@@ -28,7 +30,7 @@ function UserCentreCard(props) {
             {   props.enableOptions &&
                 <Link to="/user/dashboard" onClick={()=>handleOnClickAdd()}
                 >
-                <span className={`btn-success ${styles.bookButton}`}>Book<AddIcon/></span>
+                <span className={`btn-success ${styles.bookButton}`}>Book</span>
                 </Link>
             }
             </>

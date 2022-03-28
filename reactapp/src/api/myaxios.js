@@ -58,6 +58,14 @@ export const fetchAllCenter = async()=>{
     return res;
 }
 
+export const fetchCenterById = async(URL)=>{
+    const res = await axios({
+        method:'GET',
+        url:`${baseUrl}/${URL}`
+    });
+    return res;
+}
+
 //user axios methods
 
 export const bookAppointment = async(val)=>{

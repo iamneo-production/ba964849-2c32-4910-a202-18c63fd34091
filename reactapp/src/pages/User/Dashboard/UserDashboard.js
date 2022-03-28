@@ -16,8 +16,16 @@ function UserDashboard(props) {
 
   const card = JSON.parse(localStorage.getItem("bookCenterDetails"));
 
+  const isNewAppointment = JSON.parse(localStorage.getItem("isNewAppointment"));
+
+  const appointmentInfo = JSON.parse(localStorage.getItem("AppointmentDetails"));
+
   useEffect(()=>{
     setCardData(card);
+    if(! isNewAppointment){
+      setDate(appointmentInfo.bookingDate);
+      setTime(appointmentInfo.bookingTime);
+    }
   },[])
   
   //Date operations for getting slots**************************************************
@@ -89,10 +97,7 @@ function UserDashboard(props) {
       </div>
       <div className={styles.form}>
         {
-          _date && _time ?
           <BookAppointmentForm center={cardData} date={_date} time={_time}/>
-          :
-          <h2>Select slot to continue</h2>
         }
       </div>
     </div>
