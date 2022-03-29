@@ -15,6 +15,7 @@ import UserDashboard from './pages/User/Dashboard/UserDashboard';
 import Userbooking from './pages/User/MyBookings/Userbooking';
 import Usereditcenter from './pages/User/EditAppoinment/Usereditcenter';
 import AvailableSlots from './components/User/AvailableSlots/AvailableSlots';
+import Userreview from './pages/User/Userreview/Userreview';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/user/Mybooking' element={<Userbooking/>}></Route>
           <Route path='/user/EditCenter' element={<Usereditcenter/>}></Route>
           <Route path="/user/booking/slot" element={<AvailableSlots/>}></Route>
+          <Route path="/user/center/reviews/:centerId" element={<Userreview/>}></Route>
         </Route>
 
         <Route path="*" element={<ErrorPage/>}></Route>

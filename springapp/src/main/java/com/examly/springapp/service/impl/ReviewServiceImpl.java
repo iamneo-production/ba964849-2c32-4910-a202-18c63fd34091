@@ -47,4 +47,9 @@ public class ReviewServiceImpl implements ReviewService {
         return myReview;
     }
 
+    @Override
+    public List<Review> fetchReviewsByCenterId(long centerId) {
+        return this.reviewRepository.findByCenterServiceCenterId(centerId);
+    }
+
 }

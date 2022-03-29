@@ -3,7 +3,9 @@ package com.examly.springapp.model;
 import lombok.*;
 import javax.persistence.*;
 import com.examly.springapp.model.Center;
-import com.examly.springapp.model.User;
+import com.examly.springapp.model.Users;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -18,8 +20,9 @@ public class Review {
     String reviewContent;
 
     @ManyToOne
-    User user;
+    Users user;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     Center center;
 }

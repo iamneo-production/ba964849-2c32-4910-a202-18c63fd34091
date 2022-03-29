@@ -30,4 +30,9 @@ public class ReviewController {
     public Review editReview(@RequestBody Review review, @PathVariable long id) {
         return this.reviewService.editReview(review, id);
     }
+
+    @GetMapping("/getReviews/{centerId}")
+    public List<Review> getAllReviewsByCenter(@PathVariable long centerId) {
+        return this.reviewService.fetchReviewsByCenterId(centerId);
+    }
 }
