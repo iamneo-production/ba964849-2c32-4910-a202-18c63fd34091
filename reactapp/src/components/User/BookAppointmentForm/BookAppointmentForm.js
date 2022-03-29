@@ -12,7 +12,7 @@ function BookAppointmentForm(props) {
     const navigate=useNavigate();
 
     const user = JSON.parse(localStorage.getItem("user"));
-    const userInfo = user.data;
+    const userInfo = user;
 
     const appointmentDetails = JSON.parse(localStorage.getItem("AppointmentDetails"));
     const isNewAppointment=JSON.parse(localStorage.getItem("isNewAppointment"));
