@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:9090";
-
+import axiosObject from "../../src/api/bootapi"
 //app axios methods
-
+const baseUrl = "http://localhost:9090";
 export const login = async (val)=>{
     const res = await axios({
         method: 'post',
-        url: `${baseUrl}/login`,
+        url: `${baseUrl}/authenticate`,
         data: val
       });
     return res;
@@ -25,43 +24,43 @@ export const signup = async(val) => {
 //admin axios methods
 
 export const addCenter = async(val)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'post',
-        url:`${baseUrl}/addServiceCenter`,
+        url:`/addServiceCenter`,
         data:val
       });
     return res;
 }
 
 export const deleteCenter = async(deleteUrl)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'delete',
-        url:`${baseUrl}/${deleteUrl}`
+        url:`/${deleteUrl}`
     });
     return res;
 }
 
 export const editCenter = async(val,editURL)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method: 'PUT',
-        url: `${baseUrl}/${editURL}`,
+        url: `/${editURL}`,
         data: val
     });
     return res;
 }
 
 export const fetchAllCenter = async()=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'get',
-        url:`${baseUrl}/getServiceCenter`
+        url:`/getServiceCenter`
       });
     return res;
 }
 
 export const fetchCenterById = async(URL)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'GET',
-        url:`${baseUrl}/${URL}`
+        url:`/${URL}`
     });
     return res;
 }
@@ -69,36 +68,36 @@ export const fetchCenterById = async(URL)=>{
 //user axios methods
 
 export const bookAppointment = async(val)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'post',
-        url:`${baseUrl}/bookappointment`,
+        url:`/bookappointment`,
         data:val
       });
     return res;
 }
 
 export const deleteBooking = async(deleteUrl)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'delete',
-        url:`${baseUrl}/${deleteUrl}`
+        url:`/${deleteUrl}`
     });
     return res;
 }
 
 
 export const updateBooking = async(val,editUrl)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method: 'PUT',
-        url: `${baseUrl}/${editUrl}`,
+        url: `/${editUrl}`,
         data: val
     });
     return res;
 }
 
 export const fetchUserBookings = async(userId)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'get',
-        url:`${baseUrl}/getAppointments/${userId}`,
+        url:`/getAppointments/${userId}`,
         headers: {
           'Access-Control-Allow-Origin': true,
         }
@@ -106,9 +105,9 @@ export const fetchUserBookings = async(userId)=>{
     return res;
 }
 export const fetchAllBookings = async(userId)=>{
-    const res = await axios({
+    const res = await axiosObject({
         method:'get',
-        url:`${baseUrl}/getAppointments/`,
+        url:`/getAppointments/`,
         headers: {
           'Access-Control-Allow-Origin': true,
         }
