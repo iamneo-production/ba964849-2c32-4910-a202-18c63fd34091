@@ -4,6 +4,7 @@ import com.examly.springapp.model.Login;
 import com.examly.springapp.model.Users;
 import com.examly.springapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +16,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     // create user
     @PostMapping("/signup")
     public String createUser(@RequestBody Users user) {
+        user.setPassword(bcryptEncoder.encode(user.getPassword()));
         user.setUserType("USER");
         return this.userService.createUser(user);
     }

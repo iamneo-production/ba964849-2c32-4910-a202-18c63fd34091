@@ -2,6 +2,8 @@ package com.examly.springapp.controller;
 
 import com.examly.springapp.model.JwtResponse;
 import com.examly.springapp.model.Login;
+import com.examly.springapp.model.Users;
+import com.examly.springapp.repo.UserRepository;
 import com.examly.springapp.service.UserService;
 import com.examly.springapp.service.impl.jwtUserDetailsService.JwtUserDetailsService;
 import com.examly.springapp.utility.JwtUtil;
@@ -14,10 +16,10 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class JwtController {
 
@@ -31,6 +33,9 @@ public class JwtController {
     private JwtUserDetailsService userDetailsService;
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @PostMapping("/authenticate")
@@ -48,10 +53,11 @@ public class JwtController {
         final UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         System.out.println(userDetails.toString());
 
+        final Users users = userRepository.findByEmail(authenticationRequest.getEmail());
         final String token = jwtUtil.generateToken(userDetails);
         System.out.println(token);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(users,token));
     }
     private void authenticate(String username, String password) throws Exception {
         try {
