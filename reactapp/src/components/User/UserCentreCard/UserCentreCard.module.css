@@ -6,6 +6,14 @@
   right: 8px;
 }
 
+.reviewButton {
+  padding: 8px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+
 .card p {
   margin: 0;
   margin-bottom: 2px;

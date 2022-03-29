@@ -1,6 +1,6 @@
 package com.examly.springapp.service.impl;
 
-import com.examly.springapp.model.User;
+import com.examly.springapp.model.Users;
 import com.examly.springapp.repo.UserRepository;
 import com.examly.springapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public String createUser(User user) {
-        boolean emailAlreadyExists = userRepository.existsUserByEmail(user.getEmail());
-        boolean mobileAlreadyExists = userRepository.existsUserByMobileNumber(user.getMobileNumber());
+    public String createUser(Users users) {
+        boolean emailAlreadyExists = userRepository.existsUserByEmail(users.getEmail());
+        boolean mobileAlreadyExists = userRepository.existsUserByMobileNumber(users.getMobileNumber());
 
         if (emailAlreadyExists) {
             return "Email id already exists";
@@ -27,39 +27,41 @@ public class UserServiceImpl implements UserService {
             return "Mobile number already exists";
         }
         try {
-            userRepository.save(user);
+            userRepository.save(users);
             return "User created succesfully";
         } catch (Exception e) {
             return "User creation failed. Try Again";
         }
     }
-    //return all user details
+
+    // return all user details
     @Override
-    public List<User> getUser() {
+    public List<Users> getUser() {
         return this.userRepository.findAll();
     }
 
-    //delete user details
+    // delete user details
     @Override
     public String deleteUser(long id) {
-        List<User> userList = getUser();
-        for(User x: userList){
-            if(Objects.equals(x.getUserId(),id)){
+        List<Users> usersList = getUser();
+        for (Users x : usersList) {
+            if (Objects.equals(x.getUserId(), id)) {
                 this.userRepository.delete(x);
                 return "deleted";
             }
         }
         return "failed";
     }
-    //update user details
+
+    // update user details
     @Override
-    public User updateUser(User user) {
-        List<User> userList = getUser();
-        for(User x: userList){
-            if(Objects.equals(x.getUserId(),user.getUserId())){
-                this.userRepository.save(user);
+    public Users updateUser(Users users) {
+        List<Users> usersList = getUser();
+        for (Users x : usersList) {
+            if (Objects.equals(x.getUserId(), users.getUserId())) {
+                this.userRepository.save(users);
             }
         }
-        return user;
+        return users;
     }
 }

@@ -1,10 +1,10 @@
 package com.examly.springapp.controller;
 
 import com.examly.springapp.model.Login;
-import com.examly.springapp.model.User;
-import com.examly.springapp.repo.UserRepository;
+import com.examly.springapp.model.Users;
 import com.examly.springapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,24 +17,28 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     // create user
     @PostMapping("/signup")
-    public String createUser(@RequestBody User user) {
+    public String createUser(@RequestBody Users user) {
+        user.setPassword(bcryptEncoder.encode(user.getPassword()));
         user.setUserType("USER");
         return this.userService.createUser(user);
     }
+
     // Return all User
-    public List<User> getUser() {
+    @GetMapping("/allUser")
+    public List<Users> getUser() {
         return this.userService.getUser();
     }
 
     // login
     @PostMapping("/login")
-    public User userLogin(@RequestBody Login login) {
-        List<User> user = getUser();
-        for (User u : user) {
+    public Users userLogin(@RequestBody Login login) {
+        List<Users> user = getUser();
+        for (Users u : user) {
             if (login.getEmail().equals(u.getEmail()) && login.getPassword().equals(u.getPassword())) {
                 return u;
             }
@@ -42,14 +46,16 @@ public class UserController {
         return null;
     }
 
-    //update user
+    // update user
     @PutMapping("/updateUser")
-    public User updateUser(@RequestBody User user){
+
+    public Users updateUser(@RequestBody Users user) {
         return this.userService.updateUser(user);
     }
-    //delete user
+
+    // delete user
     @DeleteMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable String id){
+    public String deleteUser(@PathVariable String id) {
         return this.userService.deleteUser(Long.parseLong(id));
     }
 }
