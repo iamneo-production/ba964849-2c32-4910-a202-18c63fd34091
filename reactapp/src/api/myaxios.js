@@ -3,6 +3,7 @@ import axios from "axios";
 import axiosObject from "../../src/api/bootapi"
 //app axios methods
 const baseUrl = "http://localhost:9090";
+
 export const login = async (val)=>{
     const res = await axios({
         method: 'post',
@@ -115,3 +116,22 @@ export const fetchAllBookings = async(userId)=>{
     return res;
 }
 
+export const fetchAllReviewsByCenter = async(url)=>{
+
+    const res = axiosObject({
+        method:"GET",
+        url: `${baseUrl}/${url}`
+    })
+
+    return res;
+}
+
+export const submitReview = async(val)=>{
+    const res = axiosObject({
+        method:"POST",
+        url:`${baseUrl}/addReview`,
+        data:val
+    });
+
+    return res;
+}

@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -26,6 +27,7 @@ public class UserController {
         user.setUserType("USER");
         return this.userService.createUser(user);
     }
+
     // Return all User
     @GetMapping("/allUser")
     public List<Users> getUser() {
@@ -44,14 +46,16 @@ public class UserController {
         return null;
     }
 
-    //update user
+    // update user
     @PutMapping("/updateUser")
-    public Users updateUser(@RequestBody Users user){
+
+    public Users updateUser(@RequestBody Users user) {
         return this.userService.updateUser(user);
     }
-    //delete user
+
+    // delete user
     @DeleteMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable String id){
+    public String deleteUser(@PathVariable String id) {
         return this.userService.deleteUser(Long.parseLong(id));
     }
 }

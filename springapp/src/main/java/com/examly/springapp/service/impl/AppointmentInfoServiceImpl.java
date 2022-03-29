@@ -223,6 +223,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
     @Override
     public List<AppointmentInfo> getAppointmentByUserId(long id) {
+
         List<Users> userList = userController.getUser();
         List<AppointmentInfo> appointmentInfoList = null;
         for (Users x : userList) {

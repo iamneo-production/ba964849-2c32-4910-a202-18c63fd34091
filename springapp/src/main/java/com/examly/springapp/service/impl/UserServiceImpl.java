@@ -33,30 +33,32 @@ public class UserServiceImpl implements UserService {
             return "User creation failed. Try Again";
         }
     }
-    //return all user details
+
+    // return all user details
     @Override
     public List<Users> getUser() {
         return this.userRepository.findAll();
     }
 
-    //delete user details
+    // delete user details
     @Override
     public String deleteUser(long id) {
         List<Users> usersList = getUser();
-        for(Users x: usersList){
-            if(Objects.equals(x.getUserId(),id)){
+        for (Users x : usersList) {
+            if (Objects.equals(x.getUserId(), id)) {
                 this.userRepository.delete(x);
                 return "deleted";
             }
         }
         return "failed";
     }
-    //update user details
+
+    // update user details
     @Override
     public Users updateUser(Users users) {
         List<Users> usersList = getUser();
-        for(Users x: usersList){
-            if(Objects.equals(x.getUserId(),users.getUserId())){
+        for (Users x : usersList) {
+            if (Objects.equals(x.getUserId(), users.getUserId())) {
                 this.userRepository.save(users);
             }
         }

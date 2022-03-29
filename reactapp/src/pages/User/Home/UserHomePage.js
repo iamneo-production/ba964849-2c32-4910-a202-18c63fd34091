@@ -8,6 +8,8 @@ const UserHomePage = (props) => {
 
   const [centreList,setCentreList]= useState([]);
   const [displayList, setDisplayList] = useState([]);
+
+  console.log(centreList);
   
   const fetchCentreList = async()=>{
     const res = await fetchAllCenter();

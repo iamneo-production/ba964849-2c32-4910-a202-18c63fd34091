@@ -5,13 +5,20 @@ import LocationOnSharpIcon from '@mui/icons-material/LocationOnSharp';
 import AccessTimeFilledSharpIcon from '@mui/icons-material/AccessTimeFilledSharp';
 import PhoneAndroidSharpIcon from '@mui/icons-material/PhoneAndroidSharp';
 import EmailSharpIcon from '@mui/icons-material/EmailSharp';
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 
 function UserCentreCard(props) {  
+
+    const navigate = useNavigate();
+
     const handleOnClickAdd=()=>{
         localStorage.setItem("bookCenterDetails",JSON.stringify(props.data));
         localStorage.setItem("isNewAppointment","true");
         
+    }
+
+    const handleOnClickReviews = ()=>{
+        navigate(`/user/center/reviews/${props.data.serviceCenterId}`);
     }
 
   return (
@@ -34,10 +41,18 @@ function UserCentreCard(props) {
                 </Link>
             }
             </>
+            <>
             {
                 props.enableSlotButton &&
                 <button onClick={()=>props.showModal(true)} className={`btn btn-success ${styles.bookButton}`}>Select Slot</button>
             }
+            </>
+            <>
+            {
+                props.enableOptions &&
+                <button onClick={()=>handleOnClickReviews()} className={`btn btn-success ${styles.reviewButton}`}>Reviews</button>
+            }
+            </>
         </div>
     </div>
   )
