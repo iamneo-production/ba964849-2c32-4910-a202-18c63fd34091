@@ -1,10 +1,12 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import classes from './LandingPage.module.css';
 
 const LandingPage = () => {
-
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
   return (
     <div className={classes.container}>
       <div className={classes.image}></div>

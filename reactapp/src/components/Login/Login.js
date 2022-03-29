@@ -21,15 +21,16 @@ export const Login = () => {
   async function handleOnSubmit(val) {
     try {
       const res = await myaxios.login(val);
-      localStorage.setItem('user',JSON.stringify(res));
-      if (res.data === "") {
+      localStorage.setItem('user',JSON.stringify(res.data.users));
+      localStorage.setItem('jwtToken',JSON.stringify(res.data.token));
+      if (res.data.users === "") {
         toast.error('INVALID CREDENTIAL');
       } else {
-        if (res.data.userType === "USER") {
+        if (res.data.users.userType === "USER") {
           toast.success('WELCOME USER',{position: "top-center",autoClose: 2000});
           setTimeout(() => { window.location.replace('/user/home'); }, 2000);
         }
-        if (res.data.userType === "ADMIN") {
+        if (res.data.users.userType === "ADMIN") {
           toast.success('WELCOME ADMIN',{position: "top-center",autoClose: 2000});
           setTimeout(() => { window.location.replace('/admin/home'); }, 2000);
           
@@ -37,6 +38,7 @@ export const Login = () => {
       }
 
     } catch (error) {
+      console.log(error);
       toast.error('LOGIN FAILED');
     }
 
@@ -74,4 +76,3 @@ export const Login = () => {
     </Formik>
   )
 }
-
