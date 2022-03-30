@@ -15,7 +15,10 @@ import UserDashboard from './pages/User/Dashboard/UserDashboard';
 import Userbooking from './pages/User/MyBookings/Userbooking';
 import Usereditcenter from './pages/User/EditAppoinment/Usereditcenter';
 import AvailableSlots from './components/User/AvailableSlots/AvailableSlots';
+<<<<<<< HEAD
 import PaymentCard from './components/PaymentCard/PaymentCard';
+=======
+>>>>>>> 8c068307350d5eec193238d98e8797ee17a89e97
 import Userreview from './pages/User/Userreview/Userreview';
 
 function App() {
