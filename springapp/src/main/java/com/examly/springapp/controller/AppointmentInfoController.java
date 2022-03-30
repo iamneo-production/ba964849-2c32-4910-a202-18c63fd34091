@@ -19,19 +19,20 @@ public class AppointmentInfoController {
     @Autowired
     private AppointmentInfoService appointmentInfoService;
 
-    //Booking Appointment
+    // Booking Appointment
     @PostMapping("/bookappointment")
     public AppointmentInfo addAppointment(@RequestBody AppointmentInfo appointmentInfo) {
         return this.appointmentInfoService.addAppointment(appointmentInfo);
 
     }
-    //Return all appointments details
+
+    // Return all appointments details
     @GetMapping("/getAppointments")
     public List<AppointmentInfo> getAppointments() {
         return this.appointmentInfoService.allAppointments();
     }
 
-    //Return all appointments details by UserId
+    // Return all appointments details by UserId
     @GetMapping("/getAppointments/{id}")
     public List<AppointmentInfo> getUserAppointments(@PathVariable String id) {
         long Id = Long.parseLong(id);
@@ -43,6 +44,11 @@ public class AppointmentInfoController {
     public AppointmentInfo editAppointment(@RequestBody AppointmentInfo appointmentInfo,
             @PathVariable("id") String id) {
         return this.appointmentInfoService.editAppointment(appointmentInfo, id);
+    }
+
+    @PutMapping("/payment/{id}")
+    public AppointmentInfo editPayment(@PathVariable String id) {
+        return this.appointmentInfoService.editPayment(Long.parseLong(id));
     }
 
     // delete Service Center

@@ -10,7 +10,7 @@ function Adminbooking(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchAppointments = async()=>{
-    const res = await fetchAllBookings(user.data.userId);
+    const res = await fetchAllBookings(user.userId);
     setAppointmentList(res.data);
   }
 

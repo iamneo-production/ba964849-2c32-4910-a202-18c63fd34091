@@ -8,7 +8,7 @@ function AdminLayout() {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   useEffect(()=>{
-    if(user==null || user.data.userType !== "ADMIN"){
+    if(user==null || user.userType !== "ADMIN"){
       toast.error("Please Login to see this page");
       navigate("/login");
     }

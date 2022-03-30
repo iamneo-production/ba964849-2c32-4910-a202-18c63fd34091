@@ -11,7 +11,7 @@ function UserLayOut() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(()=>{
-    if(user==null || user.data.userType!=="USER"){
+    if(user==null || user.userType!=="USER"){
       toast.error('Please Login to view this page');
       navigate("/login");
     }
@@ -23,7 +23,7 @@ function UserLayOut() {
       user && 
       <div>
         <UserNavbar/>
-        <h3>{`Hi, ${user.data.name}`}</h3>
+        <h3>{`Hi, ${user.name}`}</h3>
         <ToastContainer/>
         <Outlet/>
       </div>

@@ -3,6 +3,7 @@ package com.examly.springapp.service.impl;
 import java.util.Optional;
 import com.examly.springapp.model.Center;
 import com.examly.springapp.repo.CenterRepository;
+import com.examly.springapp.repo.ReviewRepository;
 import com.examly.springapp.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class CenterServiceImpl implements CenterService {
     // properties
     @Autowired
     private CenterRepository serviceCenterRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     // @Autowired
     // private AppointmentInfoService appointmentInfoService;
@@ -70,6 +74,7 @@ public class CenterServiceImpl implements CenterService {
     @Override
     public Center deleteCenter(long id) {
         List<Center> serviceCenters = viewCenter();
+        reviewRepository.deleteByCenterServiceCenterId(id);
         Center serviceCenter = new Center();
         for (Center x : serviceCenters) {
             if (x.getServiceCenterId() == id) {

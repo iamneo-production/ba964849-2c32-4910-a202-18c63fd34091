@@ -4,7 +4,7 @@ import com.examly.springapp.controller.CenterController;
 import com.examly.springapp.controller.UserController;
 import com.examly.springapp.model.AppointmentInfo;
 import com.examly.springapp.model.Center;
-import com.examly.springapp.model.User;
+import com.examly.springapp.model.Users;
 import com.examly.springapp.repo.AppointmentInfoRepository;
 import com.examly.springapp.repo.CenterRepository;
 import com.examly.springapp.repo.UserRepository;
@@ -103,8 +103,8 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
             }
         }
         // adding appointment into user
-        List<User> userList = userController.getUser();
-        for (User X : userList) {
+        List<Users> userList = userController.getUser();
+        for (Users X : userList) {
             if (Objects.equals(X.getUserId(), appointmentInfo.getUserId())) {
                 X.getAppointmentInfo().add(appointmentInfo);
                 this.userRepository.save(X);
@@ -223,9 +223,10 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
 
     @Override
     public List<AppointmentInfo> getAppointmentByUserId(long id) {
-        List<User> userList = userController.getUser();
+
+        List<Users> userList = userController.getUser();
         List<AppointmentInfo> appointmentInfoList = null;
-        for (User x : userList) {
+        for (Users x : userList) {
             if (Objects.equals(id, x.getUserId())) {
                 appointmentInfoList = x.getAppointmentInfo();
             }
@@ -287,5 +288,19 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
             }
         }
         return slot;
+    }
+
+    @Override
+    public AppointmentInfo editPayment(long id) {
+        List<AppointmentInfo> appointments = allAppointments();
+        AppointmentInfo appointment = new AppointmentInfo();
+        for (AppointmentInfo x : appointments) {
+            if (x.getAppointmentId() == id) {
+                x.setPaymentDone("yes");
+                appointment = x;
+                this.appointmentInfoRepository.save(appointment);
+            }
+        }
+        return appointment;
     }
 }

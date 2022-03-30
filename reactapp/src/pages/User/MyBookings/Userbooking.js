@@ -16,7 +16,7 @@ function Userbooking(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchAppointments = async()=>{
-    const res = await fetchUserBookings(user.data.userId);
+    const res = await fetchUserBookings(user.userId);
     setAppointmentList(res.data);
   }
 
