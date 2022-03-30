@@ -36,7 +36,8 @@ const Mybooking = (props) => {
       alert("Could Not Delete Try Again");
   }
   }
-  const handleClickPay = () =>{
+  const handleClickPay = (props) =>{
+    localStorage.setItem('appointMentId',JSON.stringify(props));
     window.location.replace('/user/payment');
   }
   const handleOnClickEdit = ()=>{
@@ -73,13 +74,13 @@ const Mybooking = (props) => {
               Pay
             </button>
             </td>
-            :props.data.bookingDate<=today || props.data.paymentDone==="no"
+            :props.data.bookingDate<=today && props.data.paymentDone==="no"
             ?
             <td>
             <button
             className="btn btn-primary"
             disabled={false} 
-            onClick={()=>handleClickPay()}>
+            onClick={()=>handleClickPay(props.data.appointmentId)}>
               Pay
             </button>
             </td>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
 import '../PaymentCard/PaymentCard.css'
+import { makePayment } from '../../api/myaxios'
 
 function PaymentCard() {
         const [number, setNumber] = useState('')
@@ -10,7 +11,9 @@ function PaymentCard() {
         const [cvc, setCvc] = useState('')
         const [focus, setFocus] = useState('')
         const setPaymentStatus=()=>{
-                
+                let id = localStorage.getItem('appointMentId')
+                makePayment(id);
+                window.location.replace('/user/Mybooking')
         };
         return (
                 <div className='body'>
@@ -72,16 +75,18 @@ function PaymentCard() {
                                 </div>
                                 <div>
                                         <input 
-                                        type='tel'
+                                        type='text'
                                         name='charge'
                                         placeholder='Amount'
+                                        value = '₹ 250.00 '
+                                        disabled={true}
                                         style={{height:40,width:205,marginRight:5}}
                                         />
                                         <button 
                                         className="btn btn-success"
                                         style={{width:205,height:40,marginTop:-6}}
                                         onClick={()=>{setPaymentStatus()}}
-                                        >Pay</button>
+                                        >Confirm</button>
                                 </div>
                                 
                         </from>        
