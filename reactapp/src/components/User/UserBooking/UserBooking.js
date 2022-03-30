@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link, useNavigate } from "react-router-dom";
 import { deleteBooking,fetchCenterById } from "../../../api/myaxios";
-import { toast} from "react-toastify";
+import { toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 const Mybooking = (props) => {
 
@@ -29,8 +29,19 @@ const Mybooking = (props) => {
     try{
       if(window.confirm('Are you sure you want to delete?')){
           const res = await deleteBooking(deleteURL);
-          toast.success("Booking Deleted");
-          props.onDelete();
+          console.log(res.data);
+          if(res.data==='No data found'){
+            toast.warn(res)
+          }
+          if(res.data==="You can't Delete"){
+            toast.warn("You can't delete appointment now!");
+            
+          }
+          if(res.data==='Deleted Successfully'){
+            toast.success("Booking Deleted");
+            props.onDelete();
+          }
+          
       }
   }catch(error){
       alert("Could Not Delete Try Again");
