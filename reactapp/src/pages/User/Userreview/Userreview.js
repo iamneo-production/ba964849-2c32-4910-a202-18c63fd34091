@@ -14,11 +14,7 @@ function Userreview(props) {
 
   const param = useParams();
 
-  console.log("centerId", param.centerId);
-
-  console.log("reviews",reviews);
-
-  console.log("myReview",myReview);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchReviews = async()=>{
     const url = `getReviews/${param.centerId}`;
@@ -46,7 +42,6 @@ function Userreview(props) {
     let data = {};
     data["dateCreated"] = convertDateToString(new Date());
     data["reviewContent"] = myReview;
-    const user = JSON.parse(localStorage.getItem("user"));
     data["user"] = user;
     data["center"] = {"serviceCenterId":param.centerId};
 
@@ -73,7 +68,11 @@ function Userreview(props) {
       <div className={styles.container}>
         {
           reviews.length > 0 ?
-          reviews.map(review=><UserReview review={review} data={review} key={review.reviewId}onDelete={fetchReviews}/>):
+          reviews.map(review=>{
+            let showOptions = review.user.userId == user.userId;
+            return <UserReview review={review} key={review.reviewId}
+          onDelete={fetchReviews} showOptions={showOptions}/>
+        }):
           <h2>No Reviews Found</h2>
         }
       </div> 

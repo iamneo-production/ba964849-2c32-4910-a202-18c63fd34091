@@ -7,11 +7,9 @@ import { deleteReview } from '../../../api/myaxios';
 function UserReview(props) {
 
   const review = props.review;
-  const id=props.data.reviewId;
+  const id= review.reviewId;
   const delurl=`deleteReview/${id}`;
  
-
-
   const handleOnClickDelete = async()=>{
     try{
         if(window.confirm('Are you sure you want to delete?')){
@@ -27,12 +25,9 @@ function UserReview(props) {
     
 }
 const handleOnClickEdit = ()=>{
-  localStorage.setItem("data",JSON.stringify(props.data));
+  localStorage.setItem("reviewData",JSON.stringify(props.review));
 }
 
-
-
-  console.log('review',review);
   return(
     <div className={styles.container}>
       <div className={styles.header}>
@@ -41,13 +36,17 @@ const handleOnClickEdit = ()=>{
       </div>
       <div className={styles.body}>
         <p>
-          {review.reviewContent}<Link to='/user/home' onClick={()=>handleOnClickDelete()}>
-      <DeleteIcon/></Link>
-          <Link to='/user/center/reviews/:centerId' onClick={()=>handleOnClickEdit()}><EditIcon/></Link>
+          {review.reviewContent}
         </p>
+        {
+          props.showOptions &&
+        <div className={styles.options}>
+        <Link to='' onClick={()=>handleOnClickDelete()}>
+            <DeleteIcon/></Link>
+        {/* <Link to='' onClick={()=>handleOnClickEdit()}><EditIcon/></Link> */}
         </div>
-      
-     
+        }
+        </div>
       </div>
    
   )
