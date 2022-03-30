@@ -91,7 +91,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         }
 
         System.out.println("Function execution done------------------------------------------");
-
+        appointmentInfo.setPaymentDone("no");
         this.appointmentInfoRepository.save(appointmentInfo);
 
         // adding appointment into service center
@@ -288,5 +288,19 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
             }
         }
         return slot;
+    }
+
+    @Override
+    public AppointmentInfo editPayment(long id) {
+        List<AppointmentInfo> appointments = allAppointments();
+        AppointmentInfo appointment = new AppointmentInfo();
+        for (AppointmentInfo x : appointments) {
+            if (x.getAppointmentId() == id) {
+                x.setPaymentDone("yes");
+                appointment = x;
+                this.appointmentInfoRepository.save(appointment);
+            }
+        }
+        return appointment;
     }
 }

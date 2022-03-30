@@ -15,6 +15,7 @@ import UserDashboard from './pages/User/Dashboard/UserDashboard';
 import Userbooking from './pages/User/MyBookings/Userbooking';
 import Usereditcenter from './pages/User/EditAppoinment/Usereditcenter';
 import AvailableSlots from './components/User/AvailableSlots/AvailableSlots';
+import PaymentCard from './components/PaymentCard/PaymentCard';
 import Userreview from './pages/User/Userreview/Userreview';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
+        
 
         <Route path="/admin" element={<AdminLayout/>}>
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
@@ -39,6 +41,7 @@ function App() {
           <Route path='/user/Mybooking' element={<Userbooking/>}></Route>
           <Route path='/user/EditCenter' element={<Usereditcenter/>}></Route>
           <Route path="/user/booking/slot" element={<AvailableSlots/>}></Route>
+          <Route path="/user/payment" element={<PaymentCard/>}></Route>
           <Route path="/user/center/reviews/:centerId" element={<Userreview/>}></Route>
         </Route>
 
