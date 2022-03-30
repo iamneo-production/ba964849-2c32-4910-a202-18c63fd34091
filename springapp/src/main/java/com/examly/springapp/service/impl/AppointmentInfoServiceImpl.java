@@ -91,7 +91,7 @@ public class AppointmentInfoServiceImpl implements AppointmentInfoService {
         }
 
         System.out.println("Function execution done------------------------------------------");
-
+        appointmentInfo.setPaymentDone("no");
         this.appointmentInfoRepository.save(appointmentInfo);
 
         // adding appointment into service center
