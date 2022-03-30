@@ -135,3 +135,21 @@ export const submitReview = async(val)=>{
 
     return res;
 }
+export const deleteReview =async(delurl)=>
+{
+    const res=await axiosObject({
+        method:'delete',
+        url:`${baseUrl}/${delurl}`
+    });
+    return res;
+}
+    
+export const editReview = async(val,editurl)=>{
+    const res = await axiosObject({
+        method: 'PUT',
+        url: `${baseUrl}/${editurl}`,
+        data: val
+    });
+    return res;
+}
+

@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Userreview(props) {
-
   const [reviews,setReviews] = useState([]);
 
   const [myReview,setMyReview] = useState("");
@@ -62,11 +61,10 @@ function Userreview(props) {
 
     fetchReviews();
   }
-
   return(
     <div className={styles.mainContainer}>
       <div className={styles.leftPanel}>
-        <textarea placeholder='Write your review.........' onChange={(e)=>handleOnChange(e)}></textarea>
+        <textarea  placeholder='Write your review.........'  onChange={(e)=>handleOnChange(e)}></textarea>
         <br/>
         <button className={`btn btn-success ${styles.submitButton}`} onClick={()=>handleOnClickSubmit()}>Submit Review</button>
       </div>
@@ -75,7 +73,7 @@ function Userreview(props) {
       <div className={styles.container}>
         {
           reviews.length > 0 ?
-          reviews.map(review=><UserReview review={review}/>):
+          reviews.map(review=><UserReview review={review} data={review} key={review.reviewId}onDelete={fetchReviews}/>):
           <h2>No Reviews Found</h2>
         }
       </div> 
