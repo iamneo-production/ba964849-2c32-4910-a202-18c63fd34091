@@ -9,7 +9,9 @@ function PaymentCard() {
         const [expiry, setExpiry] = useState('')
         const [cvc, setCvc] = useState('')
         const [focus, setFocus] = useState('')
-        const setPaymentStatus=()=>{};
+        const setPaymentStatus=()=>{
+                
+        };
         return (
                 <div className='body'>
                         <div className='bgimage'></div>

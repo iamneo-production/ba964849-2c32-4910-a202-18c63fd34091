@@ -26,7 +26,7 @@ function App() {
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
-        <Route path="/payment" element={<PaymentCard/>}></Route>
+        
 
         <Route path="/admin" element={<AdminLayout/>}>
           <Route path="/admin/home" element={<AdminHomePage/>}></Route>
@@ -41,7 +41,7 @@ function App() {
           <Route path='/user/Mybooking' element={<Userbooking/>}></Route>
           <Route path='/user/EditCenter' element={<Usereditcenter/>}></Route>
           <Route path="/user/booking/slot" element={<AvailableSlots/>}></Route>
-          
+          <Route path="/user/payment" element={<PaymentCard/>}></Route>
           <Route path="/user/center/reviews/:centerId" element={<Userreview/>}></Route>
         </Route>
 
