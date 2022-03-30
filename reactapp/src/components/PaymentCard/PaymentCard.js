@@ -3,6 +3,8 @@ import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css'
 import '../PaymentCard/PaymentCard.css'
 import { makePayment } from '../../api/myaxios'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast,ToastContainer } from 'react-toastify';
 
 function PaymentCard() {
         const [number, setNumber] = useState('')
@@ -13,10 +15,12 @@ function PaymentCard() {
         const setPaymentStatus=()=>{
                 let id = localStorage.getItem('appointMentId')
                 makePayment(id);
-                window.location.replace('/user/Mybooking')
+                toast.success('PAYMENT SUCCESSFULL',{position: "top-right",autoClose: 2000});
+                setTimeout(() => { window.location.replace('/user/Mybooking'); }, 2000);
         };
         return (
                 <div className='body'>
+                        <ToastContainer/>
                         <div className='bgimage'></div>
                 <div className='Card' style={{display:'flex',borderRadius:'1%',padding:40}}>
                         <div>

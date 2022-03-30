@@ -69,8 +69,9 @@ const Mybooking = (props) => {
             props.data.bookingDate>today?
             <td>
             <button
-            className="btn btn-primary"
-            disabled={true} >
+            className="btn btn-secondary"
+            disabled={true}
+             >
               Pay
             </button>
             </td>
@@ -88,9 +89,9 @@ const Mybooking = (props) => {
             ?
             <td>
             <button
-            className="btn btn-primary"
+            className="btn btn-success"
             disabled={true} >
-              Pay
+              Paid
             </button>
             </td>
             :
