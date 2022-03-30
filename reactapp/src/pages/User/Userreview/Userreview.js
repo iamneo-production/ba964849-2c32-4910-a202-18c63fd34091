@@ -48,13 +48,16 @@ function Userreview(props) {
     try{
       const res = await submitReview(data);
       toast.success("Review Submitted");
+      setTimeout(()=>{
+        window.location.reload();
+      },3000);
     }
     catch(error){
       console.log(error);
       toast.error("Review Submit Failed");
     }
 
-    fetchReviews();
+
   }
   return(
     <div className={styles.mainContainer}>

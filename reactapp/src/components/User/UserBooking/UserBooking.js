@@ -10,6 +10,7 @@ const Mybooking = (props) => {
 
   const navigate = useNavigate();
   const [centerData, setCenterData] = useState({});
+  const today = new Date().toISOString().slice(0,10);
 
   const id = props.data.appointmentId;
   const deleteURL = `deleteAppointment/${id}`;
@@ -34,6 +35,10 @@ const Mybooking = (props) => {
   }catch(error){
       alert("Could Not Delete Try Again");
   }
+  }
+  const handleClickPay = (props) =>{
+    localStorage.setItem('appointMentId',JSON.stringify(props));
+    window.location.replace('/user/payment');
   }
   const handleOnClickEdit = ()=>{
     localStorage.setItem("bookCenterDetails",JSON.stringify(centerData)); 
@@ -60,6 +65,41 @@ const Mybooking = (props) => {
               <DeleteIcon/>
             </Link>
           </td>
+          {
+            props.data.bookingDate>today?
+            <td>
+            <button
+            className="btn btn-secondary"
+            disabled={true}
+             >
+              Pay
+            </button>
+            </td>
+            :props.data.bookingDate<=today && props.data.paymentDone==="no"
+            ?
+            <td>
+            <button
+            className="btn btn-primary"
+            disabled={false} 
+            onClick={()=>handleClickPay(props.data.appointmentId)}>
+              Pay
+            </button>
+            </td>
+            : props.data.bookingDate<=today && props.data.paymentDone==="yes"
+            ?
+            <td>
+            <button
+            className="btn btn-success"
+            disabled={true} >
+              Paid
+            </button>
+            </td>
+            :
+            <td>
+
+            </td>
+          }
+          
         </tr>
       </>
                       

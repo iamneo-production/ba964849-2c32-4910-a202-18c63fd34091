@@ -135,6 +135,7 @@ export const submitReview = async(val)=>{
 
     return res;
 }
+
 export const deleteReview =async(delurl)=>
 {
     const res=await axiosObject({
@@ -153,3 +154,10 @@ export const editReview = async(val,editurl)=>{
     return res;
 }
 
+ export const makePayment = async(id)=>{
+     const res = axiosObject({
+         method:'PUT',
+         url:`/payment/${id}`
+     });
+     return res;
+ }
