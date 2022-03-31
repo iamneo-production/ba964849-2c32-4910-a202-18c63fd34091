@@ -68,7 +68,7 @@ const Mybooking = (props) => {
           <td>{props.data.bookingTime}</td> 
           <td>
             {
-              props.data.bookingDate < today &&
+              props.data.bookingDate <= today ?"Can't edit":
           <a  onClick={()=>handleOnClickEdit()}>
             <EditIcon/>
           </a>
