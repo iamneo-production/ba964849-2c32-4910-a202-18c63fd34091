@@ -8,7 +8,11 @@ import com.examly.springapp.service.AppointmentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,7 +57,26 @@ public class AppointmentInfoController {
 
     // delete Service Center
     @DeleteMapping("/deleteAppointment/{id}")
-    public AppointmentInfo deleteAppointment(@PathVariable String id) {
-        return this.appointmentInfoService.deleteAppointment(Long.parseLong(id));
+    public String deleteAppointment(@PathVariable String id) throws ParseException {
+        String data = "No data found";
+        List<AppointmentInfo> appointmentinfo = getAppointments();
+        AppointmentInfo appointmentInfo = new AppointmentInfo();
+        for (AppointmentInfo x : appointmentinfo) {
+            if (x.getAppointmentId() == Long.parseLong(id)) {
+                appointmentInfo = x;
+
+                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+                Date d1 = sdformat.parse(String.valueOf(LocalDate.now()));
+                Date d2 = sdformat.parse(x.getBookingDate());
+                if((d1.compareTo(d2)==0 && x.getPaymentDone().equals("no")) || (d1.compareTo(d2)>0 && x.getPaymentDone().equals("no"))){
+                    data = "You can't Delete";
+                }else {
+                    this.appointmentInfoService.deleteAppointment(Long.parseLong(id));
+                    data = "Deleted Successfully";
+                }
+            }
+        }
+
+        return data;
     }
 }
