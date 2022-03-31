@@ -67,9 +67,12 @@ const Mybooking = (props) => {
           <td>{props.data.bookingDate}</td><br></br>
           <td>{props.data.bookingTime}</td> 
           <td>
+            {
+              props.data.bookingDate < today &&
           <a  onClick={()=>handleOnClickEdit()}>
             <EditIcon/>
           </a>
+          }
           </td>
           <td>
             <Link to="" onClick={()=>handleOnClickDelete()} className="btn_black">
