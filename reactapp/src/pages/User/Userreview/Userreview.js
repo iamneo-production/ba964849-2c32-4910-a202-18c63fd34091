@@ -8,18 +8,13 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Userreview(props) {
-
   const [reviews,setReviews] = useState([]);
 
   const [myReview,setMyReview] = useState("");
 
   const param = useParams();
 
-  console.log("centerId", param.centerId);
-
-  console.log("reviews",reviews);
-
-  console.log("myReview",myReview);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchReviews = async()=>{
     const url = `getReviews/${param.centerId}`;
@@ -47,26 +42,27 @@ function Userreview(props) {
     let data = {};
     data["dateCreated"] = convertDateToString(new Date());
     data["reviewContent"] = myReview;
-    const user = JSON.parse(localStorage.getItem("user"));
     data["user"] = user;
     data["center"] = {"serviceCenterId":param.centerId};
 
     try{
       const res = await submitReview(data);
       toast.success("Review Submitted");
+      setTimeout(()=>{
+        window.location.reload();
+      },2000);
     }
     catch(error){
       console.log(error);
       toast.error("Review Submit Failed");
     }
 
-    fetchReviews();
-  }
 
+  }
   return(
     <div className={styles.mainContainer}>
       <div className={styles.leftPanel}>
-        <textarea placeholder='Write your review.........' onChange={(e)=>handleOnChange(e)}></textarea>
+        <textarea  placeholder='Write your review.........'  onChange={(e)=>handleOnChange(e)}></textarea>
         <br/>
         <button className={`btn btn-success ${styles.submitButton}`} onClick={()=>handleOnClickSubmit()}>Submit Review</button>
       </div>
@@ -75,7 +71,11 @@ function Userreview(props) {
       <div className={styles.container}>
         {
           reviews.length > 0 ?
-          reviews.map(review=><UserReview review={review}/>):
+          reviews.map(review=>{
+            let showOptions = review.user.userId == user.userId;
+            return <UserReview review={review} key={review.reviewId}
+          onDelete={fetchReviews} showOptions={showOptions}/>
+        }):
           <h2>No Reviews Found</h2>
         }
       </div> 

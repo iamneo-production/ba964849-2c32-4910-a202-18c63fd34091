@@ -6,6 +6,7 @@
   padding: 8px;
   background-color: white;
   margin-bottom: 8px;
+  position: relative;
 }
 
 .header {
@@ -19,4 +20,10 @@
 
 .body {
   text-align: left;
+}
+
+.options {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
