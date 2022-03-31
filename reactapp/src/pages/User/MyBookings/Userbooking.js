@@ -17,7 +17,7 @@ function Userbooking(props) {
 
   const fetchAppointments = async()=>{
     const res = await fetchUserBookings(user.userId);
-    setAppointmentList(res.data);
+    setAppointmentList(res.data.reverse());
   }
 
   useEffect(()=>{
