@@ -31,7 +31,7 @@ const Mybooking = (props) => {
           const res = await deleteBooking(deleteURL);
           console.log(res.data);
           if(res.data==='No data found'){
-            toast.warn(res)
+            toast.warn('No data found');
           }
           if(res.data==="You can't Delete"){
             toast.warn("You can't delete appointment now!");
